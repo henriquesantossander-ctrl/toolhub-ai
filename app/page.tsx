@@ -3,6 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
+
       {/* BACKGROUND EFFECTS */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-600 rounded-full blur-[120px] opacity-20"></div>
 
@@ -11,13 +12,13 @@ export default function Home() {
       {/* NAVBAR */}
       <header className="relative z-10 w-full border-b border-zinc-900 px-8 py-5 flex items-center justify-between">
         <h1 className="text-2xl font-bold">
-          ToolHub AI
+          ToolHub IA
         </h1>
 
         <nav className="flex gap-6 text-zinc-400">
           <Link href="/bio-generator">
             <span className="hover:text-white transition">
-              Bio
+              Biografia
             </span>
           </Link>
 
@@ -44,6 +45,12 @@ export default function Home() {
               TikTok
             </span>
           </Link>
+
+          <Link href="/hashtag-generator">
+            <span className="hover:text-white transition">
+              Hashtags
+            </span>
+          </Link>
         </nav>
       </header>
 
@@ -61,15 +68,15 @@ export default function Home() {
         </h1>
 
         <p className="text-zinc-400 max-w-2xl text-xl leading-9">
-          Crie bios, gere nicknames, resuma textos
-          e descubra ferramentas incríveis para
-          produtividade e redes sociais.
+          Crie biografias, gere apelidos,
+          resuma textos e descubra ferramentas
+          incríveis para produtividade e redes sociais.
         </p>
 
         <div className="flex gap-4 mt-10">
           <Link href="/bio-generator">
             <button className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">
-              Começar Agora
+              Começar agora
             </button>
           </Link>
 
@@ -82,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* TOOLS */}
-      <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 px-8 pb-24">
+      <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 px-8 pb-24">
 
         {/* BIO */}
         <Link href="/bio-generator">
@@ -92,13 +99,13 @@ export default function Home() {
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Crie bios incríveis para Instagram,
+              Crie biografias incríveis para Instagram,
               TikTok e Discord.
             </p>
           </div>
         </Link>
 
-        {/* NICKNAME */}
+        {/* NICK */}
         <Link href="/nickname-generator">
           <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
             <h2 className="text-3xl font-bold mb-3">
@@ -106,20 +113,20 @@ export default function Home() {
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Descubra nicknames únicos para jogos.
+              Descubra apelidos exclusivos para jogos.
             </p>
           </div>
         </Link>
 
-        {/* AI */}
+        {/* IA */}
         <Link href="/ai-summarizer">
           <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
             <h2 className="text-3xl font-bold mb-3">
-              🤖 Resumidor IA
+              🤖 Resumo IA
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Resuma textos rapidamente usando IA.
+              Retomar textos rapidamente usando IA.
             </p>
           </div>
         </Link>
@@ -142,12 +149,26 @@ export default function Home() {
         <Link href="/tiktok-username-generator">
           <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
             <h2 className="text-3xl font-bold mb-3">
-              🎵 Username TikTok
+              🎵 Nome de usuário TikTok
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Gere usernames estilosos para TikTok
-              e redes sociais.
+              Gere nomes de usuário estilosos para
+              TikTok e redes sociais.
+            </p>
+          </div>
+        </Link>
+
+        {/* HASHTAG */}
+        <Link href="/hashtag-generator">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+            <h2 className="text-3xl font-bold mb-3">
+              #️⃣ Gerador de Hashtags
+            </h2>
+
+            <p className="text-zinc-400 leading-7">
+              Gere hashtags virais para Instagram,
+              TikTok, Reels e posts.
             </p>
           </div>
         </Link>
@@ -157,7 +178,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="relative z-10 border-t border-zinc-900 mt-20 px-8 py-10 text-center text-zinc-500">
         <p>
-          © 2026 ToolHub AI — Todos os direitos reservados.
+          © 2026 ToolHub IA — Todos os direitos reservados.
         </p>
 
         <p className="mt-3 text-sm">
