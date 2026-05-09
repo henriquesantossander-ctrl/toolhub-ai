@@ -12,10 +12,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "ToolHub AI - Ferramentas grátis para internet",
+export const metadata: Metadata = {
+  title: "ToolHub AI - Ferramentas grátis para redes sociais e IA",
   description:
-    "Use ferramentas grátis para gerar bio, criar nickname, resumir textos e melhorar sua produtividade online.",
+    "Ferramentas grátis para gerar bio, nickname, hashtags, legendas para Instagram, nomes para TikTok e resumir textos online.",
+  keywords: [
+    "gerador de bio",
+    "gerador de nickname",
+    "gerador de hashtags",
+    "gerador de legenda instagram",
+    "gerador de nome tiktok",
+    "resumidor de texto",
+    "ferramentas IA grátis",
+  ],
+  openGraph: {
+    title: "ToolHub AI",
+    description:
+      "Ferramentas grátis para redes sociais, produtividade e IA.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
