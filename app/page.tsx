@@ -15,42 +15,14 @@ export default function Home() {
           ToolHub IA
         </h1>
 
-        <nav className="flex gap-6 text-zinc-400">
-          <Link href="/bio-generator">
-            <span className="hover:text-white transition">
-              Biografia
-            </span>
-          </Link>
-
-          <Link href="/nickname-generator">
-            <span className="hover:text-white transition">
-              Nick
-            </span>
-          </Link>
-
-          <Link href="/ai-summarizer">
-            <span className="hover:text-white transition">
-              IA
-            </span>
-          </Link>
-
-          <Link href="/instagram-caption-generator">
-            <span className="hover:text-white transition">
-              Instagram
-            </span>
-          </Link>
-
-          <Link href="/tiktok-username-generator">
-            <span className="hover:text-white transition">
-              TikTok
-            </span>
-          </Link>
-
-          <Link href="/hashtag-generator">
-            <span className="hover:text-white transition">
-              Hashtags
-            </span>
-          </Link>
+        <nav className="flex gap-6 text-zinc-400 flex-wrap">
+          <Link href="/bio-generator">Bio</Link>
+          <Link href="/nickname-generator">Nick</Link>
+          <Link href="/ai-summarizer">IA</Link>
+          <Link href="/instagram-caption-generator">Instagram</Link>
+          <Link href="/tiktok-username-generator">TikTok</Link>
+          <Link href="/hashtag-generator">Hashtags</Link>
+          <Link href="/freefire-name-generator">Free Fire</Link>
         </nav>
       </header>
 
@@ -68,46 +40,30 @@ export default function Home() {
         </h1>
 
         <p className="text-zinc-400 max-w-2xl text-xl leading-9">
-          Crie biografias, gere apelidos,
-          resuma textos e descubra ferramentas
-          incríveis para produtividade e redes sociais.
+          Crie biografias, hashtags, usernames,
+          nomes gamer e ferramentas incríveis
+          para redes sociais.
         </p>
 
-        <div className="flex gap-4 mt-10">
-          <Link href="/bio-generator">
-            <button className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition">
-              Começar agora
-            </button>
-          </Link>
-
-          <Link href="/instagram-caption-generator">
-            <button className="border border-zinc-700 px-8 py-4 rounded-2xl font-bold hover:bg-zinc-900 transition">
-              Explorar
-            </button>
-          </Link>
-        </div>
       </section>
 
       {/* TOOLS */}
-      <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 px-8 pb-24">
+      <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-8 pb-24">
 
-        {/* BIO */}
         <Link href="/bio-generator">
-          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-purple-500">
             <h2 className="text-3xl font-bold mb-3">
               🔥 Gerador de Bio
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Crie biografias incríveis para Instagram,
-              TikTok e Discord.
+              Crie biografias incríveis para redes sociais.
             </p>
           </div>
         </Link>
 
-        {/* NICK */}
         <Link href="/nickname-generator">
-          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-blue-500">
             <h2 className="text-3xl font-bold mb-3">
               🎮 Gerador de Nick
             </h2>
@@ -118,57 +74,62 @@ export default function Home() {
           </div>
         </Link>
 
-        {/* IA */}
         <Link href="/ai-summarizer">
-          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-pink-500">
             <h2 className="text-3xl font-bold mb-3">
               🤖 Resumo IA
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Retomar textos rapidamente usando IA.
+              Resuma textos rapidamente usando IA.
             </p>
           </div>
         </Link>
 
-        {/* INSTAGRAM */}
         <Link href="/instagram-caption-generator">
-          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-yellow-500">
             <h2 className="text-3xl font-bold mb-3">
               📸 Legenda Instagram
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Gere legendas rápidas para Instagram,
-              reels e stories.
+              Gere legendas rápidas para Instagram.
             </p>
           </div>
         </Link>
 
-        {/* TIKTOK */}
         <Link href="/tiktok-username-generator">
-          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-cyan-500">
             <h2 className="text-3xl font-bold mb-3">
-              🎵 Nome de usuário TikTok
+              🎵 Username TikTok
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Gere nomes de usuário estilosos para
-              TikTok e redes sociais.
+              Gere usernames estilosos para TikTok.
             </p>
           </div>
         </Link>
 
-        {/* HASHTAG */}
         <Link href="/hashtag-generator">
-          <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-green-500">
             <h2 className="text-3xl font-bold mb-3">
               #️⃣ Gerador de Hashtags
             </h2>
 
             <p className="text-zinc-400 leading-7">
-              Gere hashtags virais para Instagram,
-              TikTok, Reels e posts.
+              Gere hashtags virais para redes sociais.
+            </p>
+          </div>
+        </Link>
+
+        <Link href="/freefire-name-generator">
+          <div className="bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.03] hover:border-red-500">
+            <h2 className="text-3xl font-bold mb-3">
+              🔥 Nome Free Fire
+            </h2>
+
+            <p className="text-zinc-400 leading-7">
+              Gere nomes estilosos para Free Fire.
             </p>
           </div>
         </Link>
