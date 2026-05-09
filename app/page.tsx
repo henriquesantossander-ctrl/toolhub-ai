@@ -117,6 +117,19 @@ export default function Home() {
         </Link>
 
       </section>
+      {/* INSTAGRAM CAPTION */}
+<Link href="/instagram-caption-generator">
+  <div className="bg-zinc-900 hover:bg-zinc-800 transition p-8 rounded-3xl cursor-pointer border border-zinc-800 hover:scale-[1.02]">
+    <h2 className="text-3xl font-bold mb-3">
+      📸 Legenda Instagram
+    </h2>
+
+    <p className="text-zinc-400 leading-7">
+      Gere legendas rápidas para Instagram,
+      reels e stories.
+    </p>
+  </div>
+</Link>
       {/* FOOTER */}
 <footer className="border-t border-zinc-900 mt-20 px-8 py-10 text-center text-zinc-500">
   <p>
