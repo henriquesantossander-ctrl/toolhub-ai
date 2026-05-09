@@ -2,11 +2,15 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
+    <main className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* BACKGROUND EFFECTS */}
 <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-600 rounded-full blur-[120px] opacity-20"></div>
 
 <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600 rounded-full blur-[120px] opacity-20"></div>
+      {/* BACKGROUND EFFECTS */}
+
+
+
 
       {/* NAVBAR */}
       <header className="w-full border-b border-zinc-900 px-8 py-5 flex items-center justify-between">
