@@ -46,6 +46,53 @@ export default function Home() {
         </p>
 
       </section>
+      {/* POPULAR TOOLS */}
+<section className="relative z-10 px-8 pb-16">
+
+  <div className="flex items-center justify-between mb-8">
+    <h2 className="text-4xl font-bold">
+      ⭐ Ferramentas Populares
+    </h2>
+
+    <span className="text-zinc-500">
+      +7 ferramentas online
+    </span>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-3xl">
+      <h3 className="text-2xl font-bold mb-3">
+        🔥 Gerador de Bio
+      </h3>
+
+      <p className="text-zinc-100">
+        Uma das ferramentas mais usadas do site.
+      </p>
+    </div>
+
+    <div className="bg-gradient-to-br from-pink-600 to-red-600 p-8 rounded-3xl">
+      <h3 className="text-2xl font-bold mb-3">
+        🎵 Username TikTok
+      </h3>
+
+      <p className="text-zinc-100">
+        Crie usernames virais rapidamente.
+      </p>
+    </div>
+
+    <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-8 rounded-3xl">
+      <h3 className="text-2xl font-bold mb-3">
+        #️⃣ Hashtags
+      </h3>
+
+      <p className="text-zinc-100">
+        Gere hashtags para alcançar mais pessoas.
+      </p>
+    </div>
+
+  </div>
+</section>
 
       {/* TOOLS */}
       <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-8 pb-24">
