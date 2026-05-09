@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,24 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ToolHub AI - Ferramentas grátis para redes sociais e IA",
+  title: "ToolHub IA - Ferramentas grátis para internet",
   description:
-    "Ferramentas grátis para gerar bio, nickname, hashtags, legendas para Instagram, nomes para TikTok e resumir textos online.",
-  keywords: [
-    "gerador de bio",
-    "gerador de nickname",
-    "gerador de hashtags",
-    "gerador de legenda instagram",
-    "gerador de nome tiktok",
-    "resumidor de texto",
-    "ferramentas IA grátis",
-  ],
-  openGraph: {
-    title: "ToolHub AI",
-    description:
-      "Ferramentas grátis para redes sociais, produtividade e IA.",
-    type: "website",
-  },
+    "Use ferramentas grátis para gerar bio, criar nickname, resumir textos e melhorar sua produtividade online.",
 };
 
 export default function RootLayout({
@@ -40,10 +26,34 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt-BR"
+      lang="pt"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+
+        {/* GOOGLE ANALYTICS */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GJRYDE7TVH"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag(){
+              dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'G-GJRYDE7TVH');
+          `}
+        </Script>
+
+        {children}
+
+      </body>
     </html>
   );
 }
