@@ -15,8 +15,38 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "ToolHub IA - Ferramentas grátis para internet",
+
   description:
-    "Use ferramentas grátis para gerar bio, criar nickname, resumir textos e melhorar sua produtividade online.",
+    "Ferramentas grátis para gerar bios, hashtags, usernames, legendas e nomes gamer usando IA.",
+
+  keywords: [
+    "gerador de bio",
+    "hashtags instagram",
+    "username tiktok",
+    "nomes free fire",
+    "ferramentas IA",
+    "gerador de nick",
+    "toolhub ia",
+  ],
+
+  authors: [{ name: "ToolHub IA" }],
+
+  creator: "ToolHub IA",
+
+  openGraph: {
+    title: "ToolHub IA",
+    description:
+      "Ferramentas grátis para redes sociais e internet.",
+    url: "https://toolhub-ai-eight.vercel.app",
+    siteName: "ToolHub IA",
+    locale: "pt_BR",
+    type: "website",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
