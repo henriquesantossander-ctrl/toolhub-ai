@@ -9,17 +9,17 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const prompt = `
-Crie 10 nicknames insanos para:
-
-${body.prompt}
+Crie 10 nicknames gamers únicos e MUITO criativos.
 
 Regras:
-- estilo gamer
-- nomes curtos
-- visual moderno
-- use símbolos
-- estilo Free Fire, TikTok e Discord
-- sem explicações
+- um nickname por linha
+- sem numeração
+- não repetir estilos
+- usar símbolos modernos
+- estilo Free Fire, Valorant e Discord
+- nomes curtos e impactantes
+- visual raro
+- não explique nada
 `;
 
     const response = await openai.chat.completions.create({

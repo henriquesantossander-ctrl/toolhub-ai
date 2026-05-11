@@ -46,9 +46,9 @@ export default function NicknameGenerator() {
 
       {nickname && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-md w-full text-center">
-          <p className="text-3xl font-bold text-zinc-200">
-            {nickname}
-          </p>
+         <div className="text-2xl font-bold text-zinc-200 whitespace-pre-line">
+  {nickname}
+</div>
 
           <button
             onClick={copyNick}
