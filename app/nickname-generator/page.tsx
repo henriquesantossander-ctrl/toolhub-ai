@@ -5,28 +5,21 @@ import { useState } from "react";
 export default function NicknameGenerator() {
   const [nickname, setNickname] = useState("");
 
-  const generateNickname = () => {
-    const nicks = [
-      "ShadowX",
-      "DarkFury",
-      "Ghostzin",
-      "VoidFPS",
-      "Rxven",
-      "NightHunter",
-      "ToxicAim",
-      "FrostByte",
-      "VenomX",
-      "Skullzera",
-      "Zer0Kill",
-      "Noctyx",
-    ];
+ const generateNickname = async () => {
+  const response = await fetch("/api/nickname", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: "nickname gamer",
+    }),
+  });
 
-    const randomNick =
-      nicks[Math.floor(Math.random() * nicks.length)];
+  const data = await response.json();
 
-    setNickname(randomNick);
-  };
-
+  setNickname(data.result);
+};
   const copyNick = async () => {
     await navigator.clipboard.writeText(nickname);
 
