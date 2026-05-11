@@ -290,6 +290,46 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      <section className="relative z-10 px-4 md:px-8 pb-32">
+
+  <div className="max-w-6xl mx-auto bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-zinc-800 rounded-[40px] p-10 md:p-16 text-center backdrop-blur-sm">
+
+    <div className="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-800 rounded-full px-5 py-2 text-sm text-zinc-300 mb-6">
+      🤖 IA REAL integrada
+    </div>
+
+    <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+      Gere conteúdo com
+      <span className="text-purple-400"> inteligência artificial</span>
+    </h2>
+
+    <p className="text-zinc-300 text-lg md:text-xl max-w-3xl mx-auto leading-8 mb-10">
+      Crie bios, hashtags, usernames, legendas e nicknames usando IA moderna
+      em segundos.
+    </p>
+
+    <div className="flex flex-col md:flex-row gap-4 justify-center">
+
+      <a
+        href="/bio-generator"
+        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+      >
+        🚀 Começar Agora
+      </a>
+
+      <a
+        href="/premium"
+        className="bg-zinc-900 border border-zinc-700 px-8 py-4 rounded-2xl font-bold hover:border-purple-500 transition"
+      >
+        👑 Conhecer Premium
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
       <footer className="border-t border-zinc-800 mt-32 py-12 px-4 md:px-8">
   <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
