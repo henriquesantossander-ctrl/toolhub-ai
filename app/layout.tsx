@@ -19,9 +19,8 @@ export const metadata = {
 
   openGraph: {
     title: "ToolHub IA",
-    description:
-      "Ferramentas modernas para internet usando IA.",
-    url: "https://toolhub-ai-eight.vercel.app",
+    description: "Ferramentas modernas para internet usando IA.",
+    url: "https://www.toolhubia.com.br",
     siteName: "ToolHub IA",
     locale: "pt_BR",
     type: "website",
@@ -35,21 +34,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <Script
-  src="https://www.googletagmanager.com/gtag/js?id=G-GJRYDE7TVH"
-  strategy="afterInteractive"
-/>
+      <head>
+        <meta
+          name="google-site-verification"
+          content="FnhHzNTsXtvFiDrx4EXek2cF5q2GeJolNejb2-eV_cs"
+        />
+      </head>
 
-<Script id="google-analytics" strategy="afterInteractive">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-GJRYDE7TVH');
-  `}
-</Script>
       <body className="bg-black text-white">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-GJRYDE7TVH"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GJRYDE7TVH');
+          `}
+        </Script>
 
         <Toaster
           position="top-right"
@@ -64,69 +69,39 @@ export default function RootLayout({
 
         <header className="border-b border-zinc-800 bg-black sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-
-            <Link
-              href="/"
-              className="text-2xl md:text-3xl font-bold"
-            >
+            <Link href="/" className="text-2xl md:text-3xl font-bold">
               🚀 ToolHub IA
             </Link>
 
             <nav className="hidden md:flex gap-6 text-zinc-400 flex-wrap">
-
-              <Link
-                href="/dashboard"
-                className="hover:text-purple-400 transition"
-              >
+              <Link href="/dashboard" className="hover:text-purple-400 transition">
                 Dashboard
               </Link>
 
-              <Link
-                href="/bio-generator"
-                className="hover:text-purple-400 transition"
-              >
+              <Link href="/bio-generator" className="hover:text-purple-400 transition">
                 Gerador
               </Link>
 
-              <Link
-                href="/my-bios"
-                className="hover:text-purple-400 transition"
-              >
+              <Link href="/my-bios" className="hover:text-purple-400 transition">
                 Minhas Bios
               </Link>
 
-              <Link
-                href="/favorites"
-                className="hover:text-purple-400 transition"
-              >
+              <Link href="/favorites" className="hover:text-purple-400 transition">
                 Favoritos
               </Link>
 
-              <Link
-                href="/profile"
-                className="hover:text-purple-400 transition"
-              >
-                <Link
-                href="/premium"
-                className="hover:text-yellow-400 transition font-bold"
-              > 
-              PREMIUM
+              <Link href="/premium" className="hover:text-yellow-400 transition font-bold">
+                PREMIUM
               </Link>
-              
+
+              <Link href="/profile" className="hover:text-purple-400 transition">
                 Perfil
               </Link>
-
             </nav>
-
           </div>
-          <meta
-  name="google-site-verification"
-  content="FnhHzNTsXtvFiDrx4EXek2cF5q2GeJolNejb2-eV_cs"
-/>
         </header>
 
         {children}
-
       </body>
     </html>
   );
