@@ -4,32 +4,37 @@ import { useState } from "react";
 
 export default function InstagramCaptionGenerator() {
   const [theme, setTheme] = useState("");
-  const [captions, setCaption] = useState("");
+  const [caption, setCaption] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const generateCaption = async () => {
-  const response = await fetch("/api/caption", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      prompt: theme,
-    }),
-  });
+    setLoading(true);
+    setCaption("");
 
-  const data = await response.json();
+    const response = await fetch("/api/caption", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: theme || "foto para Instagram",
+      }),
+    });
 
-  setCaption(data.result);
-};
+    const data = await response.json();
+
+    setCaption(data.result);
+    setLoading(false);
+  };
 
   const copyCaption = async () => {
-    await navigator.clipboard.writeText(captions);
+    await navigator.clipboard.writeText(caption);
     alert("Legenda copiada!");
   };
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-20">
-      <h1 className="text-5xl font-bold mb-4 text-center">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">
         Gerador de Legenda para Instagram
       </h1>
 
@@ -47,14 +52,24 @@ export default function InstagramCaptionGenerator() {
 
       <button
         onClick={generateCaption}
-        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+        disabled={loading}
+        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
       >
-        Gerar Legenda
+        {loading ? (
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+            Gerando com IA...
+          </div>
+        ) : (
+          "Gerar Legenda"
+        )}
       </button>
 
-      {captions && (
+      {caption && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-xl w-full">
-          <p className="text-zinc-300 text-lg">{captions}</p>
+          <p className="text-zinc-300 text-lg whitespace-pre-line">
+            {caption}
+          </p>
 
           <button
             onClick={copyCaption}
