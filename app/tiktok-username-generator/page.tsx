@@ -6,22 +6,21 @@ export default function TikTokUsernameGenerator() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
 
-  const generateUsername = () => {
-    const base = name.trim() || "user";
+  const generateUsername = async () => {
+  const response = await fetch("/api/tiktok-username", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: name,
+    }),
+  });
 
-    const styles = [
-      `@${base}vibes`,
-      `@real${base}`,
-      `@${base}fx`,
-      `@its${base}`,
-      `@${base}clips`,
-      `@${base}zone`,
-      `@${base}daily`,
-      `@the${base}`,
-    ];
+  const data = await response.json();
 
-    setUsername(styles[Math.floor(Math.random() * styles.length)]);
-  };
+  setUsername(data.result);
+};
 
   const copyUsername = async () => {
     await navigator.clipboard.writeText(username);
@@ -55,7 +54,20 @@ export default function TikTokUsernameGenerator() {
 
       {username && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-xl w-full text-center">
-          <p className="text-3xl font-bold text-zinc-200">{username}</p>
+          <div className="grid gap-3">
+  {username.split("\n").map((user, index) => (
+    <button
+      key={index}
+      onClick={() => {
+        navigator.clipboard.writeText(user);
+        alert("Username copiado!");
+      }}
+      className="bg-zinc-800 border border-zinc-700 rounded-2xl py-3 px-4 text-center text-2xl font-bold hover:scale-105 hover:border-pink-500 hover:bg-zinc-700 transition"
+    >
+      {user}
+    </button>
+  ))}
+</div>
 
           <button
             onClick={copyUsername}
