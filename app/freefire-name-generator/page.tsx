@@ -5,25 +5,20 @@ import { useState } from "react";
 export default function FreeFireNameGenerator() {
   const [name, setName] = useState("");
 
-  const generateName = () => {
-    const names = [
-      "𓆩DARK FF𓆪",
-      "༒FIRE亗",
-      "ＮＥＭＥＳＩＳ",
-      "ᴳᵒᵈ乡ＦＦ",
-      "⚡ShadowX",
-      "Tropaᶠᶠ",
-      "☠︎SNIPER",
-      "ঔৣFF KING",
-      "ᎠᎬᎷϴΝ",
-      "★ʙʟᴀᴢᴇ★",
-    ];
+  const generateName = async () => {
+  const response = await fetch("/api/freefire-name", {
+    method: "POST",
+  });
 
-    const random =
-      names[Math.floor(Math.random() * names.length)];
+  const data = await response.json();
 
-    setName(random);
-  };
+  if (data.name) {
+    setName(data.name);
+  } else {
+    setName("Erro ao gerar nome.");
+  }
+};
+     
 
   const copyName = async () => {
     await navigator.clipboard.writeText(name);

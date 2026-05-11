@@ -6,26 +6,21 @@ export default function HashtagGenerator() {
   const [topic, setTopic] = useState("");
   const [hashtags, setHashtags] = useState("");
 
-  const generateHashtags = () => {
-    const base = topic.trim().toLowerCase().replaceAll(" ", "");
+  const generateHashtags = async () => {
+  const response = await fetch("/api/hashtag", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: topic,
+    }),
+  });
 
-    if (!base) return alert("Digite um tema");
+  const data = await response.json();
 
-    const result = [
-      `#${base}`,
-      `#${base}brasil`,
-      `#viral`,
-      `#foryou`,
-      `#explore`,
-      `#reels`,
-      `#tiktok`,
-      `#instagram`,
-      `#conteudo`,
-      `#trend`,
-    ].join(" ");
-
-    setHashtags(result);
-  };
+  setHashtags(data.result);
+};
 
   const copyHashtags = async () => {
     await navigator.clipboard.writeText(hashtags);

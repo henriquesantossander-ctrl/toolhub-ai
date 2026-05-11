@@ -9,16 +9,19 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const prompt = `
-Crie uma bio curta, estilosa e moderna para redes sociais.
+Crie hashtags virais e modernas para:
 
-Nome/Tema:
 ${body.prompt}
 
-A bio deve parecer de Instagram, Discord ou TikTok.
-Use emojis.
+Regras:
+- gere apenas hashtags
+- hashtags populares
+- sem explicações
+- use até 15 hashtags
+- foco em alcance
 `;
 
-    const completion = await openai.chat.completions.create({
+    const response = await openai.chat.completions.create({
       model: "gpt-4.1-mini",
       messages: [
         {
@@ -26,16 +29,17 @@ Use emojis.
           content: prompt,
         },
       ],
+      max_tokens: 120,
     });
 
     return Response.json({
-      result: completion.choices[0].message.content,
+      result: response.choices[0].message.content,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.log(error);
 
     return Response.json({
-      result: "Erro ao gerar bio.",
+      result: "Erro ao gerar hashtags.",
     });
   }
 }
