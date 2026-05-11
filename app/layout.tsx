@@ -1,85 +1,125 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "ToolHub IA - Ferramentas grátis para internet",
-
+export const metadata = {
+  title: "ToolHub IA - Ferramentas Modernas para Internet",
   description:
-    "Ferramentas grátis para gerar bios, hashtags, usernames, legendas e nomes gamer usando IA.",
+    "Crie bios, hashtags, usernames e ferramentas para redes sociais usando IA.",
 
   keywords: [
     "gerador de bio",
     "hashtags instagram",
-    "username tiktok",
-    "nomes free fire",
+    "nick free fire",
     "ferramentas IA",
-    "gerador de nick",
-    "toolhub ia",
+    "bio para instagram",
+    "gerador de usernames",
   ],
-
-  authors: [{ name: "ToolHub IA" }],
-
-  creator: "ToolHub IA",
 
   openGraph: {
     title: "ToolHub IA",
     description:
-      "Ferramentas grátis para redes sociais e internet.",
+      "Ferramentas modernas para internet usando IA.",
     url: "https://toolhub-ai-eight.vercel.app",
     siteName: "ToolHub IA",
     locale: "pt_BR",
     type: "website",
   },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="pt"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="pt-br">
+      <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-GJRYDE7TVH"
+  strategy="afterInteractive"
+/>
 
-        {/* GOOGLE ANALYTICS */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-GJRYDE7TVH"
-          strategy="afterInteractive"
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GJRYDE7TVH');
+  `}
+</Script>
+      <body className="bg-black text-white">
+
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#18181b",
+              color: "#fff",
+              border: "1px solid #27272a",
+            },
+          }}
         />
 
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
+        <header className="border-b border-zinc-800 bg-black sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            function gtag(){
-              dataLayer.push(arguments);
-            }
+            <Link
+              href="/"
+              className="text-2xl md:text-3xl font-bold"
+            >
+              🚀 ToolHub IA
+            </Link>
 
-            gtag('js', new Date());
+            <nav className="hidden md:flex gap-6 text-zinc-400 flex-wrap">
 
-            gtag('config', 'G-GJRYDE7TVH');
-          `}
-        </Script>
+              <Link
+                href="/dashboard"
+                className="hover:text-purple-400 transition"
+              >
+                Dashboard
+              </Link>
+
+              <Link
+                href="/bio-generator"
+                className="hover:text-purple-400 transition"
+              >
+                Gerador
+              </Link>
+
+              <Link
+                href="/my-bios"
+                className="hover:text-purple-400 transition"
+              >
+                Minhas Bios
+              </Link>
+
+              <Link
+                href="/favorites"
+                className="hover:text-purple-400 transition"
+              >
+                Favoritos
+              </Link>
+
+              <Link
+                href="/profile"
+                className="hover:text-purple-400 transition"
+              >
+                <Link
+                href="/premium"
+                className="hover:text-yellow-400 transition font-bold"
+              > 
+              PREMIUM
+              </Link>
+              
+                Perfil
+              </Link>
+
+            </nav>
+
+          </div>
+        </header>
 
         {children}
 

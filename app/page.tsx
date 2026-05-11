@@ -2,147 +2,162 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
+
+type Tool = {
+  title: string;
+  href: string;
+  desc: string;
+  category: "social" | "gamer" | "ia";
+};
 
 export default function Home() {
   const [search, setSearch] = useState("");
-const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("all");
 
-  const filteredTools = [
-  {
-    title: "🔥 Gerador de Bio",
-    href: "/bio-generator",
-    desc: "Crie biografias para redes sociais.",
-    category: "social",
-  },
+  const tools: Tool[] = [
+    {
+      title: "🔥 Gerador de Bio",
+      href: "/bio-generator",
+      desc: "Crie biografias para redes sociais.",
+      category: "social",
+    },
+    {
+      title: "🎮 Gerador de Nick",
+      href: "/nickname-generator",
+      desc: "Descubra apelidos para jogos.",
+      category: "gamer",
+    },
+    {
+      title: "🤖 Resumo IA",
+      href: "/ai-summarizer",
+      desc: "Resuma textos usando IA.",
+      category: "ia",
+    },
+    {
+      title: "📸 Legenda Instagram",
+      href: "/instagram-caption-generator",
+      desc: "Gere legendas rápidas.",
+      category: "social",
+    },
+    {
+      title: "🎵 Username TikTok",
+      href: "/tiktok-username-generator",
+      desc: "Gere usernames estilosos.",
+      category: "social",
+    },
+    {
+      title: "#️⃣ Hashtags",
+      href: "/hashtag-generator",
+      desc: "Gere hashtags virais.",
+      category: "social",
+    },
+    {
+      title: "🔥 Nome Free Fire",
+      href: "/freefire-name-generator",
+      desc: "Gere nomes estilosos gamer.",
+      category: "gamer",
+    },
+  ];
 
-  {
-    title: "🎮 Gerador de Nick",
-    href: "/nickname-generator",
-    desc: "Descubra apelidos para jogos.",
-    category: "gamer",
-  },
+  const filteredTools = tools.filter((tool) => {
+    const matchesSearch = tool.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
 
-  {
-    title: "🤖 Resumo IA",
-    href: "/ai-summarizer",
-    desc: "Resuma textos usando IA.",
-    category: "ia",
-  },
+    const matchesCategory =
+      category === "all" || tool.category === category;
 
-  {
-    title: "📸 Legenda Instagram",
-    href: "/instagram-caption-generator",
-    desc: "Gere legendas rápidas.",
-    category: "social",
-  },
+    return matchesSearch && matchesCategory;
+  });
 
-  {
-    title: "🎵 Username TikTok",
-    href: "/tiktok-username-generator",
-    desc: "Gere usernames estilosos.",
-    category: "social",
-  },
+  async function saveFavorite(toolName: string) {
+    const { data } = await supabase.auth.getUser();
 
-  {
-    title: "#️⃣ Hashtags",
-    href: "/hashtag-generator",
-    desc: "Gere hashtags virais.",
-    category: "social",
-  },
+    if (!data.user?.email) {
+      alert("Faça login primeiro");
+      return;
+    }
 
-  {
-    title: "🔥 Nome Free Fire",
-    href: "/freefire-name-generator",
-    desc: "Gere nomes estilosos gamer.",
-    category: "gamer",
-  },
-].filter((tool) => {
+    const userEmail = data.user.email;
 
-  const matchesSearch =
-    tool.title.toLowerCase().includes(search.toLowerCase());
+    const { error: favoriteError } = await supabase
+      .from("favorites")
+      .insert({
+        user_email: userEmail,
+        tool_name: toolName,
+      });
 
-  const matchesCategory =
-    category === "all" || tool.category === category;
+    if (favoriteError) {
+      console.log(favoriteError);
+      alert("Erro ao salvar favorito");
+      return;
+    }
 
-  return matchesSearch && matchesCategory;
-});
+    await supabase.from("history").insert({
+      user_email: userEmail,
+      tool_name: toolName,
+    });
+
+    alert("Favoritado ⭐");
+  }
+
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden relative">
-
-      {/* BACKGROUND */}
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-600 rounded-full blur-[120px] opacity-20"></div>
 
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-600 rounded-full blur-[120px] opacity-20"></div>
 
-      {/* NAVBAR */}
-      <header className="relative z-10 w-full border-b border-zinc-900 px-8 py-5 flex items-center justify-between">
 
-        <h1 className="text-2xl font-bold">
-          ToolHub IA
-        </h1>
-
-        <nav className="flex gap-6 text-zinc-400 flex-wrap">
-          <Link href="/bio-generator">Bio</Link>
-          <Link href="/nickname-generator">Nick</Link>
-          <Link href="/ai-summarizer">IA</Link>
-          <Link href="/instagram-caption-generator">Instagram</Link>
-          <Link href="/tiktok-username-generator">TikTok</Link>
-          <Link href="/hashtag-generator">Hashtags</Link>
-          <Link href="/freefire-name-generator">Free Fire</Link>
-        </nav>
-
-      </header>
-
-      {/* HERO */}
       <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24">
-
         <div className="mb-6 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900 text-zinc-400 text-sm">
           🚀 Plataforma de Ferramentas com IA
         </div>
 
-        <h1 className="text-7xl font-bold mb-6 leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           Ferramentas modernas
           <br />
           para internet
         </h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 max-w-5xl mx-auto">
+  <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:scale-105 transition">
+    <h3 className="text-4xl font-bold text-purple-500">
+      12K+
+    </h3>
+
+    <p className="text-zinc-400 mt-2">
+      Bios geradas
+    </p>
+  </div>
+
+  <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:scale-105 transition">
+    <h3 className="text-4xl font-bold text-pink-500">
+      4.9★
+    </h3>
+
+    <p className="text-zinc-400 mt-2">
+      Avaliação dos usuários
+    </p>
+  </div>
+
+  <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:scale-105 transition">
+    <h3 className="text-4xl font-bold text-green-500">
+      24/7
+    </h3>
+
+    <p className="text-zinc-400 mt-2">
+      Ferramentas online
+    </p>
+  </div>
+</div>
 
         <p className="text-zinc-400 max-w-2xl text-xl leading-9">
-          Gere bios, hashtags, usernames,
-          legendas e ferramentas para redes sociais.
+          Gere bios, hashtags, usernames, legendas e ferramentas para redes sociais.
         </p>
-
-        {/* COUNTER */}
-        <div className="mt-10 flex gap-6 flex-wrap justify-center">
-
-          <div className="bg-zinc-900 border border-zinc-800 px-6 py-4 rounded-2xl">
-            <p className="text-3xl font-bold">
-              +7
-            </p>
-
-            <span className="text-zinc-400 text-sm">
-              Ferramentas grátis
-            </span>
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 px-6 py-4 rounded-2xl">
-            <p className="text-3xl font-bold">
-              24h
-            </p>
-
-            <span className="text-zinc-400 text-sm">
-              Online
-            </span>
-          </div>
-
-        </div>
-
       </section>
 
-      {/* SEARCH */}
-      <section className="relative z-10 px-8 pb-10">
-
+      <section className="relative z-10 px-4 md:px-8 pb-10">
         <div className="max-w-3xl mx-auto">
-
           <input
             type="text"
             placeholder="🔍 Pesquise ferramentas..."
@@ -150,160 +165,204 @@ const [category, setCategory] = useState("all");
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-zinc-900 border border-zinc-800 rounded-3xl px-6 py-5 outline-none text-lg"
           />
-
         </div>
+         <div className="max-w-6xl mx-auto mt-20">
+  <h2 className="text-3xl md:text-4xl font-bold mb-10">
+    Ferramentas Populares
+  </h2>
 
-      </section>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      {/* CATEGORIES */}
-<section className="relative z-10 px-8 pb-16">
-
-  <div className="flex flex-wrap gap-4 justify-center">
-
-    <button
-      onClick={() => setCategory("all")}
-      className="bg-zinc-800 px-6 py-3 rounded-2xl font-bold hover:scale-105 transition"
+    <a
+      href="/bio-generator"
+      className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:border-purple-500 hover:scale-105 transition cursor-pointer block"
     >
-      🌎 Todas
-    </button>
+      <h3 className="text-2xl font-bold mb-3">
+        🚀 Gerador de Bio
+      </h3>
 
-    <button
-      onClick={() => setCategory("ia")}
-      className="bg-purple-600 px-6 py-3 rounded-2xl font-bold hover:scale-105 transition"
-    >
-      🤖 IA
-    </button>
+      <p className="text-zinc-400">
+        Crie bios modernas para redes sociais.
+      </p>
+    </a>
 
-    <button
-      onClick={() => setCategory("social")}
-      className="bg-pink-600 px-6 py-3 rounded-2xl font-bold hover:scale-105 transition"
+    <a
+      href="/hashtag-generator"
+      className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:border-pink-500 hover:scale-105 transition cursor-pointer block"
     >
-      📱 Social
-    </button>
+      <h3 className="text-2xl font-bold mb-3">
+        🔥 Gerador de Hashtags
+      </h3>
 
-    <button
-      onClick={() => setCategory("gamer")}
-      className="bg-green-600 px-6 py-3 rounded-2xl font-bold hover:scale-105 transition"
+      <p className="text-zinc-400">
+        Gere hashtags virais automaticamente.
+      </p>
+    </a>
+
+    <a
+      href="/freefire-name-generator"
+      className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 hover:border-green-500 hover:scale-105 transition cursor-pointer block"
     >
-      🎮 Gamer
-    </button>
+      <h3 className="text-2xl font-bold mb-3">
+        🎮 Free Fire Names
+      </h3>
+
+      <p className="text-zinc-400">
+        Nicknames insanos para jogos.
+      </p>
+    </a>
 
   </div>
-
-</section>
-      {/* POPULAR */}
-      <section className="relative z-10 px-8 pb-20">
-
-        <div className="flex items-center justify-between mb-8">
-
-          <h2 className="text-4xl font-bold">
-            ⭐ Ferramentas Populares
-          </h2>
-
-          <span className="text-zinc-500">
-            Tendências
-          </span>
-
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-          <div className="bg-gradient-to-br from-purple-600 to-blue-600 p-8 rounded-3xl">
-            <h3 className="text-2xl font-bold mb-3">
-              🔥 Gerador de Bio
-            </h3>
-
-            <p>
-              Uma das ferramentas mais usadas do site.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-pink-600 to-red-600 p-8 rounded-3xl">
-            <h3 className="text-2xl font-bold mb-3">
-              🎵 Username TikTok
-            </h3>
-
-            <p>
-              Gere usernames virais rapidamente.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-600 to-emerald-600 p-8 rounded-3xl">
-            <h3 className="text-2xl font-bold mb-3">
-              #️⃣ Hashtags
-            </h3>
-
-            <p>
-              Gere hashtags para alcançar mais pessoas.
-            </p>
-          </div>
-
-        </div>
-
+</div>
       </section>
 
-      {/* TOOLS */}
-      
-<section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-8 pb-24">
+      <section className="relative z-10 px-4 md:px-8 pb-16">
+        <div className="flex flex-wrap gap-4 justify-center">
+          <button
+            onClick={() => setCategory("all")}
+            className="bg-zinc-800 px-6 py-3 rounded-2xl font-bold"
+          >
+            🌎 Todas
+          </button>
 
-  {filteredTools.length > 0 ? (
+          <button
+            onClick={() => setCategory("ia")}
+            className="bg-purple-600 px-6 py-3 rounded-2xl font-bold"
+          >
+            🤖 IA
+          </button>
 
-    filteredTools.map((tool) => (
+          <button
+            onClick={() => setCategory("social")}
+            className="bg-pink-600 px-6 py-3 rounded-2xl font-bold"
+          >
+            📱 Social
+          </button>
 
-      <Link key={tool.title} href={tool.href}>
-
-        <div
-          className="animate-fade-up bg-zinc-900/80 backdrop-blur-sm hover:bg-zinc-800 transition-all duration-500 p-8 rounded-3xl border border-zinc-800 hover:scale-[1.05] hover:-translate-y-2 hover:border-purple-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.35)] cursor-pointer"
-        >
-
-          <h2 className="text-3xl font-bold mb-3">
-            {tool.title}
-          </h2>
-
-          <p className="text-zinc-400">
-            {tool.desc}
-          </p>
-
+          <button
+            onClick={() => setCategory("gamer")}
+            className="bg-green-600 px-6 py-3 rounded-2xl font-bold"
+          >
+            🎮 Gamer
+          </button>
         </div>
+      </section>
 
-      </Link>
+      <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 md:px-8 pb-24">
+        {filteredTools.length > 0 ? (
+          filteredTools.map((tool) => (
+            <div
+  key={tool.title}
+  className="group animate-fade-up bg-zinc-900/80 backdrop-blur-sm transition-all duration-500 p-8 rounded-3xl border border-zinc-800 hover:scale-[1.05] hover:-translate-y-2 hover:border-purple-500 hover:shadow-[0_0_60px_rgba(168,85,247,0.45)] relative overflow-hidden"
+>
 
-    ))
+  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-purple-500/10 to-pink-500/10"></div>
 
-  ) : (
+  <Link href={tool.href} className="relative z-10">
+    <h2 className="text-2xl md:text-3xl font-bold mb-3">
+      {tool.title}
+    </h2>
 
-    <div className="col-span-full text-center py-20 animate-fade-up">
+    <p className="text-zinc-400">
+      {tool.desc}
+    </p>
+  </Link>
 
-      <h2 className="text-4xl font-bold mb-4">
-        😢 Nenhuma ferramenta encontrada
+  <button
+    type="button"
+    onClick={() => saveFavorite(tool.title)}
+    className="relative z-10 mt-5 bg-purple-600 hover:bg-purple-500 transition px-5 py-2 rounded-xl font-bold"
+  >
+    ⭐ Favoritar
+  </button>
+
+</div>
+          ))
+        ) : (
+          <div className="col-span-full text-center py-20 animate-fade-up">
+            <h2 className="text-4xl font-bold mb-4">
+              😢 Nenhuma ferramenta encontrada
+            </h2>
+
+            <p className="text-zinc-400 text-lg">
+              Tente pesquisar outro nome.
+            </p>
+          </div>
+        )}
+      </section>
+      <footer className="border-t border-zinc-800 mt-32 py-12 px-4 md:px-8">
+  <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+    <div>
+      <h2 className="text-3xl font-bold mb-2">
+        🚀 ToolHub IA
       </h2>
 
-      <p className="text-zinc-400 text-lg">
-        Tente pesquisar outro nome.
+      <p className="text-zinc-400">
+        Plataforma moderna de ferramentas para internet.
       </p>
+    </div>
+
+    <div className="flex gap-6 text-zinc-400">
+
+      <a
+        href="/dashboard"
+        className="hover:text-white transition"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="/profile"
+        className="hover:text-white transition"
+      >
+        Perfil
+      </a>
+
+      <a
+        href="/my-bios"
+        className="hover:text-white transition"
+      >
+        Minhas Bios
+      </a>
+
+      <a
+  href="/privacy"
+  className="hover:text-white transition"
+>
+  Privacidade
+</a>
+
+<a
+  href="/about"
+  className="hover:text-white transition"
+>
+  Sobre
+</a>
+
+<a
+  href="/contact"
+  className="hover:text-white transition"
+>
+  Contato
+</a>
+
+<a
+  href="/terms"
+  className="hover:text-white transition"
+>
+  Termos
+</a>
 
     </div>
 
-  )}
+  </div>
 
-</section>
-
+  <div className="text-center text-zinc-500 mt-10 text-sm">
+    © 2026 ToolHub IA — Todos os direitos reservados.
+  </div>
+</footer>
       
-
-      {/* FOOTER */}
-      <footer className="relative z-10 border-t border-zinc-900 mt-20 px-8 py-10 text-center text-zinc-500">
-
-        <p>
-          © 2026 ToolHub IA — Todos os direitos reservados.
-        </p>
-
-        <p className="mt-3 text-sm">
-          Ferramentas modernas para produtividade,
-          redes sociais e internet.
-        </p>
-
-      </footer>
-
     </main>
   );
 }

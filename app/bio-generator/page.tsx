@@ -1,53 +1,69 @@
 "use client";
-
+import toast from "react-hot-toast";
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function BioGenerator() {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const generateBio = () => {
-    if (!name) return;
+  async function generateBio() {
+    if (!name.trim()) {
+      toast.error("Digite seu nome");
+      return;
+    }
+
+    setLoading(true);
+    setBio("");
+
+    const cleanName = name.trim();
 
     const bios = [
-      `🔥 ${name} | Gamer 🎮
-🚀 Vivendo online.
-💻 Tecnologia • Games • IA`,
+      `🔥 ${cleanName} | Criador digital\n🚀 Evoluindo todos os dias\n📱 Internet • Ideias • Futuro`,
 
-      `👑 ${name}
-🎯 Focado em vencer.
-⚡ Discord • TikTok • CS2`,
+      `👑 ${cleanName}\n🎯 Foco, atitude e visão\n⚡ Construindo minha própria história`,
 
-      `🌙 ${name}
-🎧 Música, internet e caos.
-🖤 Apenas vivendo.`,
+      `🌙 ${cleanName}\n🎧 Música, internet e boas ideias\n🖤 Vivendo no meu ritmo`,
 
-      `🎮 ${name}
-🚀 Future millionaire.
-💻 Gamer & Creator`,
+      `🎮 ${cleanName}\n🚀 Gamer & Creator\n💻 Tecnologia • IA • Conteúdo`,
+
+      `⚡ ${cleanName}\n📱 TikTok • Discord • Instagram\n🔥 Sempre em evolução`,
+
+      `🧠 ${cleanName}\n💡 Criatividade sem limite\n🚀 Transformando ideias em realidade`,
     ];
 
-    const randomBio =
-      bios[Math.floor(Math.random() * bios.length)];
+    setTimeout(async () => {
+      const randomBio = bios[Math.floor(Math.random() * bios.length)];
 
-    setBio(randomBio);
-  };
+      setBio(randomBio);
 
-  const copyBio = async () => {
+      const { data: userData } = await supabase.auth.getUser();
+
+      if (userData.user?.email) {
+        await supabase.from("bios").insert({
+          user_email: userData.user.email,
+          bio: randomBio,
+        });
+      }
+
+      setLoading(false);
+    }, 1000);
+  }
+
+  async function copyBio() {
     await navigator.clipboard.writeText(bio);
-
-    alert("Bio copiada!");
-  };
+    toast.success("Bio copiada!");
+  }
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-20">
-      <h1 className="text-6xl font-bold mb-4">
+      <h1 className="text-6xl font-bold mb-4 text-center">
         Gerador de Bio
       </h1>
 
       <p className="text-zinc-400 mb-10 text-center max-w-xl">
-        Crie bios incríveis para Instagram, Discord,
-        TikTok e redes sociais.
+        Crie bios modernas para Instagram, TikTok, Discord e redes sociais.
       </p>
 
       <input
@@ -60,9 +76,10 @@ export default function BioGenerator() {
 
       <button
         onClick={generateBio}
-        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+        disabled={loading}
+        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
       >
-        Gerar Bio
+        {loading ? "Gerando..." : "Gerar Bio"}
       </button>
 
       {bio && (
@@ -73,7 +90,7 @@ export default function BioGenerator() {
 
           <button
             onClick={copyBio}
-            className="mt-6 w-full bg-white text-black py-3 rounded-2xl font-bold hover:scale-105 transition"
+            className="mt-6 w-full bg-purple-600 text-white py-3 rounded-2xl font-bold hover:scale-105 transition"
           >
             Copiar Bio
           </button>
