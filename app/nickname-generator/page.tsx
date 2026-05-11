@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function NicknameGenerator() {
   const [nickname, setNickname] = useState("");
+  const [theme, setTheme] = useState("");
 
  const generateNickname = async () => {
   const response = await fetch("/api/nickname", {
@@ -12,7 +13,7 @@ export default function NicknameGenerator() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: "nickname gamer",
+      prompt: theme,
     }),
   });
 
@@ -37,6 +38,14 @@ export default function NicknameGenerator() {
         Discord, TikTok e redes sociais.
       </p>
 
+      <input
+  type="text"
+  placeholder="Tema: sombrio, fogo, sniper..."
+  value={theme}
+  onChange={(e) => setTheme(e.target.value)}
+  className="bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 w-full max-w-xl mb-6 outline-none"
+/>
+
       <button
         onClick={generateNickname}
         className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
@@ -46,8 +55,19 @@ export default function NicknameGenerator() {
 
       {nickname && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-md w-full text-center">
-         <div className="text-2xl font-bold text-zinc-200 whitespace-pre-line">
-  {nickname}
+        <div className="grid gap-3">
+  {nickname.split("\n").map((nick, index) => (
+    <button
+      key={index}
+      onClick={() => {
+        navigator.clipboard.writeText(nick);
+        alert("Nick copiado!");
+      }}
+      className="bg-zinc-800 border border-zinc-700 rounded-2xl py-3 px-4 text-center text-2xl font-bold hover:scale-105 hover:border-purple-500 hover:bg-zinc-700 transition"
+    >
+      {nick}
+    </button>
+  ))}
 </div>
 
           <button
