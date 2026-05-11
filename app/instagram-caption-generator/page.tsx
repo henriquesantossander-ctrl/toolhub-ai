@@ -6,19 +6,21 @@ export default function InstagramCaptionGenerator() {
   const [theme, setTheme] = useState("");
   const [caption, setCaption] = useState("");
 
-  const generateCaption = () => {
-    const base = theme.trim() || "minha foto";
+  const generateCaption = async () => {
+  const response = await fetch("/api/caption", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: theme,
+    }),
+  });
 
-    const captions = [
-      `✨ ${base} com energia de quem sabe onde quer chegar.`,
-      `📸 ${base} porque momentos bons merecem legenda.`,
-      `🔥 ${base} e zero vontade de explicar.`,
-      `🌙 ${base} no meu melhor estilo.`,
-      `🚀 ${base} hoje, conquista amanhã.`,
-    ];
+  const data = await response.json();
 
-    setCaption(captions[Math.floor(Math.random() * captions.length)]);
-  };
+  setCaption(data.result);
+};
 
   const copyCaption = async () => {
     await navigator.clipboard.writeText(caption);
