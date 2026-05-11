@@ -119,6 +119,10 @@ export default function RootLayout({
             </nav>
 
           </div>
+          <meta
+  name="google-site-verification"
+  content="FnhHzNTsXtvFiDrx4EXek2cF5q2GeJolNejb2-eV_cs"
+/>
         </header>
 
         {children}
