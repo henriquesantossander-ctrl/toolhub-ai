@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function InstagramCaptionGenerator() {
   const [theme, setTheme] = useState("");
-  const [caption, setCaption] = useState("");
+  const [captions, setCaption] = useState("");
 
   const generateCaption = async () => {
   const response = await fetch("/api/caption", {
@@ -23,7 +23,7 @@ export default function InstagramCaptionGenerator() {
 };
 
   const copyCaption = async () => {
-    await navigator.clipboard.writeText(caption);
+    await navigator.clipboard.writeText(captions);
     alert("Legenda copiada!");
   };
 
@@ -52,9 +52,9 @@ export default function InstagramCaptionGenerator() {
         Gerar Legenda
       </button>
 
-      {caption && (
+      {captions && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-xl w-full">
-          <p className="text-zinc-300 text-lg">{caption}</p>
+          <p className="text-zinc-300 text-lg">{captions}</p>
 
           <button
             onClick={copyCaption}
