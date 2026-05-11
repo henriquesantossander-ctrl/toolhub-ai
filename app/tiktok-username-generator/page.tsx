@@ -5,8 +5,11 @@ import { useState } from "react";
 export default function TikTokUsernameGenerator() {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
+  
 
   const generateUsername = async () => {
+    setLoading(true);
   const response = await fetch("/api/tiktok-username", {
     method: "POST",
     headers: {
@@ -20,6 +23,7 @@ export default function TikTokUsernameGenerator() {
   const data = await response.json();
 
   setUsername(data.result);
+  setLoading(false);
 };
 
   const copyUsername = async () => {
@@ -46,11 +50,19 @@ export default function TikTokUsernameGenerator() {
       />
 
       <button
-        onClick={generateUsername}
-        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
-      >
-        Gerar Username
-      </button>
+  onClick={generateUsername}
+  disabled={loading}
+  className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
+>
+  {loading ? (
+  <div className="flex items-center gap-3">
+    <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+    Gerando com IA...
+  </div>
+) : (
+  "Gerar Username"
+)}
+</button>
 
       {username && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-xl w-full text-center">

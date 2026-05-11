@@ -5,22 +5,26 @@ import { useState } from "react";
 export default function HashtagGenerator() {
   const [topic, setTopic] = useState("");
   const [hashtags, setHashtags] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const generateHashtags = async () => {
-  const response = await fetch("/api/hashtag", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      prompt: topic,
-    }),
-  });
+    setLoading(true);
 
-  const data = await response.json();
+    const response = await fetch("/api/hashtag", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: topic,
+      }),
+    });
 
-  setHashtags(data.result);
-};
+    const data = await response.json();
+
+    setHashtags(data.result);
+    setLoading(false);
+  };
 
   const copyHashtags = async () => {
     await navigator.clipboard.writeText(hashtags);
@@ -47,9 +51,17 @@ export default function HashtagGenerator() {
 
       <button
         onClick={generateHashtags}
-        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+        disabled={loading}
+        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
       >
-        Gerar Hashtags
+        {loading ? (
+          <div className="flex items-center gap-3">
+            <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+            Gerando com IA...
+          </div>
+        ) : (
+          "Gerar Hashtags"
+        )}
       </button>
 
       {hashtags && (

@@ -7,6 +7,7 @@ export default function BioGenerator() {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [loading, setLoading] = useState(false);
+  
 
   async function generateBio() {
     if (!name.trim()) {
@@ -75,12 +76,19 @@ export default function BioGenerator() {
       />
 
       <button
-        onClick={generateBio}
-        disabled={loading}
-        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
-      >
-        {loading ? "Gerando..." : "Gerar Bio"}
-      </button>
+  onClick={generateBio}
+  disabled={loading}
+  className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
+>
+  {loading ? (
+    <div className="flex items-center gap-3">
+      <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+      Gerando com IA...
+    </div>
+  ) : (
+    "Gerar"
+  )}
+</button>
 
       {bio && (
         <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-md w-full">
