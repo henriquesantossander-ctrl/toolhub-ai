@@ -4,12 +4,10 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 export default function LoginPage() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   async function handleLogin() {
-
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -23,7 +21,6 @@ export default function LoginPage() {
   }
 
   async function handleRegister() {
-
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -36,8 +33,17 @@ export default function LoginPage() {
     }
   }
 
+  async function handleGoogleLogin() {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "https://toolhubia.com.br",
+      },
+    });
+  }
+
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center">
+    <main className="min-h-screen bg-black text-white flex items-center justify-center px-6">
 
       <div className="bg-zinc-900 p-10 rounded-3xl w-full max-w-md border border-zinc-800">
 
@@ -68,9 +74,22 @@ export default function LoginPage() {
 
         <button
           onClick={handleRegister}
-          className="w-full bg-purple-600 font-bold p-4 rounded-2xl hover:scale-105 transition"
+          className="w-full bg-purple-600 font-bold p-4 rounded-2xl mb-4 hover:scale-105 transition"
         >
           Criar conta
+        </button>
+
+        <div className="flex items-center gap-4 my-6">
+          <div className="h-[1px] bg-zinc-700 flex-1"></div>
+          <span className="text-zinc-500 text-sm">OU</span>
+          <div className="h-[1px] bg-zinc-700 flex-1"></div>
+        </div>
+
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full bg-red-500 text-white font-bold p-4 rounded-2xl hover:scale-105 transition"
+        >
+          Entrar com Google
         </button>
 
       </div>
