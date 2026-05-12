@@ -1,39 +1,46 @@
+import { NextResponse } from "next/server";
+import { MercadoPagoConfig, Preference } from "mercadopago";
+
+const client = new MercadoPagoConfig({
+  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN!,
+});
+
 export async function POST() {
   try {
-    const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.MP_ACCESS_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    const preference = new Preference(client);
+
+    const response = await preference.create({
+      body: {
         items: [
           {
+            id: "toolhub-pro",
             title: "ToolHub IA PRO",
             quantity: 1,
             currency_id: "BRL",
-            unit_price: 19.90
+            unit_price: 19,
           },
         ],
+
         back_urls: {
           success: "https://www.toolhubia.com.br/profile",
           failure: "https://www.toolhubia.com.br/premium",
           pending: "https://www.toolhubia.com.br/premium",
         },
+
         auto_return: "approved",
-      }),
+      },
     });
 
-    const data = await response.json();
-
-    return Response.json({
-      url: data.init_point,
+    return NextResponse.json({
+      init_point: response.init_point,
     });
+
   } catch (error) {
     console.log(error);
 
-    return Response.json({
-      error: "Erro ao criar checkout.",
-    });
+    return NextResponse.json(
+      { error: "Erro ao criar pagamento" },
+      { status: 500 }
+    );
   }
 }
