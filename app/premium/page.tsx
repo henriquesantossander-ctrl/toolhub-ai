@@ -7,7 +7,7 @@ async function handleUpgrade() {
 
   const data = await res.json();
 
-  window.location.href = data.init_point;
+  window.location.href = data.url;
 }
 
 export default function PremiumPage() {
