@@ -34,13 +34,13 @@ export default function LoginPage() {
   }
 
   async function handleGoogleLogin() {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: "https://toolhubia.com.br",
-      },
-    });
-  }
+  await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: "https://www.toolhubia.com.br",
+    },
+  });
+}
 
   return (
     <main className="min-h-screen bg-black text-white flex items-center justify-center px-6">
