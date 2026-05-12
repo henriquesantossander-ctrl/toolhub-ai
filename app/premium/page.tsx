@@ -1,3 +1,15 @@
+"use client";
+
+async function handleUpgrade() {
+  const res = await fetch("/api/mercadopago", {
+    method: "POST",
+  });
+
+  const data = await res.json();
+
+  window.location.href = data.init_point;
+}
+
 export default function PremiumPage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-20">
@@ -51,7 +63,10 @@ export default function PremiumPage() {
               <li>🔥 Sem anúncios</li>
             </ul>
 
-            <button className="bg-white text-black w-full py-4 rounded-2xl font-bold hover:scale-105 transition">
+            <button
+              onClick={handleUpgrade}
+              className="bg-white text-black w-full py-4 rounded-2xl font-bold hover:scale-105 transition"
+            >
               Fazer Upgrade
             </button>
           </div>
