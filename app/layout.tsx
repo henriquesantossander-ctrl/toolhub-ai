@@ -39,6 +39,14 @@ export default function RootLayout({
           name="google-site-verification"
           content="FnhHzNTsXtvFiDrx4EXek2cF5q2GeJolNejb2-eV_cs"
         />
+
+       <Script
+  async
+ src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953212773298111"
+  crossOrigin="anonymous"
+  strategy="afterInteractive"
+/>
+
       </head>
 
       <body className="bg-black text-white">
