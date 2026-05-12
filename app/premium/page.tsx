@@ -2,8 +2,13 @@
 
 async function handleUpgrade() {
   try {
+    const token = localStorage.getItem("sb-access-token");
+
     const res = await fetch("/api/mercadopago", {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (!res.ok) {

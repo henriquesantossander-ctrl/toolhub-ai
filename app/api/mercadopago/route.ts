@@ -1,12 +1,39 @@
 import { NextResponse } from "next/server";
 import { MercadoPagoConfig, Preference } from "mercadopago";
+import { createClient } from "@supabase/supabase-js";
 
 const client = new MercadoPagoConfig({
   accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN!,
 });
 
-export async function POST() {
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+export async function POST(req: Request) {
   try {
+    const token =
+      req.headers.get("authorization")?.replace("Bearer ", "");
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Not authenticated" },
+        { status: 401 }
+      );
+    }
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser(token);
+
+    if (!user?.email) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 401 }
+      );
+    }
+
     const preference = new Preference(client);
 
     const response = await preference.create({
@@ -20,6 +47,10 @@ export async function POST() {
             unit_price: 19,
           },
         ],
+
+        metadata: {
+          user_email: user.email,
+        },
 
         back_urls: {
           success: "https://www.toolhubia.com.br/profile",
