@@ -1,13 +1,32 @@
 "use client";
 
 async function handleUpgrade() {
-  const res = await fetch("/api/mercadopago", {
-    method: "POST",
-  });
+  try {
+    const res = await fetch("/api/mercadopago", {
+      method: "POST",
+    });
 
-  const data = await res.json();
+    if (!res.ok) {
+      alert("Erro ao iniciar pagamento");
+      return;
+    }
 
-  window.location.href = data.url;
+    const data = await res.json();
+
+    console.log(data);
+
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Link de pagamento não encontrado");
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Erro no checkout");
+  }
 }
 
 export default function PremiumPage() {
@@ -26,6 +45,7 @@ export default function PremiumPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
+          {/* FREE */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10">
             <h2 className="text-3xl font-bold mb-4">
               FREE
@@ -46,6 +66,7 @@ export default function PremiumPage() {
             </button>
           </div>
 
+          {/* PRO */}
           <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-10 scale-105 shadow-[0_0_80px_rgba(168,85,247,0.45)]">
             <h2 className="text-3xl font-bold mb-4">
               PRO
@@ -71,6 +92,7 @@ export default function PremiumPage() {
             </button>
           </div>
 
+          {/* BUSINESS */}
           <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-10">
             <h2 className="text-3xl font-bold mb-4">
               BUSINESS
