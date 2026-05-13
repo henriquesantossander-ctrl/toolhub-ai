@@ -11,6 +11,7 @@ type UserData = {
 export default function ProfilePage() {
   const [user, setUser] = useState<UserData | null>(null);
   const [bioCount, setBioCount] = useState(0);
+  const [plan, setPlan] = useState("FREE");
   const [loadingPayment, setLoadingPayment] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,19 @@ export default function ProfilePage() {
         .eq("user_email", userData.user.email);
 
       setBioCount(bios?.length || 0);
+
+      const { data: subscription } = await supabase
+        .from("subscriptions")
+        .select("*")
+        .eq("user_email", userData.user.email)
+        .eq("status", "approved")
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .single();
+
+      if (subscription) {
+        setPlan("PRO");
+      }
     }
 
     loadProfile();
@@ -41,13 +55,27 @@ export default function ProfilePage() {
   async function handleUpgrade() {
     setLoadingPayment(true);
 
+    const { data: sessionData } = await supabase.auth.getSession();
+    const token = sessionData.session?.access_token;
+
+    if (!token) {
+      alert("Você precisa estar logado para fazer upgrade.");
+      window.location.href = "/login";
+      return;
+    }
+
     const response = await fetch("/api/mercadopago", {
       method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     const data = await response.json();
 
-    if (data.url) {
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else if (data.url) {
       window.location.href = data.url;
     } else {
       alert("Erro ao abrir pagamento.");
@@ -76,29 +104,21 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-zinc-800 rounded-2xl p-6">
               <p className="text-zinc-400 mb-2">Email</p>
-
-              <h2 className="text-xl font-bold break-all">
-                {user?.email}
-              </h2>
+              <h2 className="text-xl font-bold break-all">{user?.email}</h2>
             </div>
 
             <div className="bg-zinc-800 rounded-2xl p-6">
               <p className="text-zinc-400 mb-2">Plano atual</p>
-
-              <h2 className="text-3xl font-bold text-purple-400">
-                FREE
-              </h2>
+              <h2 className="text-3xl font-bold text-purple-400">{plan}</h2>
             </div>
 
             <div className="bg-zinc-800 rounded-2xl p-6">
               <p className="text-zinc-400 mb-2">Bios geradas</p>
-
               <h2 className="text-5xl font-bold">{bioCount}</h2>
             </div>
 
             <div className="bg-zinc-800 rounded-2xl p-6">
               <p className="text-zinc-400 mb-2">Conta criada</p>
-
               <h2 className="text-2xl font-bold">
                 {user?.created_at
                   ? new Date(user.created_at).toLocaleDateString()
@@ -107,23 +127,32 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          <div className="mt-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8">
-            <p className="mb-2">Upgrade Premium</p>
+          {plan === "FREE" && (
+            <div className="mt-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8">
+              <p className="mb-2">Upgrade Premium</p>
 
-            <h2 className="text-4xl font-bold mb-4">ToolHub PRO</h2>
+              <h2 className="text-4xl font-bold mb-4">ToolHub PRO</h2>
 
-            <p className="text-white/80 mb-6">
-              Desbloqueie recursos premium, mais gerações e ferramentas avançadas.
-            </p>
+              <p className="text-white/80 mb-6">
+                Desbloqueie recursos premium, mais gerações e ferramentas avançadas.
+              </p>
 
-            <button
-              onClick={handleUpgrade}
-              disabled={loadingPayment}
-              className="bg-white text-black px-5 py-4 rounded-xl font-bold w-full hover:scale-105 transition disabled:opacity-50"
-            >
-              {loadingPayment ? "Abrindo pagamento..." : "Fazer Upgrade"}
-            </button>
-          </div>
+              <button
+                onClick={handleUpgrade}
+                disabled={loadingPayment}
+                className="bg-white text-black px-5 py-4 rounded-xl font-bold w-full hover:scale-105 transition disabled:opacity-50"
+              >
+                {loadingPayment ? "Abrindo pagamento..." : "Fazer Upgrade"}
+              </button>
+            </div>
+          )}
+
+          {plan === "PRO" && (
+            <div className="mt-8 bg-green-600 rounded-3xl p-8">
+              <h2 className="text-4xl font-bold mb-2">Você é PRO ✅</h2>
+              <p>Recursos premium liberados.</p>
+            </div>
+          )}
 
           <div className="mt-10">
             <button
