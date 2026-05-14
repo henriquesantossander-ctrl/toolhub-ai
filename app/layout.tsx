@@ -105,6 +105,18 @@ export default function RootLayout({
               <Link href="/profile" className="hover:text-purple-400 transition">
                 Perfil
               </Link>
+
+              <Link href="/contact" className="hover:text-purple-400 transition">
+                Contato
+              </Link>
+
+              <Link href="/terms" className="hover:text-purple-400 transition">
+               Termos
+              </Link>
+
+              <Link href="/privacy" className="hover:text-purple-400 transition">
+              Privacidade
+              </Link>
             </nav>
           </div>
         </header>
