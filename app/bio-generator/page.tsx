@@ -3,6 +3,7 @@
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import AdBanner from "@/components/AdBanner";
 
 export default function BioGenerator() {
   const [name, setName] = useState("");
@@ -12,37 +13,64 @@ export default function BioGenerator() {
   const [isPro, setIsPro] = useState(false);
 
   useEffect(() => {
-    async function loadUsage() {
-      const { data: userData } = await supabase.auth.getUser();
+  async function loadUsage() {
+    const { data: userData } = await supabase.auth.getUser();
 
-      if (!userData.user?.email) return;
+    if (!userData.user?.email) return;
 
-      const email = userData.user.email;
+    const email = userData.user.email;
+    const today = new Date().toISOString().split("T")[0];
 
-      const { data: subscription } = await supabase
-        .from("subscriptions")
-        .select("*")
-        .eq("user_email", email)
-        .eq("status", "approved")
-        .maybeSingle();
+    const { data: subscription } = await supabase
+      .from("subscriptions")
+      .select("*")
+      .eq("user_email", email)
+      .eq("status", "approved")
+      .maybeSingle();
 
-      if (subscription) {
-        setIsPro(true);
-      }
-
-      const { data: usage } = await supabase
-        .from("usage_limits")
-        .select("*")
-        .eq("user_email", email)
-        .maybeSingle();
-
-      if (usage) {
-        setUsedCount(usage.used_count || 0);
-      }
+    if (subscription) {
+      setIsPro(true);
     }
 
-    loadUsage();
-  }, []);
+    let { data: usage } = await supabase
+      .from("usage_limits")
+      .select("*")
+      .eq("user_email", email)
+      .maybeSingle();
+
+    if (!usage) {
+      const { data: newUsage } = await supabase
+        .from("usage_limits")
+        .insert({
+          user_email: email,
+          used_count: 0,
+          last_reset: today,
+        })
+        .select()
+        .single();
+
+      usage = newUsage;
+    }
+
+    if (usage && usage.last_reset !== today) {
+      const { data: resetUsage } = await supabase
+        .from("usage_limits")
+        .update({
+          used_count: 0,
+          last_reset: today,
+        })
+        .eq("user_email", email)
+        .select()
+        .single();
+
+      usage = resetUsage;
+    }
+
+    setUsedCount(usage?.used_count || 0);
+  }
+
+  loadUsage();
+}, []);
 
   async function generateBio() {
     if (!name.trim()) {
@@ -191,25 +219,31 @@ export default function BioGenerator() {
           "Gerar"
         )}
       </button>
+      <AdBanner />
 
       <p className="text-zinc-400 text-sm mt-4">
         {isPro
           ? "🚀 Usuário PRO ilimitado"
           : `🔥 Restam ${Math.max(0, 5 - usedCount)} gerações hoje`}
       </p>
-
       {bio && (
-        <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-md w-full">
-          <p className="whitespace-pre-line text-zinc-300 text-lg">{bio}</p>
+  <>
+    <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-md w-full">
+      <p className="whitespace-pre-line text-zinc-300 text-lg">
+        {bio}
+      </p>
 
-          <button
-            onClick={copyBio}
-            className="mt-6 w-full bg-purple-600 text-white py-3 rounded-2xl font-bold hover:scale-105 transition"
-          >
-            Copiar Bio
-          </button>
-        </div>
-      )}
+      <button
+        onClick={copyBio}
+        className="mt-6 w-full bg-purple-600 text-white py-3 rounded-2xl font-bold hover:scale-105 transition"
+      >
+        Copiar Bio
+      </button>
+    </div>
+
+    <AdBanner />
+  </>
+)}
     </main>
   );
 }
