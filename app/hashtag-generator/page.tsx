@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
 export default function HashtagGenerator() {
   const [topic, setTopic] = useState("");
@@ -8,6 +9,10 @@ export default function HashtagGenerator() {
   const [loading, setLoading] = useState(false);
 
   const generateHashtags = async () => {
+    const result = await checkUsageLimit();
+
+    if (!result.allowed) return;
+
     setLoading(true);
 
     const response = await fetch("/api/hashtag", {
@@ -24,6 +29,10 @@ export default function HashtagGenerator() {
 
     setHashtags(data.result);
     setLoading(false);
+
+    if (!result.isPro) {
+      await increaseUsage(result.email, result.currentCount);
+    }
   };
 
   const copyHashtags = async () => {
