@@ -1,52 +1,21 @@
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-black text-white px-6 py-20">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto bg-zinc-900 border border-zinc-800 rounded-3xl p-10">
+        <h1 className="text-5xl font-bold mb-6">Termos de Uso</h1>
 
-        <h1 className="text-5xl font-bold mb-10">
-          Termos de Uso
-        </h1>
+        <div className="space-y-5 text-zinc-300">
+          <p>Ao utilizar a ToolHub IA, você concorda com estes termos.</p>
 
-        <div className="space-y-8 text-zinc-300 leading-8 text-lg">
+          <p>A plataforma deve ser usada apenas para fins legais.</p>
 
-          <p>
-            Ao utilizar o ToolHub IA, você concorda com
-            os termos e condições desta plataforma.
-          </p>
+          <p>Não é permitido usar a ToolHub IA para fraudes, spam, malware, roubo de contas, conteúdo ilegal ou violação de direitos autorais.</p>
 
-          <div>
-            <h2 className="text-2xl font-bold mb-3 text-white">
-              Uso da plataforma
-            </h2>
+          <p>O usuário é responsável pela segurança da própria conta.</p>
 
-            <p>
-              O usuário concorda em utilizar a plataforma
-              de maneira responsável e legal.
-            </p>
-          </div>
+          <p>Os planos pagos liberam funcionalidades premium e os pagamentos são processados por plataformas terceirizadas seguras.</p>
 
-          <div>
-            <h2 className="text-2xl font-bold mb-3 text-white">
-              Conteúdo gerado
-            </h2>
-
-            <p>
-              As ferramentas geram conteúdos automaticamente
-              e o usuário é responsável pelo uso das informações.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold mb-3 text-white">
-              Alterações
-            </h2>
-
-            <p>
-              O ToolHub IA pode atualizar estes termos
-              a qualquer momento sem aviso prévio.
-            </p>
-          </div>
-
+          <p>A ToolHub IA pode receber atualizações, mudanças e manutenções sem aviso prévio.</p>
         </div>
       </div>
     </main>
