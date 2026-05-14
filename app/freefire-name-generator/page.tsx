@@ -1,38 +1,52 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
 export default function FreeFireNameGenerator() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const generateName = async () => {
+  async function generateName() {
     const result = await checkUsageLimit();
 
-    if (!result.allowed) return;
+    if (!result.allowed) {
+      toast.error("Você atingiu o limite grátis de 5 gerações por dia.");
+      return;
+    }
 
     setLoading(true);
     setName("");
 
-    const response = await fetch("/api/freefire-name", {
-      method: "POST",
-    });
+    try {
+      const response = await fetch("/api/freefire-name", {
+        method: "POST",
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.name) {
-      setName(data.name);
-    } else {
-      setName("Erro ao gerar nome.");
+      if (data?.name) {
+        setName(data.name);
+
+        if (!result.isPro) {
+          await increaseUsage(result.email, result.currentCount);
+        }
+      } else {
+        toast.error("Erro ao gerar nome.");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao gerar nome.");
+    } finally {
+      setLoading(false);
     }
+  }
 
-    if (!result.isPro) {
-      await increaseUsage(result.email, result.currentCount);
-    }
-
-    setLoading(false);
-  };
+  function copyName(nick: string) {
+    navigator.clipboard.writeText(nick);
+    toast.success("Nome copiado!");
+  }
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-20">
@@ -65,11 +79,8 @@ export default function FreeFireNameGenerator() {
             {name.split("\n").map((nick, index) => (
               <button
                 key={index}
-                onClick={() => {
-                  navigator.clipboard.writeText(nick);
-                  alert("Nome copiado!");
-                }}
-                className="bg-zinc-800 border border-zinc-700 rounded-2xl py-3 px-4 text-center text-2xl font-bold hover:scale-105 hover:border-orange-500 hover:bg-zinc-700 transition"
+                onClick={() => copyName(nick)}
+                className="bg-zinc-800 border border-zinc-700 rounded-2xl py-3 px-4 text-2xl font-bold hover:scale-105 hover:border-orange-500 hover:bg-zinc-700 transition"
               >
                 {nick}
               </button>
