@@ -330,6 +330,157 @@ export default function Home() {
   </div>
 
 </section>
+
+       <section className="relative z-10 px-4 md:px-8 pb-32">
+  <div className="max-w-7xl mx-auto space-y-16">
+
+    <div className="text-center">
+      <div className="inline-flex bg-purple-600/20 border border-purple-500 rounded-full px-5 py-2 text-purple-300 font-bold mb-6">
+        🔥 Mais de 2.500 usuários já acessaram
+      </div>
+
+      <h2 className="text-4xl md:text-6xl font-bold mb-6">
+        IA simples para criar conteúdo melhor e mais rápido
+      </h2>
+
+      <p className="text-zinc-400 text-lg max-w-3xl mx-auto">
+        Gere bios, hashtags, legendas, usernames e nicknames em segundos usando inteligência artificial.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+        <h3 className="text-3xl font-bold mb-3">⚡ Rápido</h3>
+        <p className="text-zinc-400">
+          Crie conteúdo em poucos segundos sem perder tempo pensando.
+        </p>
+      </div>
+
+      <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+        <h3 className="text-3xl font-bold mb-3">🤖 IA Real</h3>
+        <p className="text-zinc-400">
+          Ferramentas inteligentes para gerar ideias criativas e modernas.
+        </p>
+      </div>
+
+      <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+        <h3 className="text-3xl font-bold mb-3">👑 PRO</h3>
+        <p className="text-zinc-400">
+          Libere recursos premium, mais gerações e uma experiência mais completa.
+        </p>
+      </div>
+    </div>
+
+    <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-[40px] p-10 md:p-14 text-center">
+      <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        Plano PRO libera IA avançada
+      </h2>
+
+      <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+        Ideal para criadores, gamers, social medias e pessoas que querem gerar conteúdo melhor todos os dias.
+      </p>
+
+      <a
+        href="/premium"
+        className="inline-block bg-white text-black px-10 py-4 rounded-2xl font-bold hover:scale-105 transition"
+      >
+        Ver Plano PRO
+      </a>
+    </div>
+
+    <div>
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        Exemplos gerados com IA
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <p className="text-purple-400 font-bold mb-3">Bio</p>
+          <p className="text-zinc-300">
+            🚀 Criando meu futuro com IA<br />
+            🎮 Gamer • Criador • Internet<br />
+            ⚡ Sempre evoluindo
+          </p>
+        </div>
+
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <p className="text-pink-400 font-bold mb-3">Hashtags</p>
+          <p className="text-zinc-300">
+            #ia #criadores #viralbrasil #tiktokbr #conteudodigital
+          </p>
+        </div>
+
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <p className="text-green-400 font-bold mb-3">Nickname</p>
+          <p className="text-zinc-300">
+            Shadow亗<br />
+            Viperツ<br />
+            FrostX
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        FREE vs PRO
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <h3 className="text-3xl font-bold mb-6">FREE</h3>
+          <ul className="space-y-4 text-zinc-400">
+            <li>✔ Ferramentas básicas</li>
+            <li>✔ Gerações simples</li>
+            <li>✔ Acesso gratuito</li>
+            <li>✔ Ideal para testar</li>
+          </ul>
+        </div>
+
+        <div className="bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8">
+          <h3 className="text-3xl font-bold mb-6">PRO</h3>
+          <ul className="space-y-4">
+            <li>🔥 IA avançada</li>
+            <li>🔥 Mais gerações</li>
+            <li>🔥 Recursos premium</li>
+            <li>🔥 Melhor experiência</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+        O que os usuários dizem
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <p className="text-zinc-300">
+            “Usei pra criar bio e ficou muito melhor do que eu esperava.”
+          </p>
+          <p className="text-zinc-500 mt-4">— Usuário ToolHub</p>
+        </div>
+
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <p className="text-zinc-300">
+            “Os nicknames ficaram muito bons, principalmente pra jogos.”
+          </p>
+          <p className="text-zinc-500 mt-4">— Gamer</p>
+        </div>
+
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <p className="text-zinc-300">
+            “Gostei porque é rápido, bonito e fácil de usar.”
+          </p>
+          <p className="text-zinc-500 mt-4">— Criador de conteúdo</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
       <footer className="border-t border-zinc-800 mt-32 py-12 px-4 md:px-8">
   <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
