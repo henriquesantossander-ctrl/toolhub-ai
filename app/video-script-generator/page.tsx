@@ -18,9 +18,9 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
     const response = await fetch("/api/video-script", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+     headers: {
+  "Content-Type": "application/json",
+},
       body: JSON.stringify({
         prompt: theme || "vídeo viral",
       }),
@@ -30,10 +30,9 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
     setScript(data.result);
 
-    if (!result.isPro) {
-      await increaseUsage(result.email, result.currentCount);
-    }
-
+    if (!result.isPro && result.email) {
+  await increaseUsage(result.email, result.currentCount);
+}
     setLoading(false);
   };
 
