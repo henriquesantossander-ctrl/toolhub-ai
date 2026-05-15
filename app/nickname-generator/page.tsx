@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
 export default function NicknameGenerator() {
   const [nickname, setNickname] = useState("");
@@ -8,6 +9,10 @@ export default function NicknameGenerator() {
   const [loading, setLoading] = useState(false);
 
   const generateNickname = async () => {
+    const result = await checkUsageLimit();
+
+    if (!result.allowed) return;
+
     setLoading(true);
     setNickname("");
 
@@ -24,6 +29,11 @@ export default function NicknameGenerator() {
     const data = await response.json();
 
     setNickname(data.result);
+
+    if (!result.isPro && result.email) {
+      await increaseUsage(result.email, result.currentCount);
+    }
+
     setLoading(false);
   };
 
@@ -81,3 +91,5 @@ export default function NicknameGenerator() {
     </main>
   );
 }
+
+    
