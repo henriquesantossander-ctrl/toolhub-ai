@@ -89,7 +89,11 @@ export default function RootLayout({
               <Link href="/bio-generator" className="hover:text-purple-400 transition">
                 Gerador
               </Link>
-
+               
+               <Link href="/video-script-generator" className="hover:text-purple-400 transition">
+                Roteiros IA
+               </Link>
+               
               <Link href="/my-bios" className="hover:text-purple-400 transition">
                 Minhas Bios
               </Link>
