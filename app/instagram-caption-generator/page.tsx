@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
 export default function InstagramCaptionGenerator() {
   const [theme, setTheme] = useState("");
@@ -8,6 +9,10 @@ export default function InstagramCaptionGenerator() {
   const [loading, setLoading] = useState(false);
 
   const generateCaption = async () => {
+    const result = await checkUsageLimit();
+
+    if (!result.allowed) return;
+
     setLoading(true);
     setCaption("");
 
@@ -24,6 +29,11 @@ export default function InstagramCaptionGenerator() {
     const data = await response.json();
 
     setCaption(data.result);
+
+    if (!result.isPro && result.email) {
+      await increaseUsage(result.email, result.currentCount);
+    }
+
     setLoading(false);
   };
 
