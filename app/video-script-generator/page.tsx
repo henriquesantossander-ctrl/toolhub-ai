@@ -1,10 +1,15 @@
 "use client";
-export default function VideoScriptGenerator() {
+ "use client";
+
+import { useState } from "react";
+import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
+
+  export default function VideoScriptGenerator() {
   const [theme, setTheme] = useState("");
   const [script, setScript] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const generateScript = async () => {
+    const generateScript = async () => {
     const result = await checkUsageLimit();
 
     if (!result.allowed) return;
