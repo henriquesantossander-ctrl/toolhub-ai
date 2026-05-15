@@ -29,21 +29,10 @@ export async function POST(req: Request) {
 - mantenha ritmo acelerado
 
 🔥 CTA: Compartilha com alguém!`,
-
-    `🎬 GANCHO: Isso aqui pode viralizar hoje.
-
-📱 Tema: ${prompt}
-
-💡 Estrutura:
-- Começo impactante
-- Informação rápida
-- Reação forte
-- Final criando curiosidade
-
-🚀 CTA: Curte para parte 2!`
   ];
 
-  const randomScript = scripts[Math.floor(Math.random() * scripts.length)];
+  const randomScript =
+    scripts[Math.floor(Math.random() * scripts.length)];
 
   return NextResponse.json({
     result: randomScript,
