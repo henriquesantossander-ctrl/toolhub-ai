@@ -117,6 +117,10 @@ export default function RootLayout({
               <Link href="/terms" className="hover:text-purple-400 transition">
                Termos
               </Link>
+              
+              <Link href="/business" className="hover:text-yellow-400 transition font-bold">
+               Business
+               </Link>
 
               <Link href="/privacy" className="hover:text-purple-400 transition">
               Privacidade
