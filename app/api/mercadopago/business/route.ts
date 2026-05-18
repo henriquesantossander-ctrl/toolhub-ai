@@ -16,7 +16,10 @@ export async function POST(req: NextRequest) {
     const authHeader = req.headers.get("authorization");
 
     if (!authHeader) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
     }
 
     const token = authHeader.replace("Bearer ", "");
@@ -26,7 +29,10 @@ export async function POST(req: NextRequest) {
     } = await supabase.auth.getUser(token);
 
     if (!user?.email) {
-      return NextResponse.json({ error: "User not found" }, { status: 401 });
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 401 }
+      );
     }
 
     const preference = new Preference(client);
@@ -35,24 +41,24 @@ export async function POST(req: NextRequest) {
       body: {
         items: [
           {
-            id: "toolhub-pro",
-            title: "ToolHub IA PRO",
+            id: "toolhub-business",
+            title: "ToolHub IA BUSINESS",
             quantity: 1,
             currency_id: "BRL",
-            unit_price: 19,
+            unit_price: 49,
           },
         ],
 
-      metadata: {
-        user_email: user.email,
-        plan: "pro",
-},
+        metadata: {
+          user_email: user.email,
+          plan: "business",
+        },
 
         back_urls: {
           success: "https://www.toolhubia.com.br/profile",
-          failure: "https://www.toolhubia.com.br/premium",
-          pending: "https://www.toolhubia.com.br/premium",
-},
+          failure: "https://www.toolhubia.com.br/business",
+          pending: "https://www.toolhubia.com.br/business",
+        },
 
         auto_return: "approved",
       },
@@ -61,6 +67,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       init_point: response.init_point,
     });
+
   } catch (error) {
     console.log(error);
 
