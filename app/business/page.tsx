@@ -44,8 +44,7 @@ export default function BusinessPage() {
           </p>
 
           <Link
-            href="/premium"
-            className="inline-block bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-5 rounded-2xl font-black text-lg transition hover:scale-105"
+           href="/api/mercadopago/business"
           >
             Assinar Business por R$49 🚀
           </Link>
@@ -121,8 +120,7 @@ export default function BusinessPage() {
             </ul>
 
             <Link
-              href="/premium"
-              className="mt-10 block text-center bg-yellow-500 hover:bg-yellow-400 text-black py-4 rounded-2xl font-bold transition"
+              href="/api/mercadopago/business"
             >
               Assinar Business 🚀
             </Link>
