@@ -1,3 +1,4 @@
+import BusinessCheckoutButton from "@/components/BusinessCheckoutButton";
 import Link from "next/link";
 
 const features = [
@@ -43,11 +44,7 @@ export default function BusinessPage() {
             e criar conteúdos profissionais.
           </p>
 
-          <Link
-           href="/api/mercadopago/business"
-          >
-            Assinar Business por R$49 🚀
-          </Link>
+          <BusinessCheckoutButton />
         </div>
       </section>
 
@@ -75,6 +72,7 @@ export default function BusinessPage() {
           <div className="border border-zinc-800 rounded-3xl p-8 bg-zinc-950">
             <h2 className="text-3xl font-bold mb-4">FREE</h2>
             <h3 className="text-5xl font-bold mb-8">R$0</h3>
+
             <ul className="space-y-4 text-zinc-300">
               <li>✅ 5 gerações grátis</li>
               <li>✅ Ferramentas básicas</li>
@@ -90,6 +88,7 @@ export default function BusinessPage() {
 
             <h2 className="text-3xl font-bold mb-4">PRO</h2>
             <h3 className="text-5xl font-bold mb-8">R$19</h3>
+
             <ul className="space-y-4 text-zinc-300">
               <li>✅ Mais gerações</li>
               <li>✅ Sem anúncios</li>
@@ -119,11 +118,9 @@ export default function BusinessPage() {
               <li>🔥 Futuro vídeo IA</li>
             </ul>
 
-            <Link
-              href="/api/mercadopago/business"
-            >
-              Assinar Business 🚀
-            </Link>
+            <div className="mt-10">
+              <BusinessCheckoutButton />
+            </div>
           </div>
         </div>
       </section>
