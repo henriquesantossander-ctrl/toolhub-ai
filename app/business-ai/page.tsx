@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { checkBusinessAccess } from "@/lib/checkBusinessAccess";
+
 
 export default function BusinessAIPage() {
   const [image, setImage] = useState<string | null>(null);
@@ -22,26 +24,30 @@ export default function BusinessAIPage() {
   };
 
   const analyzeImage = async () => {
-    if (!image) return;
+  if (!image) return;
 
-    setLoading(true);
+  const result = await checkBusinessAccess();
 
-    const res = await fetch("/api/business-ai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        image,
-      }),
-    });
+  if (!result.allowed) return;
 
-    const data = await res.json();
+  setLoading(true);
 
-    setResponse(data.result);
+  const res = await fetch("/api/business-ai", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      image,
+    }),
+  });
 
-    setLoading(false);
-  };
+  const data = await res.json();
+
+  setResponse(data.result);
+
+  setLoading(false);
+};
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-20">
