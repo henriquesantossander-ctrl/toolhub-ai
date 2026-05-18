@@ -16,9 +16,11 @@ export async function POST(req: Request) {
     size: "1024x1024",
   });
 
-  const imageBase64 = result.data[0].b64_json;
+   const imageBase64 = result.data?.[0]?.b64_json;
 
-  return NextResponse.json({
-    image: `data:image/png;base64,${imageBase64}`,
-  });
+if (!imageBase64) {
+  return NextResponse.json(
+    { error: "Erro ao gerar imagem." },
+    { status: 500 }
+  );
 }
