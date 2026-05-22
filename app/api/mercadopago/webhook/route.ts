@@ -31,8 +31,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true });
     }
 
-    const userEmail =
-      paymentData.metadata?.user_email || "";
+    const userEmail = paymentData.metadata?.user_email || "";
+    const plan = paymentData.metadata?.plan || "pro";
 
     if (!userEmail) {
       return NextResponse.json({
@@ -40,15 +40,21 @@ export async function POST(req: Request) {
       });
     }
 
-    await supabase.from("subscriptions").insert({
-      user_email: userEmail,
-      plan: "PRO",
-      status: "approved",
-      payment_id: String(paymentId),
-    });
+    await supabase.from("subscriptions").upsert(
+      {
+        user_email: userEmail,
+        plan: plan,
+        status: "approved",
+        payment_id: String(paymentId),
+      },
+      {
+        onConflict: "user_email",
+      }
+    );
 
     return NextResponse.json({
       success: true,
+      plan,
     });
   } catch (error) {
     console.log(error);
