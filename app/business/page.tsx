@@ -1,5 +1,4 @@
 import BusinessCheckoutButton from "@/components/BusinessCheckoutButton";
-import Link from "next/link";
 
 const features = [
   {
@@ -18,8 +17,8 @@ const features = [
     icon: "🎨",
   },
   {
-    title: "Vídeo IA",
-    desc: "Em breve: transforme ideias e imagens em vídeos.",
+    title: "Vídeo IA Cinematográfico",
+    desc: "Transforme fotos, prompts e ideias em vídeos ultra realistas com IA. (Em breve)",
     icon: "🎬",
   },
 ];
@@ -57,8 +56,14 @@ export default function BusinessPage() {
           {features.map((item) => (
             <div
               key={item.title}
-              className="bg-zinc-950 border border-zinc-800 rounded-3xl p-6 hover:border-yellow-500/70 transition hover:scale-105"
+              className="relative bg-zinc-950 border border-zinc-800 rounded-3xl p-6 hover:border-yellow-500/70 transition hover:scale-105"
             >
+              {item.title.includes("Vídeo") && (
+                <div className="absolute top-4 right-4 bg-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold">
+                  FUTURO PREMIUM
+                </div>
+              )}
+
               <div className="text-4xl mb-4">{item.icon}</div>
               <h3 className="text-xl font-bold mb-3">{item.title}</h3>
               <p className="text-zinc-400">{item.desc}</p>
@@ -115,7 +120,7 @@ export default function BusinessPage() {
               <li>🔥 Vision IA</li>
               <li>🔥 Geração de imagens IA</li>
               <li>🔥 Chat multimodal</li>
-              <li>🔥 Futuro vídeo IA</li>
+              <li>🔥 Vídeo IA Cinematográfico em breve</li>
             </ul>
 
             <div className="mt-10">
