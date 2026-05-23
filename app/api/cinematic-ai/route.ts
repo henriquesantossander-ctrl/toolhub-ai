@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const image = body.image;
-    const style = body.style || "Hollywood";
+    const instruction = body.instruction;
 
     const response = await openai.chat.completions.create({
       model: "gpt-4.1-mini",
@@ -21,31 +21,28 @@ export async function POST(req: Request) {
             {
               type: "text",
               text: `
-Analise a imagem enviada e crie um prompt MUITO FORTE para transformar essa pessoa/foto no estilo: ${style}.
+O usuário quer transformar a imagem enviada.
 
-Regras:
-- Preserve a identidade principal da pessoa
-- Preserve traços do rosto
-- Transforme completamente o ambiente, iluminação, roupa e atmosfera
-- Resultado deve parecer pôster de filme profissional
+Pedido do usuário:
+"${instruction}"
+
+Crie um prompt MUITO detalhado para edição de imagem ultra realista.
+
+Regras IMPORTANTES:
+- Preserve a identidade da pessoa
+- Preserve rosto e aparência principal
+- Faça mudanças cinematográficas fortes
 - Ultra realista
-- Cinematic lighting
-- Dramatic shadows
-- Depth of field
-- High detail
+- Qualidade profissional
+- Iluminação cinematográfica
+- Sem deformar rosto
+- Sem olhos estranhos
+- Sem mãos deformadas
+- Parecer foto real
 - 8k
-- Sem texto na imagem
-- Sem distorcer o rosto
-- Sem deformar mãos, olhos ou boca
-
-Se o estilo for Cyberpunk:
-use cidade neon, chuva, luz roxa e azul, tecnologia futurista.
-
-Se o estilo for Hollywood:
-use cena épica, iluminação de cinema, fundo dramático, visual de protagonista.
-
-Se o estilo for Anime:
-use visual anime cinematográfico, cores fortes, fundo estilizado e personagem épico.
+- masterpiece
+- dramatic lighting
+- photorealistic
 `,
             },
             {
@@ -59,15 +56,17 @@ use visual anime cinematográfico, cores fortes, fundo estilizado e personagem �
       ],
     });
 
-    const cinematicPrompt = response.choices[0].message.content || "";
+    const cinematicPrompt =
+      response.choices[0].message.content || "";
 
     const imageResult = await openai.images.generate({
       model: "gpt-image-1",
       prompt: cinematicPrompt,
-      size: "1024x1024",
+      size: "1536x1024",
     });
 
-    const generatedImage = imageResult.data?.[0]?.b64_json;
+    const generatedImage =
+      imageResult.data?.[0]?.b64_json;
 
     if (!generatedImage) {
       return NextResponse.json(
