@@ -31,8 +31,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: true });
     }
 
-    const userEmail = paymentData.metadata?.user_email || "";
-    const plan = paymentData.metadata?.plan || "pro";
+    const userEmail =
+      paymentData.metadata?.user_email || "";
+
+    const plan =
+      paymentData.metadata?.plan || "pro";
 
     if (!userEmail) {
       return NextResponse.json({
@@ -56,6 +59,7 @@ export async function POST(req: Request) {
       success: true,
       plan,
     });
+
   } catch (error) {
     console.log(error);
 

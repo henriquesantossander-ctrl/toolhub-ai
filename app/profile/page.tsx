@@ -44,9 +44,11 @@ export default function ProfilePage() {
         .limit(1)
         .single();
 
-      if (subscription) {
-        setPlan("PRO");
-      }
+     if (subscription?.plan === "business") {
+  setPlan("BUSINESS");
+} else if (subscription?.plan === "pro") {
+  setPlan("PRO");
+}
     }
 
     loadProfile();
@@ -148,11 +150,23 @@ export default function ProfilePage() {
           )}
 
           {plan === "PRO" && (
-            <div className="mt-8 bg-green-600 rounded-3xl p-8">
-              <h2 className="text-4xl font-bold mb-2">Você é PRO ✅</h2>
-              <p>Recursos premium liberados.</p>
-            </div>
-          )}
+  <div className="mt-8 bg-green-600 rounded-3xl p-8">
+    <h2 className="text-4xl font-bold mb-2">Você é PRO ✅</h2>
+    <p>Recursos premium liberados.</p>
+  </div>
+)}
+
+{plan === "BUSINESS" && (
+  <div className="mt-8 bg-yellow-500 text-black rounded-3xl p-8">
+    <h2 className="text-4xl font-bold mb-2">
+      Você é BUSINESS 🚀
+    </h2>
+
+    <p>
+      Todos os recursos avançados liberados.
+    </p>
+  </div>
+)}
 
           <div className="mt-10">
             <button
