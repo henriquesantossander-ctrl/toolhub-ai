@@ -10,6 +10,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const image = body.image;
+    const style = body.style || "Hollywood";
 
     const response = await openai.chat.completions.create({
       model: "gpt-4.1-mini",
@@ -19,8 +20,33 @@ export async function POST(req: Request) {
           content: [
             {
               type: "text",
-              text:
-                "Analise esta pessoa/foto e crie um prompt cinematográfico ultra detalhado para gerar uma versão épica estilo filme Hollywood, iluminação cinematográfica, ultra realista, dramatic shadows, depth of field, 8k, masterpiece.",
+              text: `
+Analise a imagem enviada e crie um prompt MUITO FORTE para transformar essa pessoa/foto no estilo: ${style}.
+
+Regras:
+- Preserve a identidade principal da pessoa
+- Preserve traços do rosto
+- Transforme completamente o ambiente, iluminação, roupa e atmosfera
+- Resultado deve parecer pôster de filme profissional
+- Ultra realista
+- Cinematic lighting
+- Dramatic shadows
+- Depth of field
+- High detail
+- 8k
+- Sem texto na imagem
+- Sem distorcer o rosto
+- Sem deformar mãos, olhos ou boca
+
+Se o estilo for Cyberpunk:
+use cidade neon, chuva, luz roxa e azul, tecnologia futurista.
+
+Se o estilo for Hollywood:
+use cena épica, iluminação de cinema, fundo dramático, visual de protagonista.
+
+Se o estilo for Anime:
+use visual anime cinematográfico, cores fortes, fundo estilizado e personagem épico.
+`,
             },
             {
               type: "image_url",
@@ -33,8 +59,7 @@ export async function POST(req: Request) {
       ],
     });
 
-    const cinematicPrompt =
-      response.choices[0].message.content || "";
+    const cinematicPrompt = response.choices[0].message.content || "";
 
     const imageResult = await openai.images.generate({
       model: "gpt-image-1",
@@ -42,8 +67,7 @@ export async function POST(req: Request) {
       size: "1024x1024",
     });
 
-    const generatedImage =
-      imageResult.data?.[0]?.b64_json;
+    const generatedImage = imageResult.data?.[0]?.b64_json;
 
     if (!generatedImage) {
       return NextResponse.json(

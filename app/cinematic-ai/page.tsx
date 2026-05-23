@@ -23,6 +23,8 @@ export default function CinematicAIPage() {
     reader.readAsDataURL(file);
   };
 
+  const [style, setStyle] = useState("Hollywood");
+
   const generateCinematic = async () => {
     if (!image) return;
 
@@ -34,8 +36,9 @@ export default function CinematicAIPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        image,
-      }),
+  image,
+  style,
+}),
     });
 
     const data = await res.json();
@@ -71,7 +74,25 @@ export default function CinematicAIPage() {
           alt="Preview"
           className="mt-10 rounded-3xl max-w-md border border-zinc-800"
         />
-      )}
+      )} 
+
+      {image && (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 w-full max-w-2xl">
+    {["Cyberpunk", "Hollywood", "Anime"].map((item) => (
+      <button
+        key={item}
+        onClick={() => setStyle(item)}
+        className={`p-4 rounded-2xl font-bold border transition ${
+          style === item
+            ? "bg-purple-600 border-purple-400"
+            : "bg-zinc-900 border-zinc-700"
+        }`}
+      >
+        {item}
+      </button>
+    ))}
+  </div>
+)}
 
       {image && (
         <button
