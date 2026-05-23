@@ -56,8 +56,18 @@ Regras IMPORTANTES:
       ],
     });
 
-    const cinematicPrompt =
-      response.choices[0].message.content || "";
+    const prompt = body.prompt;
+
+const cinematicPrompt = `
+Mantenha EXATAMENTE as mesmas pessoas da foto original.
+Preserve rosto, identidade, expressão, posição e cenário.
+
+Altere APENAS o seguinte:
+${prompt}
+
+A imagem deve parecer uma edição real da foto original.
+Ultra realista, alta qualidade, iluminação natural.
+`;
 
     const imageResult = await openai.images.generate({
       model: "gpt-image-1",
