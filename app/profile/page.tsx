@@ -165,6 +165,61 @@ export default function ProfilePage() {
     <p>
       Todos os recursos avançados liberados.
     </p>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+
+  <a
+    href="/business-chat"
+    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
+  >
+    <h3 className="text-2xl font-bold mb-2">
+      💬 Business Chat
+    </h3>
+
+    <p className="text-zinc-300">
+      Converse com IA avançada estilo ChatGPT.
+    </p>
+  </a>
+
+  <a
+    href="/business-image"
+    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
+  >
+    <h3 className="text-2xl font-bold mb-2">
+      🎨 Gerador de Imagens
+    </h3>
+
+    <p className="text-zinc-300">
+      Gere imagens realistas com IA.
+    </p>
+  </a>
+
+  <a
+    href="/business-ai"
+    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
+  >
+    <h3 className="text-2xl font-bold mb-2">
+      🧠 Vision IA
+    </h3>
+
+    <p className="text-zinc-300">
+      Analise imagens, prints e arquivos.
+    </p>
+  </a>
+
+  <a
+    href="/cinematic-ai"
+    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
+  >
+    <h3 className="text-2xl font-bold mb-2">
+      🎬 Cinematic AI
+    </h3>
+
+    <p className="text-zinc-300">
+      Ferramenta de vídeos cinematográficos IA.
+    </p>
+  </a>
+
+</div>
   </div>
 )}
 
