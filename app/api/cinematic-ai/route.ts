@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import OpenAI, { toFile } from "openai";
 import { NextResponse } from "next/server";
 
 const openai = new OpenAI({
@@ -12,87 +12,51 @@ export async function POST(req: Request) {
     const image = body.image;
     const instruction = body.instruction;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4.1-mini",
-      messages: [
-        {
-          role: "user",
-          content: [
-            {
-              type: "text",
-              text: `
-O usuário quer transformar a imagem enviada.
+    const base64Data = image.split(",")[1];
+    const buffer = Buffer.from(base64Data, "base64");
 
-Pedido do usuário:
-"${instruction}"
-
-Crie um prompt MUITO detalhado para edição de imagem ultra realista.
-
-Regras IMPORTANTES:
-- Preserve a identidade da pessoa
-- Preserve rosto e aparência principal
-- Faça mudanças cinematográficas fortes
-- Ultra realista
-- Qualidade profissional
-- Iluminação cinematográfica
-- Sem deformar rosto
-- Sem olhos estranhos
-- Sem mãos deformadas
-- Parecer foto real
-- 8k
-- masterpiece
-- dramatic lighting
-- photorealistic
-`,
-            },
-            {
-              type: "image_url",
-              image_url: {
-                url: image,
-              },
-            },
-          ],
-        },
-      ],
+    const imageFile = await toFile(buffer, "image.png", {
+      type: "image/png",
     });
 
-    const prompt = body.prompt;
-
-const cinematicPrompt = `
-Mantenha EXATAMENTE as mesmas pessoas da foto original.
-Preserve rosto, identidade, expressão, posição e cenário.
-
-Altere APENAS o seguinte:
-${prompt}
-
-A imagem deve parecer uma edição real da foto original.
-Ultra realista, alta qualidade, iluminação natural.
-`;
-
-    const imageResult = await openai.images.generate({
+    const result = await openai.images.edit({
       model: "gpt-image-1",
-      prompt: cinematicPrompt,
-      size: "1536x1024",
+      image: imageFile,
+      prompt: `
+Edite a imagem original seguindo exatamente esta instrução:
+
+${instruction}
+
+Regras:
+- Preserve a foto original o máximo possível
+- Preserve as pessoas originais
+- Preserve rostos, identidade, pose e cenário
+- Não recrie a imagem do zero
+- Não troque as pessoas por outras
+- Faça apenas a alteração pedida
+- Resultado realista e natural
+`,
+      size: "1024x1024",
+      input_fidelity: "high",
     });
 
-    const generatedImage =
-      imageResult.data?.[0]?.b64_json;
+    const editedImage = result.data?.[0]?.b64_json;
 
-    if (!generatedImage) {
+    if (!editedImage) {
       return NextResponse.json(
-        { error: "Erro ao gerar imagem." },
+        { error: "Erro ao editar imagem." },
         { status: 500 }
       );
     }
 
     return NextResponse.json({
-      image: `data:image/png;base64,${generatedImage}`,
+      image: `data:image/png;base64,${editedImage}`,
     });
   } catch (error) {
     console.log(error);
 
     return NextResponse.json(
-      { error: "Erro na IA cinematográfica." },
+      { error: "Erro ao editar imagem com IA." },
       { status: 500 }
     );
   }
