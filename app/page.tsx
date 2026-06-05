@@ -86,6 +86,82 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* EXEMPLOS */}
+<section className="max-w-7xl mx-auto px-6 pb-24">
+  <div className="text-center mb-14">
+    <span className="text-purple-400 font-bold uppercase tracking-widest">
+      EXEMPLOS REAIS
+    </span>
+
+    <h2 className="text-5xl font-black mt-4">
+      Veja o poder da nossa IA
+    </h2>
+
+    <p className="text-zinc-400 mt-4 text-lg">
+      Transforme qualquer foto em algo extraordinário
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    
+    {/* CYBER */}
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+      <div className="grid grid-cols-2">
+        <img src="/cyber-before.png" />
+        <img src="/cyber-after.png" />
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-2xl font-bold">
+          🤖 Cyberpunk
+        </h3>
+      </div>
+    </div>
+
+    {/* FANTASY */}
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+      <div className="grid grid-cols-2">
+        <img src="/fantasy-before.png" />
+        <img src="/fantasy-after.png" />
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-2xl font-bold">
+          🏰 Fantasy
+        </h3>
+      </div>
+    </div>
+
+    {/* HERO */}
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+      <div className="grid grid-cols-2">
+        <img src="/hero-before.png" />
+        <img src="/hero-after.png" />
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-2xl font-bold">
+          🦸 Hero
+        </h3>
+      </div>
+    </div>
+
+    {/* CARTOON */}
+    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+      <div className="grid grid-cols-2">
+        <img src="/cartoon-before.png" />
+        <img src="/cartoon-after.png" />
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-2xl font-bold">
+          🎨 Cartoon
+        </h3>
+      </div>
+    </div>
+
+  </div>
+</section>
     </main>
   );
 }
