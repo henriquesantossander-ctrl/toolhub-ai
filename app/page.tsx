@@ -64,22 +64,22 @@ export default function Home() {
 
             <div className="grid grid-cols-2 gap-4 relative z-10">
               <img
-                src="/examples/hero-before.png"
+                src="/hero-before.png"
                 className="rounded-3xl border border-zinc-800"
               />
 
               <img
-                src="/examples/hero-after.png"
+                src="/hero-after.png"
                 className="rounded-3xl border border-zinc-800"
               />
 
               <img
-                src="/examples/fantasy-before.png"
+                src="/fantasy-before.png"
                 className="rounded-3xl border border-zinc-800"
               />
 
               <img
-                src="/examples/fantasy-after.png"
+                src="/fantasy-after.png"
                 className="rounded-3xl border border-zinc-800"
               />
             </div>
