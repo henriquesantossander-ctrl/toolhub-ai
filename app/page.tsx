@@ -1,252 +1,131 @@
-
 export default function Home() {
+  const styles = [
+    ["Cyberpunk", "/examples/cyber-before.png", "/examples/cyber-after.png"],
+    ["Fantasy", "/examples/fantasy-before.png", "/examples/fantasy-after.png"],
+    ["Hero", "/examples/hero-before.png", "/examples/hero-after.png"],
+    ["Cartoon", "/examples/cartoon-before.png", "/examples/cartoon-after.png"],
+  ];
+
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,#2a0040,black_60%)] text-white overflow-hidden">
+    <main className="min-h-screen bg-black text-white overflow-hidden">
+      <section className="relative min-h-screen flex items-center px-6 pt-28 pb-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,#7c3aed55,transparent_35%),radial-gradient(circle_at_20%_80%,#db277755,transparent_30%)]" />
 
-      {/* HERO */}
-      <section className="relative px-6 pt-40 pb-32 max-w-7xl mx-auto">
-
-        {/* GLOW */}
-        <div className="absolute inset-0 bg-purple-600/20 blur-[120px]" />
-
-        <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
-
-          {/* LEFT */}
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-14 items-center relative z-10">
           <div>
+            <div className="inline-flex px-5 py-2 rounded-full bg-white/10 border border-white/10 backdrop-blur-xl text-purple-300 font-bold">
+              ✨ Transformação com IA
+            </div>
 
-            {/* BADGE */}
-            <span className="bg-purple-600/20 text-purple-400 px-5 py-2 rounded-full text-sm border border-purple-500/20 font-semibold">
-              ✨ CINEMATIC AI
-            </span>
-
-            {/* TITLE */}
-            <h1 className="text-[88px] leading-[0.95] font-black mt-8">
-              Transforme suas fotos em cenas{" "}
-              <span className="text-purple-500">
+            <h1 className="mt-7 text-6xl md:text-8xl font-black leading-[0.9]">
+              Crie imagens
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
                 cinematográficas
               </span>
+              em segundos.
             </h1>
 
-            {/* DESCRIPTION */}
-            <p className="text-zinc-400 text-xl mt-8 leading-relaxed max-w-xl">
-              A IA mais avançada para transformar qualquer imagem
-              em arte profissional em segundos.
+            <p className="mt-7 text-xl text-zinc-300 max-w-xl">
+              Transforme fotos comuns em artes incríveis com estilos Fantasy,
+              Cyberpunk, Hero e Cartoon.
             </p>
 
-            {/* BUTTONS */}
-            <div className="flex flex-wrap gap-5 mt-10">
-
-              <button className="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-purple-500/30">
+            <div className="flex flex-wrap gap-4 mt-10">
+              <a
+                href="/premium"
+                className="px-10 py-5 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 font-black shadow-2xl shadow-purple-700/40 hover:scale-105 transition"
+              >
                 TESTAR AGORA
-              </button>
+              </a>
 
-              <button className="border border-zinc-700 hover:border-purple-500 transition px-8 py-5 rounded-2xl font-bold text-lg">
+              <a
+                href="#exemplos"
+                className="px-10 py-5 rounded-2xl bg-white/10 border border-white/10 font-black backdrop-blur-xl hover:bg-white/20 transition"
+              >
                 Ver exemplos
-              </button>
-
+              </a>
             </div>
 
-            {/* STATS */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 bg-zinc-900/60 border border-zinc-800 rounded-3xl p-8 backdrop-blur-xl">
-
-              <div>
-                <h3 className="text-3xl font-black text-white">
-                  50K+
-                </h3>
-
-                <p className="text-zinc-400 mt-2">
-                  Imagens criadas
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-black text-white">
-                  10K+
-                </h3>
-
-                <p className="text-zinc-400 mt-2">
-                  Usuários ativos
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-black text-white">
-                  99.9%
-                </h3>
-
-                <p className="text-zinc-400 mt-2">
-                  Satisfação
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-black text-white">
-                  IA
-                </h3>
-
-                <p className="text-zinc-400 mt-2">
-                  Tecnologia avançada
-                </p>
-              </div>
-
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {["50K+ imagens", "10K+ usuários", "99.9% satisfação", "IA premium"].map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl bg-white/10 border border-white/10 p-4 backdrop-blur-xl"
+                  >
+                    <p className="font-black text-xl">{item.split(" ")[0]}</p>
+                    <p className="text-zinc-400 text-sm">{item.replace(item.split(" ")[0], "")}</p>
+                  </div>
+                )
+              )}
             </div>
-
           </div>
 
-          {/* RIGHT */}
-          <div className="relative flex justify-center">
+          <div className="relative">
+            <div className="absolute -inset-10 bg-purple-600/40 blur-[120px]" />
 
-            {/* GLOW */}
-            <div className="absolute inset-0 bg-purple-600/30 blur-[120px] rounded-full" />
-
-            <div className="relative w-full max-w-5xl rounded-[40px] overflow-hidden border border-zinc-800 shadow-2xl">
-
-              {/* BEFORE / AFTER */}
+            <div className="relative rounded-[40px] overflow-hidden border border-white/10 bg-white/10 backdrop-blur-xl shadow-2xl">
               <div className="grid grid-cols-2">
-
-                {/* BEFORE */}
                 <div className="relative">
-
                   <img
                     src="/examples/fantasy-before.png"
-                    className="w-full h-[700px] object-cover"
+                    className="h-[720px] w-full object-cover"
                   />
-
-                  <div className="absolute top-5 left-5 bg-black/70 backdrop-blur px-4 py-2 rounded-xl text-sm font-bold">
+                  <span className="absolute top-6 left-6 px-4 py-2 rounded-xl bg-black/70 font-black">
                     ANTES
-                  </div>
-
+                  </span>
                 </div>
 
-                {/* AFTER */}
                 <div className="relative">
-
                   <img
                     src="/examples/fantasy-after.png"
-                    className="w-full h-[700px] object-cover"
+                    className="h-[720px] w-full object-cover"
                   />
-
-                  <div className="absolute top-5 right-5 bg-purple-600 px-4 py-2 rounded-xl text-sm font-bold">
+                  <span className="absolute top-6 right-6 px-4 py-2 rounded-xl bg-purple-600 font-black">
                     DEPOIS
-                  </div>
-
+                  </span>
                 </div>
-
               </div>
 
-              {/* DIVIDER */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/40">
-
-                <div className="absolute top-1/2 -translate-y-1/2 -left-5 bg-black border border-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl">
+              <div className="absolute inset-y-0 left-1/2 w-[3px] bg-white/60">
+                <div className="absolute top-1/2 -translate-y-1/2 -left-6 w-12 h-12 rounded-full bg-black border border-white/20 flex items-center justify-center text-2xl">
                   ↔
                 </div>
-
               </div>
-
-              {/* REVIEW */}
-              <div className="absolute bottom-6 right-6 bg-black/80 backdrop-blur-xl border border-zinc-700 rounded-2xl px-5 py-4">
-
-                <div className="flex items-center gap-2 text-yellow-400 text-xl">
-                  ⭐⭐⭐⭐⭐
-                </div>
-
-                <div className="text-white font-bold text-xl mt-1">
-                  4.9/5
-                </div>
-
-                <p className="text-zinc-400 text-sm">
-                  Baseado em 2.534 avaliações
-                </p>
-
-              </div>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
-      {/* EXAMPLES */}
-      <section className="max-w-7xl mx-auto px-6 pb-40">
-
+      <section id="exemplos" className="max-w-7xl mx-auto px-6 py-28">
         <div className="text-center mb-16">
-
-          <span className="text-purple-400 font-bold uppercase tracking-widest">
-            EXEMPLOS REAIS
-          </span>
-
-          <h2 className="text-5xl font-black mt-4">
-            Veja o poder da nossa IA
+          <p className="text-purple-400 font-black tracking-widest">EXEMPLOS REAIS</p>
+          <h2 className="text-5xl md:text-7xl font-black mt-4">
+            Escolha seu estilo
           </h2>
-
-          <p className="text-zinc-400 mt-4 text-lg">
-            Transforme qualquer foto em algo extraordinário
-          </p>
-
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-          {/* CARD */}
-          {[
-            {
-              before: "/examples/cyber-before.png",
-              after: "/examples/cyber-after.png",
-              title: "🤖 Cyberpunk",
-            },
-
-            {
-              before: "/examples/fantasy-before.png",
-              after: "/examples/fantasy-after.png",
-              title: "🏰 Fantasy",
-            },
-
-            {
-              before: "/examples/hero-before.png",
-              after: "/examples/hero-after.png",
-              title: "🦸 Hero",
-            },
-
-            {
-              before: "/examples/cartoon-before.png",
-              after: "/examples/cartoon-after.png",
-              title: "🎨 Cartoon",
-            },
-          ].map((item, index) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {styles.map(([title, before, after]) => (
             <div
-              key={index}
-              className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 hover:border-purple-500/50 transition duration-300 shadow-xl"
+              key={title}
+              className="group rounded-[32px] overflow-hidden bg-white/10 border border-white/10 backdrop-blur-xl hover:border-purple-500/60 transition"
             >
-
               <div className="grid grid-cols-2">
-                <img src={item.before} />
-                <img src={item.after} />
+                <img src={before} className="h-[420px] w-full object-cover" />
+                <img src={after} className="h-[420px] w-full object-cover" />
               </div>
 
-              <div className="p-5">
-                <h3 className="text-2xl font-bold">
-                  {item.title}
-                </h3>
+              <div className="p-7 flex items-center justify-between">
+                <h3 className="text-3xl font-black">{title}</h3>
+                <span className="text-purple-400 font-black group-hover:translate-x-2 transition">
+                  Gerar →
+                </span>
               </div>
-
             </div>
           ))}
-
         </div>
-
-        {/* BUTTON */}
-        <div className="flex justify-center mt-14">
-
-          <button className="border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition px-10 py-4 rounded-2xl font-bold text-lg shadow-xl">
-            VER MAIS EXEMPLOS →
-          </button>
-
-        </div>
-
       </section>
-
     </main>
   );
 }
