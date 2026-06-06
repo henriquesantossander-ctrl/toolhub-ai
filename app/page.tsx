@@ -64,22 +64,22 @@ export default function Home() {
 
             <div className="grid grid-cols-2 gap-4 relative z-10">
               <img
-                src="/hero-before.png"
+                src="/examples/hero-before.png"
                 className="rounded-3xl border border-zinc-800"
               />
 
               <img
-                src="/hero-after.png"
+                src="/examples/hero-after.png"
                 className="rounded-3xl border border-zinc-800"
               />
 
               <img
-                src="/fantasy-before.png"
+                src="/examples/fantasy-before.png"
                 className="rounded-3xl border border-zinc-800"
               />
 
               <img
-                src="/fantasy-after.png"
+                src="/examples/fantasy-after.png"
                 className="rounded-3xl border border-zinc-800"
               />
             </div>
@@ -107,8 +107,8 @@ export default function Home() {
     {/* CYBER */}
     <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
       <div className="grid grid-cols-2">
-        <img src="/cyber-before.png" />
-        <img src="/cyber-after.png" />
+        <img src="/examples/cyber-before.png" />
+        <img src="/examples/cyber-after.png" />
       </div>
 
       <div className="p-5">
@@ -121,8 +121,8 @@ export default function Home() {
     {/* FANTASY */}
     <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
       <div className="grid grid-cols-2">
-        <img src="/fantasy-before.png" />
-        <img src="/fantasy-after.png" />
+        <img src="/examples/fantasy-before.png" />
+        <img src="/examples/fantasy-after.png" />
       </div>
 
       <div className="p-5">
@@ -135,8 +135,8 @@ export default function Home() {
     {/* HERO */}
     <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
       <div className="grid grid-cols-2">
-        <img src="/hero-before.png" />
-        <img src="/hero-after.png" />
+        <img src="/examples/hero-before.png" />
+        <img src="/examples/hero-after.png" />
       </div>
 
       <div className="p-5">
@@ -149,8 +149,8 @@ export default function Home() {
     {/* CARTOON */}
     <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
       <div className="grid grid-cols-2">
-        <img src="/cartoon-before.png" />
-        <img src="/cartoon-after.png" />
+        <img src="/examples/cartoon-before.png" />
+        <img src="/examples/cartoon-after.png" />
       </div>
 
       <div className="p-5">
