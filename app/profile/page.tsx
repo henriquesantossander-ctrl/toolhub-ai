@@ -3,7 +3,7 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-[#050505] text-white px-6 py-10">
 
       {/* HERO */}
-      <div className="relative overflow-hidden rounded-[40px] border border-purple-500/10 bg-gradient-to-br from-[#12001f] via-[#090909] to-[#1a0030] p-10">
+      <div className="relative overflow-hidden rounded-[28px] border border-purple-500/10 bg-gradient-to-br from-[#12001f] via-[#090909] to-[#1a0030] p-7">
 
         {/* glow */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/20 blur-[140px]" />
@@ -12,7 +12,7 @@ export default function ProfilePage() {
 
           {/* avatar */}
           <div className="relative">
-            <div className="w-36 h-36 rounded-full bg-gradient-to-b from-fuchsia-500 to-purple-700 flex items-center justify-center text-6xl font-black shadow-[0_0_80px_rgba(168,85,247,0.5)]">
+            <div className="w-36 h-36 rounded-full bg-gradient-to-b from-fuchsia-500 to-purple-700 flex items-center justify-center text-3xl font-black shadow-[0_0_80px_rgba(168,85,247,0.5)]">
               H
             </div>
 
@@ -27,7 +27,7 @@ export default function ProfilePage() {
               BUSINESS
             </span>
 
-            <h1 className="text-6xl font-black mt-5">
+            <h1 className="text-3xl font-black mt-5">
               Olá, Henrique! 👋
             </h1>
 
@@ -39,7 +39,7 @@ export default function ProfilePage() {
       </div>
 
       {/* INFO */}
-      <div className="mt-8 rounded-[35px] border border-white/5 bg-gradient-to-b from-[#111111] to-[#090909] overflow-hidden">
+      <div className="mt-5 rounded-[35px] border border-white/5 bg-gradient-to-b from-[#111111] to-[#090909] overflow-hidden">
 
         <div className="flex items-center justify-between px-8 py-6 border-b border-white/5">
           <h2 className="text-2xl font-bold">
@@ -84,7 +84,7 @@ export default function ProfilePage() {
               Plano atual
             </p>
 
-            <h2 className="text-6xl font-black text-purple-400 mt-3">
+            <h2 className="text-2xl font-black text-purple-400 mt-3">
               BUSINESS
             </h2>
 
@@ -92,7 +92,7 @@ export default function ProfilePage() {
               Todos os recursos avançados liberados.
             </p>
 
-            <button className="mt-8 w-fit border border-purple-500/30 hover:bg-purple-500/10 transition px-8 py-4 rounded-2xl">
+            <button className="mt-5 w-fit border border-purple-500/30 hover:bg-purple-500/10 transition px-8 py-4 rounded-2xl">
               Ver benefícios →
             </button>
           </div>
@@ -102,12 +102,12 @@ export default function ProfilePage() {
       {/* STATS */}
       <div className="grid grid-cols-2 gap-8 mt-8">
 
-        <div className="rounded-[30px] border border-white/5 bg-gradient-to-b from-[#111] to-[#090909] p-8">
+        <div className="rounded-[30px] border border-white/5 bg-gradient-to-b from-[#111] to-[#090909] p-6">
           <p className="text-zinc-500">
             Bios geradas
           </p>
 
-          <h2 className="text-6xl font-black mt-5">
+          <h2 className="text-2xl font-black mt-5">
             102
           </h2>
 
@@ -116,12 +116,12 @@ export default function ProfilePage() {
           </p>
         </div>
 
-        <div className="rounded-[30px] border border-white/5 bg-gradient-to-b from-[#111] to-[#090909] p-8">
+        <div className="rounded-[30px] border border-white/5 bg-gradient-to-b from-[#111] to-[#090909] p-6">
           <p className="text-zinc-500">
             Recursos utilizados
           </p>
 
-          <h2 className="text-6xl font-black mt-5">
+          <h2 className="text-2xl font-black mt-5">
             100%
           </h2>
 
@@ -132,19 +132,19 @@ export default function ProfilePage() {
       </div>
 
       {/* FEATURES */}
-      <div className="mt-8 rounded-[35px] border border-white/5 bg-gradient-to-b from-[#111] to-[#090909] p-8">
+      <div className="mt-8 rounded-[35px] border border-white/5 bg-gradient-to-b from-[#111] to-[#090909] p-6">
 
-        <h2 className="text-3xl font-bold">
+        <h2 className="text-2xl font-bold">
           Acesse seus recursos
         </h2>
 
         <div className="grid grid-cols-2 gap-8 mt-8">
 
-          <div className="relative overflow-hidden rounded-[30px] border border-white/5 bg-[#0d0d0d] p-8">
+          <div className="relative overflow-hidden rounded-[30px] border border-white/5 bg-[#0d0d0d] p-6">
             <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-600/20 blur-[80px]" />
 
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-2xl font-bold">
                 💬 Business Chat
               </h3>
 
@@ -152,17 +152,17 @@ export default function ProfilePage() {
                 Converse com IA avançada estilo ChatGPT.
               </p>
 
-              <button className="mt-8 w-14 h-14 rounded-full bg-purple-600 hover:scale-110 transition text-2xl">
+              <button className="mt-5 w-14 h-14 rounded-full bg-purple-600 hover:scale-110 transition text-2xl">
                 →
               </button>
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-[30px] border border-white/5 bg-[#0d0d0d] p-8">
-            <div className="absolute bottom-0 right-0 w-40 h-40 bg-fuchsia-600/20 blur-[80px]" />
+          <div className="relative overflow-hidden rounded-[30px] border border-white/5 bg-[#0d0d0d] p-7">
+            <div className="absolute bottom-0 right-0 w-36 h-36 bg-fuchsia-600/20 blur-[80px]" />
 
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold">
+              <h3 className="text-2xl font-bold">
                 🎨 Gerador de Imagens
               </h3>
 
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                 Gere imagens realistas com IA.
               </p>
 
-              <button className="mt-8 w-14 h-14 rounded-full bg-fuchsia-600 hover:scale-110 transition text-2xl">
+              <button className="mt-5 w-14 h-14 rounded-full bg-fuchsia-600 hover:scale-110 transition text-2xl">
                 →
               </button>
             </div>
