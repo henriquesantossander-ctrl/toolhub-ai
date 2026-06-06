@@ -79,7 +79,7 @@ export default function Home() {
                 <div className="relative">
                   <img
                     src="/examples/fantasy-after.png"
-                    className="h-[720px] w-full object-cover"
+                    className="h-[560px] w-full object-cover"
                   />
                   <span className="absolute top-6 right-6 px-4 py-2 rounded-xl bg-purple-600 font-black">
                     DEPOIS
