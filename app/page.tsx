@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-black via-[#14001f] to-black text-white overflow-hidden">
       {/* HERO */}
-      <section className="relative px-6 py-20 max-w-7xl mx-auto">
+      <section  className="relative px-6 py-28 max-w-7xl mx-auto">
         <div className="absolute inset-0 bg-purple-600/10 blur-[120px]" />
 
         <div className="grid md:grid-cols-2 gap-16 items-center relative z-10">
@@ -12,7 +12,7 @@ export default function Home() {
               ✨ CINEMATIC AI
             </span>
 
-            <h1 className="text-6xl font-black leading-tight mt-6">
+            <h1  className="text-7xl font-black leading-[1.05] mt-6">
               Transforme suas fotos em cenas{" "}
               <span className="text-purple-500">
                 cinematográficas
@@ -193,6 +193,11 @@ export default function Home() {
     </div>
 
   </div>
+  <div className="flex justify-center mt-14">
+  <button className="border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition px-10 py-4 rounded-2xl font-bold text-lg shadow-xl">
+    VER MAIS EXEMPLOS →
+  </button>
+</div>
 </section>
     </main>
   );
