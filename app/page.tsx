@@ -59,32 +59,64 @@ export default function Home() {
           </div>
 
           {/* RIGHT */}
-          <div className="relative">
-            <div className="absolute -inset-4 bg-purple-600/20 blur-3xl rounded-full" />
+<div className="relative flex justify-center">
+  {/* Glow */}
+  <div className="absolute inset-0 bg-purple-600/30 blur-[120px] rounded-full" />
 
-            <div className="grid grid-cols-2 gap-4 relative z-10">
-              <img
-                src="/examples/hero-before.png"
-                className="rounded-3xl border border-zinc-800"
-              />
+  <div className="relative w-full max-w-3xl rounded-[40px] overflow-hidden border border-zinc-800 shadow-2xl">
 
-              <img
-                src="/examples/hero-after.png"
-                className="rounded-3xl border border-zinc-800"
-              />
+    {/* BEFORE/AFTER */}
+    <div className="grid grid-cols-2">
 
-              <img
-                src="/examples/fantasy-before.png"
-                className="rounded-3xl border border-zinc-800"
-              />
+      {/* BEFORE */}
+      <div className="relative">
+        <img
+          src="/examples/fantasy-before.png"
+          className="w-full h-[650px] object-cover"
+        />
 
-              <img
-                src="/examples/fantasy-after.png"
-                className="rounded-3xl border border-zinc-800"
-              />
-            </div>
-          </div>
+        <div className="absolute top-5 left-5 bg-black/70 backdrop-blur px-4 py-2 rounded-xl text-sm font-bold">
+          ANTES
         </div>
+      </div>
+
+      {/* AFTER */}
+      <div className="relative">
+        <img
+          src="/examples/fantasy-after.png"
+          className="w-full h-[650px] object-cover"
+        />
+
+        <div className="absolute top-5 right-5 bg-purple-600 px-4 py-2 rounded-xl text-sm font-bold">
+          DEPOIS
+        </div>
+      </div>
+    </div>
+
+    {/* DIVISOR */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/40">
+      <div className="absolute top-1/2 -translate-y-1/2 -left-5 bg-black border border-white/20 w-12 h-12 rounded-full flex items-center justify-center text-2xl">
+        ↔
+      </div>
+    </div>
+
+    {/* REVIEW CARD */}
+    <div className="absolute bottom-6 right-6 bg-black/80 backdrop-blur-xl border border-zinc-700 rounded-2xl px-5 py-4">
+      <div className="flex items-center gap-2 text-yellow-400 text-xl">
+        ⭐⭐⭐⭐⭐
+      </div>
+
+      <div className="text-white font-bold text-xl mt-1">
+        4.9/5
+      </div>
+
+      <p className="text-zinc-400 text-sm">
+        Baseado em 2.534 avaliações
+      </p>
+    </div>
+
+  </div>
+</div>
       </section>
       {/* EXEMPLOS */}
 <section className="max-w-7xl mx-auto px-6 pb-24">
