@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-b from-black via-[#14001f] to-black text-white overflow-hidden">
       {/* HERO */}
       <section className="relative px-6 py-20 max-w-7xl mx-auto">
         <div className="absolute inset-0 bg-purple-600/10 blur-[120px]" />
@@ -25,7 +25,7 @@ export default function Home() {
             </p>
 
             <div className="flex gap-4 mt-10">
-              <button className="bg-purple-600 hover:bg-purple-500 transition px-8 py-4 rounded-2xl font-bold text-lg">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-500 hover:scale-105 transition px-10 py-5 rounded-2xl font-bold text-lg shadow-2xl shadow-purple-500/30">
                 TESTAR AGORA
               </button>
 
@@ -137,7 +137,7 @@ export default function Home() {
   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
     
     {/* CYBER */}
-    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+    <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 hover:border-purple-500/50 transition duration-300 shadow-xl">
       <div className="grid grid-cols-2">
         <img src="/examples/cyber-before.png" />
         <img src="/examples/cyber-after.png" />
@@ -151,7 +151,7 @@ export default function Home() {
     </div>
 
     {/* FANTASY */}
-    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+    <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 hover:border-purple-500/50 transition duration-300 shadow-xl">
       <div className="grid grid-cols-2">
         <img src="/examples/fantasy-before.png" />
         <img src="/examples/fantasy-after.png" />
@@ -165,7 +165,7 @@ export default function Home() {
     </div>
 
     {/* HERO */}
-    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+    <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 hover:border-purple-500/50 transition duration-300 shadow-xl">
       <div className="grid grid-cols-2">
         <img src="/examples/hero-before.png" />
         <img src="/examples/hero-after.png" />
@@ -179,7 +179,7 @@ export default function Home() {
     </div>
 
     {/* CARTOON */}
-    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 transition">
+    <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-3xl overflow-hidden hover:scale-105 hover:border-purple-500/50 transition duration-300 shadow-xl">
       <div className="grid grid-cols-2">
         <img src="/examples/cartoon-before.png" />
         <img src="/examples/cartoon-after.png" />
