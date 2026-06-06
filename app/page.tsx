@@ -34,29 +34,49 @@ export default function Home() {
               </button>
             </div>
 
-            <div className="flex gap-10 mt-12 text-zinc-400">
-              <div>
-                <h3 className="text-3xl font-bold text-white">
-                  50K+
-                </h3>
-                <p>Imagens criadas</p>
-              </div>
+            <div className="grid grid-cols-4 gap-6 mt-16 bg-zinc-900/60 border border-zinc-800 rounded-3xl p-8 backdrop-blur-xl">
 
-              <div>
-                <h3 className="text-3xl font-bold text-white">
-                  10K+
-                </h3>
-                <p>Usuários ativos</p>
-              </div>
+  </div>
+    <h3 className="text-3xl font-black text-white">
+      50K+
+    </h3>
 
-              <div>
-                <h3 className="text-3xl font-bold text-white">
-                  99%
-                </h3>
-                <p>Satisfação</p>
-              </div>
-            </div>
-          </div>
+    <p className="text-zinc-400 mt-2">
+      Imagens criadas
+    </p>
+  </div>
+
+  <div>
+    <h3 className="text-3xl font-black text-white">
+      10K+
+    </h3>
+
+    <p className="text-zinc-400 mt-2">
+      Usuários ativos
+    </p>
+  </div>
+
+  <div>
+    <h3 className="text-3xl font-black text-white">
+      99.9%
+    </h3>
+
+    <p className="text-zinc-400 mt-2">
+      Satisfação
+    </p>
+  </div>
+
+  <div>
+    <h3 className="text-3xl font-black text-white">
+      IA
+    </h3>
+
+    <p className="text-zinc-400 mt-2">
+      Tecnologia avançada
+    </p>
+  </div>
+
+</div>
 
           {/* RIGHT */}
 <div className="relative flex justify-center">
@@ -119,7 +139,7 @@ export default function Home() {
 </div>
       </section>
       {/* EXEMPLOS */}
-<section className="max-w-7xl mx-auto px-6 pb-24">
+<section className="max-w-7xl mx-auto px-6 pb-40">
   <div className="text-center mb-14">
     <span className="text-purple-400 font-bold uppercase tracking-widest">
       EXEMPLOS REAIS
