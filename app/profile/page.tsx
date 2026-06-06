@@ -1,241 +1,109 @@
-"use client";
+<div className="min-h-screen bg-black text-white px-8 py-10">
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+  {/* HERO PERFIL */}
+  <div className="relative overflow-hidden rounded-[40px] border border-purple-500/20 bg-gradient-to-r from-[#14001f] to-[#1b0030] p-12">
 
-type UserData = {
-  email: string;
-  created_at?: string;
-};
+    <div className="absolute inset-0 bg-purple-500/10 blur-[120px]" />
 
-export default function ProfilePage() {
-  const [user, setUser] = useState<UserData | null>(null);
-  const [bioCount, setBioCount] = useState(0);
-  const [plan, setPlan] = useState("FREE");
-  const [loadingPayment, setLoadingPayment] = useState(false);
+    <div className="relative z-10 flex items-center gap-10">
 
-  useEffect(() => {
-    async function loadProfile() {
-      const { data: userData } = await supabase.auth.getUser();
+      {/* FOTO */}
+      <div className="w-40 h-40 rounded-full bg-gradient-to-b from-fuchsia-500 to-purple-700 flex items-center justify-center text-7xl font-black shadow-2xl shadow-purple-500/30">
+        H
+      </div>
 
-      if (!userData.user?.email) {
-        window.location.href = "/login";
-        return;
-      }
+      {/* TEXTO */}
+      <div>
+        <span className="bg-purple-500/20 border border-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm">
+          BUSINESS
+        </span>
 
-      setUser({
-        email: userData.user.email,
-        created_at: userData.user.created_at,
-      });
+        <h1 className="text-6xl font-black mt-5">
+          Olá, Henrique! 👋
+        </h1>
 
-      const { data: bios } = await supabase
-        .from("bios")
-        .select("*")
-        .eq("user_email", userData.user.email);
-
-      setBioCount(bios?.length || 0);
-
-      const { data: subscription } = await supabase
-        .from("subscriptions")
-        .select("*")
-        .eq("user_email", userData.user.email)
-        .eq("status", "approved")
-        .order("created_at", { ascending: false })
-        .limit(1)
-        .single();
-
-     if (subscription?.plan === "business") {
-  setPlan("BUSINESS");
-} else if (subscription?.plan === "pro") {
-  setPlan("PRO");
-}
-    }
-
-    loadProfile();
-  }, []);
-
-  async function handleUpgrade() {
-    setLoadingPayment(true);
-
-    const { data: sessionData } = await supabase.auth.getSession();
-    const token = sessionData.session?.access_token;
-
-    if (!token) {
-      alert("Você precisa estar logado para fazer upgrade.");
-      window.location.href = "/login";
-      return;
-    }
-
-    const response = await fetch("/api/mercadopago", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const data = await response.json();
-
-    if (data.init_point) {
-      window.location.href = data.init_point;
-    } else if (data.url) {
-      window.location.href = data.url;
-    } else {
-      alert("Erro ao abrir pagamento.");
-      setLoadingPayment(false);
-    }
-  }
-
-  return (
-    <main className="min-h-screen bg-black text-white px-6 py-20">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 md:p-10">
-          <div className="flex flex-col items-center text-center">
-            <div className="w-32 h-32 rounded-full bg-purple-600 flex items-center justify-center text-5xl font-bold mb-6">
-              {user?.email?.charAt(0).toUpperCase()}
-            </div>
-
-            <h1 className="text-4xl md:text-5xl font-bold mb-3">
-              Meu Perfil
-            </h1>
-
-            <p className="text-zinc-400 mb-10">
-              Gerencie sua conta ToolHub IA
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-zinc-800 rounded-2xl p-6">
-              <p className="text-zinc-400 mb-2">Email</p>
-              <h2 className="text-xl font-bold break-all">{user?.email}</h2>
-            </div>
-
-            <div className="bg-zinc-800 rounded-2xl p-6">
-              <p className="text-zinc-400 mb-2">Plano atual</p>
-              <h2 className="text-3xl font-bold text-purple-400">{plan}</h2>
-            </div>
-
-            <div className="bg-zinc-800 rounded-2xl p-6">
-              <p className="text-zinc-400 mb-2">Bios geradas</p>
-              <h2 className="text-5xl font-bold">{bioCount}</h2>
-            </div>
-
-            <div className="bg-zinc-800 rounded-2xl p-6">
-              <p className="text-zinc-400 mb-2">Conta criada</p>
-              <h2 className="text-2xl font-bold">
-                {user?.created_at
-                  ? new Date(user.created_at).toLocaleDateString()
-                  : "-"}
-              </h2>
-            </div>
-          </div>
-
-          {plan === "FREE" && (
-            <div className="mt-8 bg-gradient-to-br from-purple-600 to-pink-600 rounded-3xl p-8">
-              <p className="mb-2">Upgrade Premium</p>
-
-              <h2 className="text-4xl font-bold mb-4">ToolHub PRO</h2>
-
-              <p className="text-white/80 mb-6">
-                Desbloqueie recursos premium, mais gerações e ferramentas avançadas.
-              </p>
-
-              <button
-                onClick={handleUpgrade}
-                disabled={loadingPayment}
-                className="bg-white text-black px-5 py-4 rounded-xl font-bold w-full hover:scale-105 transition disabled:opacity-50"
-              >
-                {loadingPayment ? "Abrindo pagamento..." : "Fazer Upgrade"}
-              </button>
-            </div>
-          )}
-
-          {plan === "PRO" && (
-  <div className="mt-8 bg-green-600 rounded-3xl p-8">
-    <h2 className="text-4xl font-bold mb-2">Você é PRO ✅</h2>
-    <p>Recursos premium liberados.</p>
+        <p className="text-zinc-400 text-xl mt-4 max-w-2xl">
+          Gerencie suas informações, plano e acompanhe suas estatísticas.
+        </p>
+      </div>
+    </div>
   </div>
-)}
 
-{plan === "BUSINESS" && (
-  <div className="mt-8 bg-yellow-500 text-black rounded-3xl p-8">
-    <h2 className="text-4xl font-bold mb-2">
-      Você é BUSINESS 🚀
-    </h2>
+  {/* GRID */}
+  <div className="grid grid-cols-2 gap-8 mt-10">
 
-    <p>
-      Todos os recursos avançados liberados.
-    </p>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+    {/* CARD */}
+    <div className="bg-zinc-900/60 border border-zinc-800 rounded-[30px] p-8 backdrop-blur-xl">
+      <p className="text-zinc-500">E-mail</p>
 
-  <a
-    href="/business-chat"
-    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
-  >
-    <h3 className="text-2xl font-bold mb-2">
-      💬 Business Chat
-    </h3>
+      <h2 className="text-2xl font-bold mt-4">
+        henriquesantossander@gmail.com
+      </h2>
+    </div>
 
-    <p className="text-zinc-300">
-      Converse com IA avançada estilo ChatGPT.
-    </p>
-  </a>
+    {/* CARD */}
+    <div className="bg-zinc-900/60 border border-zinc-800 rounded-[30px] p-8 backdrop-blur-xl">
+      <p className="text-zinc-500">Plano atual</p>
 
-  <a
-    href="/business-image"
-    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
-  >
-    <h3 className="text-2xl font-bold mb-2">
-      🎨 Gerador de Imagens
-    </h3>
+      <h2 className="text-5xl font-black text-purple-400 mt-4">
+        BUSINESS
+      </h2>
+    </div>
 
-    <p className="text-zinc-300">
-      Gere imagens realistas com IA.
-    </p>
-  </a>
+    {/* CARD */}
+    <div className="bg-zinc-900/60 border border-zinc-800 rounded-[30px] p-8 backdrop-blur-xl">
+      <p className="text-zinc-500">Bios geradas</p>
 
-  <a
-    href="/business-ai"
-    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
-  >
-    <h3 className="text-2xl font-bold mb-2">
-      🧠 Vision IA
-    </h3>
+      <h2 className="text-6xl font-black mt-4">
+        102
+      </h2>
+    </div>
 
-    <p className="text-zinc-300">
-      Analise imagens, prints e arquivos.
-    </p>
-  </a>
+    {/* CARD */}
+    <div className="bg-zinc-900/60 border border-zinc-800 rounded-[30px] p-8 backdrop-blur-xl">
+      <p className="text-zinc-500">Conta criada</p>
 
-  <a
-    href="/cinematic-ai"
-    className="bg-black text-white rounded-2xl p-6 hover:scale-105 transition border border-yellow-400"
-  >
-    <h3 className="text-2xl font-bold mb-2">
-      🎬 Cinematic AI
-    </h3>
-
-    <p className="text-zinc-300">
-      Ferramenta de vídeos cinematográficos IA.
-    </p>
-  </a>
-
-</div>
+      <h2 className="text-4xl font-black mt-4">
+        12/05/2026
+      </h2>
+    </div>
   </div>
-)}
 
-          <div className="mt-10">
-            <button
-              onClick={async () => {
-                await supabase.auth.signOut();
-                window.location.href = "/";
-              }}
-              className="w-full bg-red-600 hover:bg-red-500 transition py-4 rounded-2xl font-bold"
-            >
-              Sair da Conta
-            </button>
-          </div>
+  {/* BUSINESS */}
+  <div className="mt-10 rounded-[35px] bg-gradient-to-r from-yellow-400 to-yellow-500 p-[1px]">
+
+    <div className="rounded-[35px] bg-black p-10">
+
+      <h2 className="text-5xl font-black text-yellow-400">
+        Você é BUSINESS 🚀
+      </h2>
+
+      <p className="text-zinc-400 text-xl mt-4">
+        Todos os recursos avançados liberados.
+      </p>
+
+      <div className="grid grid-cols-2 gap-6 mt-10">
+
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <h3 className="text-3xl font-bold">
+            💬 Business Chat
+          </h3>
+
+          <p className="text-zinc-400 mt-3">
+            Converse com IA avançada estilo ChatGPT.
+          </p>
+        </div>
+
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+          <h3 className="text-3xl font-bold">
+            🎨 Gerador de Imagens
+          </h3>
+
+          <p className="text-zinc-400 mt-3">
+            Gere imagens realistas com IA.
+          </p>
         </div>
       </div>
-    </main>
-  );
-}
+    </div>
+  </div>
+</div>
