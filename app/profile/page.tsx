@@ -41,7 +41,7 @@ export default function ProfilePage() {
       {/* INFO */}
       <div className="mt-5 rounded-[35px] border border-white/5 bg-gradient-to-b from-[#111111] to-[#090909] overflow-hidden">
 
-        <div className="flex items-center justify-between px-8 py-6 border-b border-white/5">
+        <div className="flex items-center justify-between px-8 py-4 border-b border-white/5">
           <h2 className="text-2xl font-bold">
             Informações da conta
           </h2>
