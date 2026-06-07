@@ -1,3 +1,5 @@
+import Link from "next/dist/client/link";
+
 export default function PremiumPage() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
@@ -90,9 +92,15 @@ export default function PremiumPage() {
 
               </div>
 
-              <button className="w-full mt-12 bg-white text-black hover:scale-105 transition rounded-2xl py-5 font-black text-xl">
-                Assinar PRO
-              </button>
+             <a
+              href="LINK_DO_MERCADOPAGO_PRO"
+              target="_blank"
+            >      
+          <button className="w-full bg-white text-black font-black py-5 rounded-2xl hover:scale-105 transition">
+           Assinar PRO
+         </button>
+         </a> 
+      
             </div>
           </div>
 
