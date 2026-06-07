@@ -75,59 +75,62 @@ export default function RootLayout({
           }}
         />
 
-        <header className="border-b border-zinc-800 bg-black sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-            <Link href="/" className="text-2xl md:text-3xl font-bold">
-              🚀 ToolHub IA
-            </Link>
+        <header className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
 
-            <nav className="hidden md:flex gap-6 text-zinc-400 flex-wrap">
-              <Link href="/dashboard" className="hover:text-purple-400 transition">
-                Dashboard
-              </Link>
+  <div className="max-w-[1400px] mx-auto px-8 h-[64px] flex items-center justify-between">
 
-              <Link href="/bio-generator" className="hover:text-purple-400 transition">
-                Gerador
-              </Link>
-               
-               <Link href="/video-script-generator" className="hover:text-purple-400 transition">
-                Roteiros IA
-               </Link>
-               
-              <Link href="/my-bios" className="hover:text-purple-400 transition">
-                Minhas Bios
-              </Link>
+    {/* LOGO */}
+    <div className="flex items-center gap-3">
+      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center font-black text-lg">
+        ✦
+      </div>
 
-              <Link href="/favorites" className="hover:text-purple-400 transition">
-                Favoritos
-              </Link>
+      <h1 className="text-[32px] font-black tracking-tight">
+        ToolHub <span className="text-purple-500">IA</span>
+      </h1>
+    </div>
 
-              <Link href="/premium" className="hover:text-yellow-400 transition font-bold">
-                PREMIUM
-              </Link>
+    {/* MENU */}
+    <nav className="hidden lg:flex items-center gap-7 text-[14px] font-medium text-zinc-400">
 
-              <Link href="/profile" className="hover:text-purple-400 transition">
-                Perfil
-              </Link>
+      <a href="/" className="hover:text-white transition">
+        Início
+      </a>
 
-              <Link href="/contact" className="hover:text-purple-400 transition">
-                Contato
-              </Link>
+      <a href="/dashboard" className="hover:text-white transition">
+        Ferramentas
+      </a>
 
-              <Link href="/terms" className="hover:text-purple-400 transition">
-               Termos
-              </Link>
-              
-              <Link href="/business" className="hover:text-yellow-400 transition font-bold">
-               Business
-               </Link>
+      <a href="/premium" className="hover:text-white transition">
+        Planos
+      </a>
 
-              <Link href="/privacy" className="hover:text-purple-400 transition">
-              Privacidade
-              </Link>
-            </nav>
-          </div>
-        </header>
+      <a href="#exemplos" className="hover:text-white transition">
+        Exemplos
+      </a>
+
+      <a href="/business" className="hover:text-white transition">
+        Business
+      </a>
+
+    </nav>
+
+    {/* BUTTONS */}
+    <div className="flex items-center gap-4">
+
+      <button className="h-10 px-7 rounded-2xl bg-zinc-900 border border-white/5 hover:border-purple-500/30 transition text-sm font-semibold">
+        Entrar
+      </button>
+
+      <button className="h-10 px-8 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition text-sm font-bold shadow-[0_0_40px_rgba(168,85,247,0.35)]">
+        Começar agora
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
 
         {children}
       </body>
