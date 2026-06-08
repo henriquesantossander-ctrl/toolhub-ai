@@ -137,7 +137,7 @@ export default function PremiumPage() {
             </div>
 
             <a
-  href="SEU_LINK_MERCADOPAGO_BUSINESS"
+  href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
   target="_blank"
 >
   <button className="w-full bg-yellow-400 text-black font-bold py-4 rounded-2xl hover:scale-105 transition">
