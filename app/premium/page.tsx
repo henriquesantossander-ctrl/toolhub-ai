@@ -46,13 +46,13 @@ export default function PremiumPage() {
 
             <div className="space-y-5 mt-10 text-lg text-zinc-300">
 
-              <div>✅ 5 gerações por dia</div>
-              <div>✅ Ferramentas básicas</div>
-              <div>✅ Acesso limitado</div>
-              <div>❌ Sem IA avançada</div>
-              <div>❌ Sem upload de imagens</div>
+              <div>✅ Transformações básicas</div>
+              <div>✅ Alguns estilos IA</div>
+              <div>✅ Qualidade padrão</div>
+              <div>❌ Sem HD</div>
+              <div>❌ Sem render rápido</div>
 
-            </div>
+        </div>
 
             <button className="w-full mt-12 bg-zinc-800 hover:bg-zinc-700 transition rounded-2xl py-5 font-bold text-lg">
               Plano atual
@@ -84,13 +84,13 @@ export default function PremiumPage() {
 
               <div className="space-y-5 mt-10 text-lg">
 
-                <div>🔥 Ferramentas premium</div>
-                <div>🔥 Mais gerações</div>
-                <div>🔥 Sem anúncios</div>
-                <div>🔥 IA avançada</div>
-                <div>🔥 Melhor velocidade</div>
+  <div>🔥 Imagens em HD</div>
+  <div>🔥 Mais estilos cinematográficos</div>
+  <div>🔥 Renderização rápida</div>
+  <div>🔥 Sem anúncios</div>
+  <div>🔥 Melhor qualidade IA</div>
 
-              </div>
+</div>
 
              <a
               href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/be15a2f2-8466-42bf-b718-02b9598aeed0/payment-option-form/?preference-id=1879629028-906b956f-aa32-4a16-8d25-709a80ea4808&router-request-id=dff32d14-bd27-488d-b8fe-8753bc28c363&p=87921cc13cf0af960fb39866d1a241b4"
@@ -127,14 +127,14 @@ export default function PremiumPage() {
 
             <div className="space-y-5 mt-10 text-lg text-zinc-200">
 
-              <div>⚡ Tudo do PRO</div>
-              <div>⚡ Chat IA avançado</div>
-              <div>⚡ Upload de imagens</div>
-              <div>⚡ Geração de imagens IA</div>
-              <div>⚡ Futuro vídeo IA</div>
-              <div>⚡ Recursos exclusivos</div>
+  <div>⚡ Tudo do PRO</div>
+  <div>⚡ IA ultra realista</div>
+  <div>⚡ Renderização prioritária</div>
+  <div>⚡ Modelos exclusivos</div>
+  <div>⚡ Futuro vídeo IA</div>
+  <div>⚡ Acesso antecipado</div>
 
-            </div>
+</div>
 
             <a
   href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
