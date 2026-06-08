@@ -9,124 +9,112 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
      ```tsx
-    <section className="relative w-full px-10 pt-8 pb-10 overflow-hidden">
-
-  {/* BG */}
-  <div className="absolute inset-0 bg-purple-600/10 blur-[160px]" />
-
-  <div className="relative z-10 grid lg:grid-cols-[1.1fr_0.9fr] items-center gap-10 min-h-[78vh]">
-
-    <section className="relative w-full px-4 md:px-10 pt-8 pb-10 overflow-hidden">
-
-{/* BG */}
+   <section className="relative w-full px-4 md:px-10 pt-24 md:pt-10 pb-12 overflow-hidden">
 
   <div className="absolute inset-0 bg-purple-600/10 blur-[160px]" />
 
-  <div className="relative z-10 grid lg:grid-cols-[1.1fr_0.9fr] items-center gap-10 min-h-[78vh]">
+  <div className="relative z-10 grid lg:grid-cols-[1.1fr_0.9fr] items-center gap-12">
 
-```
-{/* LEFT */}
-<div className="max-w-[760px]">
+    {/* LEFT */}
+    <div className="max-w-[760px]">
 
-  <span className="inline-flex items-center gap-2 bg-zinc-900 border border-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm">
-    ✨ Transformação com IA
-  </span>
+      <span className="inline-flex items-center gap-2 bg-zinc-900 border border-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-xs md:text-sm">
+        ✨ Transformação com IA
+      </span>
 
-  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[88px] leading-[0.92] font-black mt-6">
-    Crie imagens
-    <span className="block bg-gradient-to-r from-fuchsia-400 to-purple-500 bg-clip-text text-transparent">
-      cinematográficas
-    </span>
-    em segundos.
-  </h1>
+      <h1 className="text-5xl sm:text-6xl lg:text-[88px] leading-[0.92] font-black mt-6 break-words">
+        Crie imagens
 
-  <p className="text-zinc-400 text-base md:text-xl mt-6 max-w-[620px] leading-relaxed">
-    Transforme fotos comuns em artes incríveis com estilos Fantasy,
-    Cyberpunk, Hero e Cartoon.
-  </p>
+        <span className="block bg-gradient-to-r from-fuchsia-400 to-purple-500 bg-clip-text text-transparent">
+          cinematográficas
+        </span>
 
-  {/* BUTTONS */}
-  <div className="flex flex-col sm:flex-row gap-4 mt-8">
+        em segundos.
+      </h1>
 
-    <button className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-6 md:px-10 py-3 md:py-5 rounded-2xl font-black text-base md:text-lg shadow-[0_0_60px_rgba(168,85,247,0.45)]">
-      TESTAR AGORA
-    </button>
+      <p className="text-zinc-400 text-base md:text-xl mt-6 max-w-[620px] leading-relaxed">
+        Transforme fotos comuns em artes incríveis com estilos Fantasy,
+        Cyberpunk, Hero e Cartoon.
+      </p>
 
-    <button className="bg-zinc-900 border border-zinc-800 hover:border-purple-500/40 transition px-6 md:px-10 py-3 md:py-5 rounded-2xl font-black text-base md:text-lg">
-      Ver exemplos
-    </button>
+      {/* BUTTONS */}
+      <div className="flex flex-col sm:flex-row gap-4 mt-8">
 
-  </div>
+        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-8 py-4 rounded-2xl font-black text-base md:text-lg shadow-[0_0_60px_rgba(168,85,247,0.45)]">
+          TESTAR AGORA
+        </button>
 
-  {/* STATS */}
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+        <button className="bg-zinc-900 border border-zinc-800 hover:border-purple-500/40 transition px-8 py-4 rounded-2xl font-black text-base md:text-lg">
+          Ver exemplos
+        </button>
 
-    <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5 backdrop-blur-xl">
-      <h3 className="text-xl md:text-3xl font-black">50K+</h3>
-      <p className="text-zinc-500 text-sm mt-1">Imagens</p>
-    </div>
-
-    <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5 backdrop-blur-xl">
-      <h3 className="text-xl md:text-3xl font-black">10K+</h3>
-      <p className="text-zinc-500 text-sm mt-1">Usuários</p>
-    </div>
-
-    <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5 backdrop-blur-xl">
-      <h3 className="text-xl md:text-3xl font-black">99.9%</h3>
-      <p className="text-zinc-500 text-sm mt-1">Satisfação</p>
-    </div>
-
-    <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5 backdrop-blur-xl">
-      <h3 className="text-xl md:text-3xl font-black">IA</h3>
-      <p className="text-zinc-500 text-sm mt-1">Premium</p>
-    </div>
-
-  </div>
-
-</div>
-
-{/* RIGHT */}
-<div className="flex justify-center lg:justify-end mt-10 lg:mt-0">
-
-  <div className="relative w-[260px] h-[380px] sm:w-[320px] sm:h-[480px] lg:w-[520px] lg:h-[760px] rounded-[42px] overflow-hidden border border-white/10 shadow-2xl">
-
-    {/* BEFORE */}
-    <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
-      <img
-        src="/examples/fantasy-before.png"
-        className="w-full h-full object-cover"
-      />
-
-      <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-black/80 px-4 py-2 rounded-2xl text-xs md:text-sm font-black">
-        ANTES
       </div>
-    </div>
 
-    {/* AFTER */}
-    <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
-      <img
-        src="/examples/fantasy-after.png"
-        className="w-full h-full object-cover"
-      />
+      {/* STATS */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
 
-      <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-purple-600 px-4 py-2 rounded-2xl text-xs md:text-sm font-black">
-        DEPOIS
-      </div>
-    </div>
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
+          <h3 className="text-2xl md:text-3xl font-black">50K+</h3>
+          <p className="text-zinc-500 text-sm mt-1">Imagens</p>
+        </div>
 
-    {/* DIVIDER */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/20">
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
+          <h3 className="text-2xl md:text-3xl font-black">10K+</h3>
+          <p className="text-zinc-500 text-sm mt-1">Usuários</p>
+        </div>
 
-      <div className="absolute top-1/2 -translate-y-1/2 -left-4 md:-left-6 w-10 h-10 md:w-14 md:h-14 rounded-full bg-black border border-white/20 flex items-center justify-center text-lg md:text-2xl">
-        ↔
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
+          <h3 className="text-2xl md:text-3xl font-black">99.9%</h3>
+          <p className="text-zinc-500 text-sm mt-1">Satisfação</p>
+        </div>
+
+        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
+          <h3 className="text-2xl md:text-3xl font-black">IA</h3>
+          <p className="text-zinc-500 text-sm mt-1">Premium</p>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
+    {/* RIGHT */}
+    <div className="flex justify-center lg:justify-end mt-10 lg:mt-0">
 
-</div>
-```
+      <div className="relative w-[280px] sm:w-[340px] md:w-[420px] lg:w-[520px] h-[420px] sm:h-[520px] md:h-[620px] lg:h-[760px] rounded-[42px] overflow-hidden border border-white/10 shadow-2xl">
+
+        <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+          <img
+            src="/examples/fantasy-before.png"
+            className="w-full h-full object-cover"
+          />
+
+          <div className="absolute top-4 left-4 bg-black/80 px-4 py-2 rounded-2xl text-xs md:text-sm font-black">
+            ANTES
+          </div>
+        </div>
+
+        <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+          <img
+            src="/examples/fantasy-after.png"
+            className="w-full h-full object-cover"
+          />
+
+          <div className="absolute top-4 right-4 bg-purple-600 px-4 py-2 rounded-2xl text-xs md:text-sm font-black">
+            DEPOIS
+          </div>
+        </div>
+
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/20">
+
+          <div className="absolute top-1/2 -translate-y-1/2 -left-5 w-12 h-12 rounded-full bg-black border border-white/20 flex items-center justify-center text-xl">
+            ↔
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -188,10 +176,8 @@ export default function Home() {
 
   </div>
 
-</section>
-
-        </div>
-      </section>
+</section>      
+      
     </main>
   );
 }
