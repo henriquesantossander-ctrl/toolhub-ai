@@ -1,184 +1,162 @@
 export default function Home() {
-  const styles = [
-    ["Cyberpunk", "/examples/cyber-before.png", "/examples/cyber-after.png"],
-    ["Fantasy", "/examples/fantasy-before.png", "/examples/fantasy-after.png"],
-    ["Hero", "/examples/hero-before.png", "/examples/hero-after.png"],
-    ["Cartoon", "/examples/cartoon-before.png", "/examples/cartoon-after.png"],
+  const examples = [
+    {
+      title: "Cyberpunk",
+      image: "/examples/cyber-after.png",
+      prompt: "Transforme essa foto em cyberpunk neon cinematográfico",
+    },
+    {
+      title: "Fantasy",
+      image: "/examples/fantasy-after.png",
+      prompt: "Transforme essa foto em guerreira medieval fantasy",
+    },
+    {
+      title: "Hero",
+      image: "/examples/hero-after.png",
+      prompt: "Transforme essa foto em super herói realista",
+    },
+    {
+      title: "Cartoon",
+      image: "/examples/cartoon-after.png",
+      prompt: "Transforme essa foto em cartoon 3D Pixar",
+    },
   ];
 
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
-     ```tsx
-   <section className="relative w-full px-4 md:px-10 pt-24 md:pt-10 pb-12 overflow-hidden">
+    <main className="min-h-screen bg-[#070707] text-white flex">
 
-  <div className="absolute inset-0 bg-purple-600/10 blur-[160px]" />
+      {/* SIDEBAR */}
+      <aside className="w-[260px] border-r border-white/5 bg-black/40 backdrop-blur-xl p-6 hidden lg:flex flex-col">
 
-  <div className="relative z-10 grid lg:grid-cols-[1.1fr_0.9fr] items-center gap-12">
+        <h1 className="text-3xl font-black mb-10">
+          ToolHub <span className="text-purple-500">IA</span>
+        </h1>
 
-    {/* LEFT */}
-    <div className="max-w-[760px]">
+        <div className="space-y-3">
 
-      <span className="inline-flex items-center gap-2 bg-zinc-900 border border-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-xs md:text-sm">
-        ✨ Transformação com IA
-      </span>
+          <button className="w-full text-left bg-purple-600 hover:bg-purple-500 transition px-5 py-4 rounded-2xl font-bold">
+            ✨ Gerador IA
+          </button>
 
-      <h1 className="text-5xl sm:text-6xl lg:text-[88px] leading-[0.92] font-black mt-6 break-words">
-        Crie imagens
+          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-5 py-4 rounded-2xl">
+            🎬 Vídeo IA
+          </button>
 
-        <span className="block bg-gradient-to-r from-fuchsia-400 to-purple-500 bg-clip-text text-transparent">
-          cinematográficas
-        </span>
+          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-5 py-4 rounded-2xl">
+            🖼️ Anime IA
+          </button>
 
-        em segundos.
-      </h1>
+          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-5 py-4 rounded-2xl">
+            🚀 Business
+          </button>
 
-      <p className="text-zinc-400 text-base md:text-xl mt-6 max-w-[620px] leading-relaxed">
-        Transforme fotos comuns em artes incríveis com estilos Fantasy,
-        Cyberpunk, Hero e Cartoon.
-      </p>
-
-      {/* BUTTONS */}
-      <div className="flex flex-col sm:flex-row gap-4 mt-8">
-
-        <button className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-8 py-4 rounded-2xl font-black text-base md:text-lg shadow-[0_0_60px_rgba(168,85,247,0.45)]">
-          TESTAR AGORA
-        </button>
-
-        <button className="bg-zinc-900 border border-zinc-800 hover:border-purple-500/40 transition px-8 py-4 rounded-2xl font-black text-base md:text-lg">
-          Ver exemplos
-        </button>
-
-      </div>
-
-      {/* STATS */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-
-        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
-          <h3 className="text-2xl md:text-3xl font-black">50K+</h3>
-          <p className="text-zinc-500 text-sm mt-1">Imagens</p>
         </div>
 
-        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
-          <h3 className="text-2xl md:text-3xl font-black">10K+</h3>
-          <p className="text-zinc-500 text-sm mt-1">Usuários</p>
-        </div>
+      </aside>
 
-        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
-          <h3 className="text-2xl md:text-3xl font-black">99.9%</h3>
-          <p className="text-zinc-500 text-sm mt-1">Satisfação</p>
-        </div>
+      {/* CENTER */}
+      <section className="flex-1 p-8">
 
-        <div className="bg-zinc-900/80 border border-zinc-800 rounded-3xl p-5">
-          <h3 className="text-2xl md:text-3xl font-black">IA</h3>
-          <p className="text-zinc-500 text-sm mt-1">Premium</p>
-        </div>
+        <div className="max-w-6xl mx-auto">
 
-      </div>
+          {/* TITLE */}
+          <div className="mb-10">
 
-    </div>
+            <h1 className="text-6xl font-black leading-tight max-w-3xl">
+              Crie imagens cinematográficas com IA
+            </h1>
 
-    {/* RIGHT */}
-    <div className="flex justify-center lg:justify-end mt-10 lg:mt-0">
+            <p className="text-zinc-400 text-xl mt-5">
+              Digite um prompt ou envie uma imagem.
+            </p>
 
-      <div className="relative w-[280px] sm:w-[340px] md:w-[420px] lg:w-[520px] h-[420px] sm:h-[520px] md:h-[620px] lg:h-[760px] rounded-[42px] overflow-hidden border border-white/10 shadow-2xl">
-
-        <div className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
-          <img
-            src="/examples/fantasy-before.png"
-            className="w-full h-full object-cover"
-          />
-
-          <div className="absolute top-4 left-4 bg-black/80 px-4 py-2 rounded-2xl text-xs md:text-sm font-black">
-            ANTES
-          </div>
-        </div>
-
-        <div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
-          <img
-            src="/examples/fantasy-after.png"
-            className="w-full h-full object-cover"
-          />
-
-          <div className="absolute top-4 right-4 bg-purple-600 px-4 py-2 rounded-2xl text-xs md:text-sm font-black">
-            DEPOIS
-          </div>
-        </div>
-
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/20">
-
-          <div className="absolute top-1/2 -translate-y-1/2 -left-5 w-12 h-12 rounded-full bg-black border border-white/20 flex items-center justify-center text-xl">
-            ↔
           </div>
 
+          {/* GENERATOR */}
+          <div className="bg-[#111111] border border-white/10 rounded-[32px] p-6">
+
+            {/* TABS */}
+            <div className="flex gap-3 mb-6">
+
+              <button className="bg-purple-600 px-5 py-3 rounded-xl font-bold">
+                Imagem para Imagem
+              </button>
+
+              <button className="bg-zinc-900 px-5 py-3 rounded-xl">
+                Texto para Imagem
+              </button>
+
+            </div>
+
+            {/* UPLOAD */}
+            <div className="border-2 border-dashed border-white/10 rounded-3xl p-12 text-center bg-black/30">
+
+              <p className="text-zinc-400 text-lg">
+                Clique ou solte uma imagem aqui
+              </p>
+
+              <button className="mt-5 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-xl">
+                Selecionar imagem
+              </button>
+
+            </div>
+
+            {/* PROMPT */}
+            <textarea
+              placeholder="Descreva sua imagem..."
+              className="w-full h-[180px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
+            />
+
+            {/* BUTTON */}
+            <button className="w-full mt-6 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.02] transition py-5 rounded-2xl font-black text-xl shadow-[0_0_60px_rgba(168,85,247,0.35)]">
+              ✨ GERAR COM IA
+            </button>
+
+          </div>
+
+          {/* EXAMPLES */}
+          <div className="mt-10">
+
+            <h2 className="text-3xl font-black mb-6">
+              Exemplos prontos
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+              {examples.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-[#111111] border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/50 transition cursor-pointer"
+                >
+
+                  <img
+                    src={item.image}
+                    className="h-[220px] w-full object-cover"
+                  />
+
+                  <div className="p-5">
+
+                    <h3 className="text-2xl font-black">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-zinc-500 text-sm mt-2">
+                      {item.prompt}
+                    </p>
+
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
+      </section>
 
-    </div>
-
-  </div>
-
-</section>
-
-<section id="exemplos" className="w-full px-4 md:px-10 pb-16 pt-6">
-
-  <div className="text-center mb-16">
-    <p className="text-purple-400 font-black tracking-widest">
-      EXEMPLOS REAIS
-    </p>
-
-```
-<h2 className="text-4xl md:text-7xl font-black mt-4">
-  Escolha seu estilo
-</h2>
-```
-
-  </div>
-
-  <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-
-```
-{styles.map(([title, before, after]) => (
-  <div
-    key={title}
-    className="group rounded-[32px] overflow-hidden bg-white/10 border border-white/10 backdrop-blur-xl hover:border-purple-500/60 transition"
-  >
-
-    <div className="grid grid-cols-2">
-
-      <img
-        src={before}
-        className="h-[180px] md:h-[260px] w-full object-cover"
-      />
-
-      <img
-        src={after}
-        className="h-[180px] md:h-[260px] w-full object-cover"
-      />
-
-    </div>
-
-    <div className="p-4 md:p-7 flex items-center justify-between">
-
-      <h3 className="text-lg md:text-3xl font-black">
-        {title}
-      </h3>
-
-      <span className="text-purple-400 font-black text-sm md:text-base group-hover:translate-x-2 transition">
-        Gerar →
-      </span>
-
-    </div>
-
-  </div>
-))}
-```
-
-  </div>
-
-</section>      
-      
     </main>
   );
 }
-
