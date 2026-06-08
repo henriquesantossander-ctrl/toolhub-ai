@@ -26,7 +26,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#070707] text-white flex">
 
       {/* SIDEBAR */}
-      <aside className="w-[260px] border-r border-white/5 bg-black/40 backdrop-blur-xl p-6 hidden lg:flex flex-col">
+      <aside className="w-[210px] border-r border-white/5 bg-black/40 backdrop-blur-xl p-6 hidden lg:flex flex-col">
 
         <h1 className="text-3xl font-black mb-10">
           ToolHub <span className="text-purple-500">IA</span>
@@ -34,19 +34,19 @@ export default function Home() {
 
         <div className="space-y-3">
 
-          <button className="w-full text-left bg-purple-600 hover:bg-purple-500 transition px-5 py-4 rounded-2xl font-bold">
+          <button className="w-full text-left bg-purple-600 hover:bg-purple-500 transition px-4 py-3 rounded-2xl font-bold">
             ✨ Gerador IA
           </button>
 
-          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-5 py-4 rounded-2xl">
+          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
             🎬 Vídeo IA
           </button>
 
-          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-5 py-4 rounded-2xl">
+          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
             🖼️ Anime IA
           </button>
 
-          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-5 py-4 rounded-2xl">
+          <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
             🚀 Business
           </button>
 
@@ -62,13 +62,13 @@ export default function Home() {
           {/* TITLE */}
           <div className="mb-10">
 
-            <h1 className="text-6xl font-black leading-tight max-w-3xl">
-              Crie imagens cinematográficas com IA
-            </h1>
+           <h1 className="text-3xl font-bold">
+             Gerador de Imagens com IA
+           </h1>
 
-            <p className="text-zinc-400 text-xl mt-5">
-              Digite um prompt ou envie uma imagem.
-            </p>
+            <p className="text-zinc-500 text-sm mt-2">
+             Crie imagens incríveis em segundos usando IA.
+           </p>
 
           </div>
 
@@ -78,7 +78,7 @@ export default function Home() {
             {/* TABS */}
             <div className="flex gap-3 mb-6">
 
-              <button className="bg-purple-600 px-5 py-3 rounded-xl font-bold">
+              <button className="bg-purple-600 px-4 py-3 rounded-xl font-bold">
                 Imagem para Imagem
               </button>
 
@@ -89,7 +89,7 @@ export default function Home() {
             </div>
 
             {/* UPLOAD */}
-            <div className="border-2 border-dashed border-white/10 rounded-3xl p-12 text-center bg-black/30">
+            <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 text-center bg-black/30">
 
               <p className="text-zinc-400 text-lg">
                 Clique ou solte uma imagem aqui
@@ -104,7 +104,7 @@ export default function Home() {
             {/* PROMPT */}
             <textarea
               placeholder="Descreva sua imagem..."
-              className="w-full h-[180px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
+              className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
             />
 
             {/* BUTTON */}
