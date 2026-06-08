@@ -5,17 +5,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "ToolHub IA - Ferramentas Modernas para Internet",
-  description:
-    "Crie bios, hashtags, usernames e ferramentas para redes sociais usando IA.",
-
-  keywords: [
-    "gerador de bio",
-    "hashtags instagram",
-    "nick free fire",
-    "ferramentas IA",
-    "bio para instagram",
-    "gerador de usernames",
-  ],
+  
 
   openGraph: {
     title: "ToolHub IA",
