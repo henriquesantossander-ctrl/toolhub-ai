@@ -136,9 +136,14 @@ export default function PremiumPage() {
 
             </div>
 
-            <button className="w-full mt-12 bg-yellow-400 text-black hover:scale-105 transition rounded-2xl py-5 font-black text-xl">
-              Assinar BUSINESS
-            </button>
+            <a
+  href="SEU_LINK_MERCADOPAGO_BUSINESS"
+  target="_blank"
+>
+  <button className="w-full bg-yellow-400 text-black font-bold py-4 rounded-2xl hover:scale-105 transition">
+    Assinar BUSINESS
+  </button>
+</a>
           </div>
         </div>
       </section>
