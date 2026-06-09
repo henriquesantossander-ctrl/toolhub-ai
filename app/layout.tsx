@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "ToolHub IA - Ferramentas Modernas para Internet",
-  
+
 
   openGraph: {
     title: "ToolHub IA",
@@ -108,13 +108,17 @@ export default function RootLayout({
     {/* BUTTONS */}
     <div className="flex items-center gap-4">
 
-      <button className="h-10 px-7 rounded-2xl bg-zinc-900 border border-white/5 hover:border-purple-500/30 transition text-sm font-semibold">
-        Entrar
-      </button>
+      <a href="/login">
+  <button className="h-11 px-7 rounded-2xl bg-zinc-900 border border-white/5 hover:border-purple-500/30 transition text-sm font-semibold">
+    Entrar
+  </button>
+</a>
 
-      <button className="h-10 px-8 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition text-sm font-bold shadow-[0_0_40px_rgba(168,85,247,0.35)]">
-        Começar agora
-      </button>
+      <a href="/">
+  <button className="h-11 px-8 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition text-sm font-bold shadow-[0_0_40px_rgba(168,85,247,0.35)]">
+    Começar agora
+  </button>
+</a>
 
     </div>
 
