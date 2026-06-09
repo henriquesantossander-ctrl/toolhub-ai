@@ -81,7 +81,7 @@ export default function LoginPage() {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "https://toolhubia.com.br",
+        redirectTo: window.location.origin,
       },
     });
   }}
