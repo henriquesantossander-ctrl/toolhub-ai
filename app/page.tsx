@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
+  const [showLogin, setShowLogin] = useState(false);  
 
   const examples = [
     {
@@ -39,49 +40,44 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#070707] text-white flex overflow-hidden">
+    <main className="min-h-screen bg-[#070707] text-white overflow-hidden">
+<header className="w-full border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-50">
 
-      {/* SIDEBAR */}
-      <aside className="w-[210px] border-r border-white/5 bg-black/40 backdrop-blur-xl p-5 hidden lg:flex flex-col">
+  <div className="max-w-7xl mx-auto px-6 h-[82px] flex items-center justify-between">
 
-        <Link href="/" className="mb-8 block">
-          <h1 className="text-3xl font-black cursor-pointer hover:opacity-80 transition">
-            ToolHub <span className="text-purple-500">IA</span>
-          </h1>
-        </Link>
+    {/* LOGO */}
+    <Link href="/">
+      <h1 className="text-3xl font-black cursor-pointer hover:opacity-80 transition">
+        ToolHub <span className="text-purple-500">IA</span>
+      </h1>
+    </Link>
 
-        <div className="space-y-3">
+    {/* MENU */}
+    <div className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
 
-          <Link href="/">
-            <button className="w-full text-left bg-purple-600 hover:bg-purple-500 transition px-4 py-3 rounded-2xl font-bold">
-              ✨ Gerador IA
-            </button>
-          </Link>
+      <a href="#exemplos" className="hover:text-white transition">
+        Exemplos
+      </a>
 
-          <Link href="/video-ai">
-            <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
-              🎬 Vídeo IA
-            </button>
-          </Link>
+      <a href="/premium" className="hover:text-white transition">
+        Planos
+      </a>
 
-          <Link href="/anime-ai">
-            <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
-              🖼️ Anime IA
-            </button>
-          </Link>
+    </div>
 
-          <Link href="/business">
-            <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
-              🚀 Business
-            </button>
-          </Link>
+    {/* LOGIN */}
+    <button
+      onClick={() => setShowLogin(true)}
+      className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-7 py-3 rounded-2xl font-bold"
+    >
+      Login
+    </button>
 
-        </div>
+  </div>
 
-      </aside>
-
+</header>
       {/* CONTEÚDO */}
-      <section className="flex-1 p-6">
+      <section className="w-full px-6 py-10">
 
         <div className="max-w-5xl mx-auto">
 
@@ -156,7 +152,7 @@ export default function Home() {
           </div>
 
           {/* EXEMPLOS */}
-          <div className="mt-8">
+          <div id="exemplos" className="mt-8">
 
             <h2 className="text-2xl font-black mb-5">
               Exemplos prontos
@@ -197,7 +193,57 @@ export default function Home() {
         </div>
 
       </section>
+       {/* LOGIN MODAL */}
+{showLogin && (
 
+  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-6">
+
+    <div className="w-full max-w-md bg-[#111111] border border-white/10 rounded-[32px] p-8 relative">
+
+      {/* FECHAR */}
+      <button
+        onClick={() => setShowLogin(false)}
+        className="absolute top-5 right-5 text-zinc-500 hover:text-white"
+      >
+        ✕
+      </button>
+
+      <h2 className="text-3xl font-black mb-2">
+        Bem-vindo
+      </h2>
+
+      <p className="text-zinc-500 mb-8">
+        Entre na sua conta do ToolHub IA
+      </p>
+
+      <div className="space-y-4">
+
+        {/* LOGIN */}
+        <a href="/login">
+          <button className="w-full bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-bold">
+            Entrar na conta
+          </button>
+        </a>
+
+        {/* CADASTRO */}
+        <a href="/register">
+          <button className="w-full bg-zinc-900 hover:bg-zinc-800 transition py-4 rounded-2xl font-bold border border-white/10">
+            Criar cadastro
+          </button>
+        </a>
+
+        {/* GOOGLE */}
+        <button className="w-full bg-white text-black hover:scale-[1.02] transition py-4 rounded-2xl font-bold">
+          Continuar com Google
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+)}
     </main>
   );
 }
