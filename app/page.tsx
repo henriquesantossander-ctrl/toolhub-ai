@@ -1,7 +1,11 @@
 "use client";
+
+import Link from "next/link";
 import { useState } from "react";
+
 export default function Home() {
   const [prompt, setPrompt] = useState("");
+
   const examples = [
     {
       title: "Cyberpunk",
@@ -25,41 +29,52 @@ export default function Home() {
     },
   ];
 
+  function handleGenerate() {
+    if (!prompt.trim()) {
+      alert("Digite um prompt primeiro");
+      return;
+    }
+
+    alert(`Gerando imagem: ${prompt}`);
+  }
+
   return (
     <main className="min-h-screen bg-[#070707] text-white flex overflow-hidden">
 
       {/* SIDEBAR */}
       <aside className="w-[210px] border-r border-white/5 bg-black/40 backdrop-blur-xl p-5 hidden lg:flex flex-col">
 
-        <h1 className="text-3xl font-black mb-8">
-          ToolHub <span className="text-purple-500">IA</span>
-        </h1>
+        <Link href="/" className="mb-8">
+          <h1 className="text-3xl font-black">
+            ToolHub <span className="text-purple-500">IA</span>
+          </h1>
+        </Link>
 
         <div className="space-y-3">
 
-          <a href="/">
+          <Link href="/">
             <button className="w-full text-left bg-purple-600 hover:bg-purple-500 transition px-4 py-3 rounded-2xl font-bold">
               ✨ Gerador IA
             </button>
-          </a>
+          </Link>
 
-          <a href="/video-ai">
+          <Link href="/video-ai">
             <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
               🎬 Vídeo IA
             </button>
-          </a>
+          </Link>
 
-          <a href="/anime-ai">
+          <Link href="/anime-ai">
             <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
               🖼️ Anime IA
             </button>
-          </a>
+          </Link>
 
-          <a href="/business">
+          <Link href="/business">
             <button className="w-full text-left bg-zinc-900 hover:bg-zinc-800 transition px-4 py-3 rounded-2xl">
               🚀 Business
             </button>
-          </a>
+          </Link>
 
         </div>
 
@@ -83,7 +98,7 @@ export default function Home() {
 
           </div>
 
-          {/* BOX PRINCIPAL */}
+          {/* BOX */}
           <div className="bg-[#111111] border border-white/10 rounded-[32px] p-5">
 
             {/* TABS */}
@@ -114,19 +129,19 @@ export default function Home() {
 
             {/* PROMPT */}
             <textarea
-             value={prompt}
-             onChange={(e) => setPrompt(e.target.value)}
-             placeholder="Descreva sua imagem..."
-             className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
-          />
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="Descreva sua imagem..."
+              className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
+            />
 
             {/* BOTÃO */}
             <button
-             onClick={() => alert(`Gerando imagem: ${prompt}`)}
-             className="w-full mt-6 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.02] transition py-5 rounded-2xl font-black text-xl shadow-[0_0_60px_rgba(168,85,247,0.35)]"
-           >
-             ✨ GERAR COM IA
-         </button>
+              onClick={handleGenerate}
+              className="w-full mt-6 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.02] transition py-5 rounded-2xl font-black text-xl shadow-[0_0_60px_rgba(168,85,247,0.35)]"
+            >
+              ✨ GERAR COM IA
+            </button>
 
           </div>
 
