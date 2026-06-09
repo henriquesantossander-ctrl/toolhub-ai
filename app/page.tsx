@@ -44,8 +44,8 @@ export default function Home() {
       {/* SIDEBAR */}
       <aside className="w-[210px] border-r border-white/5 bg-black/40 backdrop-blur-xl p-5 hidden lg:flex flex-col">
 
-        <Link href="/" className="mb-8">
-          <h1 className="text-3xl font-black">
+        <Link href="/" className="mb-8 block">
+          <h1 className="text-3xl font-black cursor-pointer hover:opacity-80 transition">
             ToolHub <span className="text-purple-500">IA</span>
           </h1>
         </Link>
