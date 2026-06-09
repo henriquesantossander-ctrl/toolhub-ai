@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
-  const [showLogin, setShowLogin] = useState(false);  
+  const [showLogin, setShowLogin] = useState(false);
 
   const examples = [
     {
@@ -41,54 +41,68 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#070707] text-white overflow-hidden">
-<header className="w-full border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-50">
 
-  <div className="max-w-7xl mx-auto px-6 h-[82px] flex items-center justify-between">
+      {/* HEADER */}
+      <header className="w-full border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-50">
 
-    {/* LOGO */}
-    <Link href="/">
-      <h1 className="text-3xl font-black cursor-pointer hover:opacity-80 transition">
-        ToolHub <span className="text-purple-500">IA</span>
-      </h1>
-    </Link>
+        <div className="max-w-7xl mx-auto px-6 h-[82px] flex items-center justify-between">
 
-    {/* MENU */}
-    <div className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
+          {/* LOGO */}
+          <Link href="/">
+            <h1 className="text-3xl font-black cursor-pointer hover:opacity-80 transition">
+              ToolHub <span className="text-purple-500">IA</span>
+            </h1>
+          </Link>
 
-      <a href="#exemplos" className="hover:text-white transition">
-        Exemplos
-      </a>
+          {/* MENU */}
+          <div className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
 
-      <a href="/premium" className="hover:text-white transition">
-        Planos
-      </a>
+            <a href="#exemplos" className="hover:text-white transition">
+              Exemplos
+            </a>
 
-    </div>
+            <a href="/premium" className="hover:text-white transition">
+              Planos
+            </a>
 
-    {/* LOGIN */}
-    <button
-      onClick={() => setShowLogin(true)}
-      className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-7 py-3 rounded-2xl font-bold"
-    >
-      Login
-    </button>
+          </div>
 
-  </div>
+          {/* AUTH BUTTONS */}
+          <div className="flex items-center gap-3">
 
-</header>
+            <button
+              onClick={() => setShowLogin(true)}
+              className="bg-zinc-900 hover:bg-zinc-800 transition px-6 py-3 rounded-2xl font-semibold border border-white/10"
+            >
+              Conecte-se
+            </button>
+
+            <button
+              onClick={() => setShowLogin(true)}
+              className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-6 py-3 rounded-2xl font-bold"
+            >
+              Inscrever-se
+            </button>
+
+          </div>
+
+        </div>
+
+      </header>
+
       {/* CONTEÚDO */}
       <section className="w-full px-6 py-10">
 
         <div className="max-w-5xl mx-auto">
 
-          {/* HEADER */}
-          <div className="mb-6">
+          {/* TITLE */}
+          <div className="mb-6 text-center">
 
-            <h1 className="text-3xl font-bold">
+            <h1 className="text-4xl md:text-5xl font-black">
               Gerador de Imagens com IA
             </h1>
 
-            <p className="text-zinc-500 text-sm mt-2">
+            <p className="text-zinc-500 text-sm md:text-base mt-3">
               Crie imagens incríveis em segundos usando IA.
             </p>
 
@@ -110,28 +124,28 @@ export default function Home() {
 
             </div>
 
-             {/* UPLOAD */}
-             <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 text-center bg-black/30">
+            {/* UPLOAD */}
+            <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 text-center bg-black/30">
 
-                <p className="text-zinc-400 text-base">
-                 Clique ou solte uma imagem aqui
-                 </p>
+              <p className="text-zinc-400 text-base">
+                Clique ou solte uma imagem aqui
+              </p>
 
-                 <input
-                   type="file"
-                   accept="image/*"
-                   className="hidden"
-                   id="imageUpload"
-                    />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                id="imageUpload"
+              />
 
-                      <label
-                       htmlFor="imageUpload"
-                        className="inline-block mt-4 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-xl transition cursor-pointer"
-                         >
-                         Selecionar imagem
-                      </label>
+              <label
+                htmlFor="imageUpload"
+                className="inline-block mt-4 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-xl transition cursor-pointer"
+              >
+                Selecionar imagem
+              </label>
 
-                      </div>
+            </div>
 
             {/* PROMPT */}
             <textarea
@@ -141,7 +155,7 @@ export default function Home() {
               className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
             />
 
-            {/* BOTÃO */}
+            {/* BUTTON */}
             <button
               onClick={handleGenerate}
               className="w-full mt-6 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.02] transition py-5 rounded-2xl font-black text-xl shadow-[0_0_60px_rgba(168,85,247,0.35)]"
@@ -152,7 +166,7 @@ export default function Home() {
           </div>
 
           {/* EXEMPLOS */}
-          <div id="exemplos" className="mt-8">
+          <div id="exemplos" className="mt-10">
 
             <h2 className="text-2xl font-black mb-5">
               Exemplos prontos
@@ -163,6 +177,7 @@ export default function Home() {
               {examples.map((item) => (
                 <div
                   key={item.title}
+                  onClick={() => setPrompt(item.prompt)}
                   className="bg-[#111111] border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/50 transition cursor-pointer"
                 >
 
@@ -193,57 +208,59 @@ export default function Home() {
         </div>
 
       </section>
-       {/* LOGIN MODAL */}
-{showLogin && (
 
-  <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-6">
+      {/* LOGIN MODAL */}
+      {showLogin && (
 
-    <div className="w-full max-w-md bg-[#111111] border border-white/10 rounded-[32px] p-8 relative">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-6">
 
-      {/* FECHAR */}
-      <button
-        onClick={() => setShowLogin(false)}
-        className="absolute top-5 right-5 text-zinc-500 hover:text-white"
-      >
-        ✕
-      </button>
+          <div className="w-full max-w-md bg-[#111111] border border-white/10 rounded-[32px] p-8 relative">
 
-      <h2 className="text-3xl font-black mb-2">
-        Bem-vindo
-      </h2>
+            {/* CLOSE */}
+            <button
+              onClick={() => setShowLogin(false)}
+              className="absolute top-5 right-5 text-zinc-500 hover:text-white"
+            >
+              ✕
+            </button>
 
-      <p className="text-zinc-500 mb-8">
-        Entre na sua conta do ToolHub IA
-      </p>
+            <h2 className="text-3xl font-black mb-2">
+              Bem-vindo
+            </h2>
 
-      <div className="space-y-4">
+            <p className="text-zinc-500 mb-8">
+              Entre na sua conta do ToolHub IA
+            </p>
 
-        {/* LOGIN */}
-        <a href="/login">
-          <button className="w-full bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-bold">
-            Entrar na conta
-          </button>
-        </a>
+            <div className="space-y-4">
 
-        {/* CADASTRO */}
-        <a href="/register">
-          <button className="w-full bg-zinc-900 hover:bg-zinc-800 transition py-4 rounded-2xl font-bold border border-white/10">
-            Criar cadastro
-          </button>
-        </a>
+              {/* LOGIN */}
+              <a href="/login">
+                <button className="w-full bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-bold">
+                  Entrar na conta
+                </button>
+              </a>
 
-        {/* GOOGLE */}
-        <button className="w-full bg-white text-black hover:scale-[1.02] transition py-4 rounded-2xl font-bold">
-          Continuar com Google
-        </button>
+              {/* REGISTER */}
+              <a href="/register">
+                <button className="w-full bg-zinc-900 hover:bg-zinc-800 transition py-4 rounded-2xl font-bold border border-white/10">
+                  Criar cadastro
+                </button>
+              </a>
 
-      </div>
+              {/* GOOGLE */}
+              <button className="w-full bg-white text-black hover:scale-[1.02] transition py-4 rounded-2xl font-bold">
+                Continuar com Google
+              </button>
 
-    </div>
+            </div>
 
-  </div>
+          </div>
 
-)}
+        </div>
+
+      )}
+
     </main>
   );
 }
