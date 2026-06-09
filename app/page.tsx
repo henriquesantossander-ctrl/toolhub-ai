@@ -1,4 +1,7 @@
+"use client";
+import { useState } from "react";
 export default function Home() {
+  const [prompt, setPrompt] = useState("");
   const examples = [
     {
       title: "Cyberpunk",
@@ -111,14 +114,19 @@ export default function Home() {
 
             {/* PROMPT */}
             <textarea
-              placeholder="Descreva sua imagem..."
-              className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-5 mt-5 outline-none resize-none text-base"
-            />
+             value={prompt}
+             onChange={(e) => setPrompt(e.target.value)}
+             placeholder="Descreva sua imagem..."
+             className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
+          />
 
             {/* BOTÃO */}
-            <button className="w-full mt-5 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.01] transition py-4 rounded-2xl font-black text-lg shadow-[0_0_50px_rgba(168,85,247,0.35)]">
-              ✨ GERAR COM IA
-            </button>
+            <button
+             onClick={() => alert(`Gerando imagem: ${prompt}`)}
+             className="w-full mt-6 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.02] transition py-5 rounded-2xl font-black text-xl shadow-[0_0_60px_rgba(168,85,247,0.35)]"
+           >
+             ✨ GERAR COM IA
+         </button>
 
           </div>
 

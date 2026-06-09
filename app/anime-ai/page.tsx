@@ -1,8 +1,8 @@
-export default function BusinessPage() {
+export default function AnimeAI() {
   return (
     <main className="min-h-screen bg-black text-white flex items-center justify-center">
       <h1 className="text-5xl font-black">
-        Business IA 💎
+        Anime IA 🚀
       </h1>
     </main>
   );
