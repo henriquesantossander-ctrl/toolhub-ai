@@ -1,152 +1,151 @@
-import Link from "next/dist/client/link";
+
+import Link from "next/link";
 
 export default function PremiumPage() {
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
+    <main className="min-h-screen bg-[#070707] text-white overflow-hidden">
+
       {/* BACKGROUND */}
-      <div className="absolute inset-0 bg-purple-600/10 blur-[180px]" />
+      <div className="fixed inset-0 bg-purple-600/5 blur-[180px] pointer-events-none" />
 
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-24">
 
-        {/* TOP */}
+        {/* HEADER */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center gap-2 bg-purple-600/20 border border-purple-500/20 text-purple-400 px-5 py-2 rounded-full mb-6">
-            🚀 PREMIUM ACCESS
-          </div>
 
-          <h1 className="text-7xl font-black leading-tight">
+          <p className="text-purple-400 text-sm tracking-[0.3em] uppercase mb-5">
+            PREMIUM PLANS
+          </p>
+
+          <h1 className="text-5xl md:text-6xl font-black">
             Escolha seu plano
           </h1>
 
-          <p className="text-zinc-400 text-xl mt-6 max-w-2xl mx-auto">
-            Desbloqueie ferramentas premium, IA avançada,
-            geração de imagens e recursos exclusivos.
+          <p className="text-zinc-500 text-lg mt-6 max-w-2xl mx-auto">
+            Ferramentas profissionais de IA para criação de imagens,
+            vídeos e projetos avançados.
           </p>
+
         </div>
 
-        {/* PLANS */}
-        <div className="grid lg:grid-cols-3 gap-10">
+        {/* CARDS */}
+        <div className="grid lg:grid-cols-3 gap-8">
 
           {/* FREE */}
-          <div className="bg-zinc-900/70 border border-zinc-800 rounded-[35px] p-10 backdrop-blur-xl hover:border-zinc-700 transition">
+          <div className="bg-[#111111] border border-white/10 rounded-3xl p-8">
 
-            <h2 className="text-4xl font-black">
+            <p className="text-zinc-500 text-sm mb-4">
               FREE
+            </p>
+
+            <h2 className="text-5xl font-bold">
+              R$0
             </h2>
 
-            <div className="mt-8">
-              <span className="text-6xl font-black">
-                R$0
-              </span>
+            <p className="text-zinc-500 mt-3">
+              Ideal para testar a plataforma
+            </p>
 
-              <span className="text-zinc-500 text-xl">
-                /grátis
-              </span>
+            <div className="space-y-4 mt-10 text-zinc-300">
+
+              <p>• 1 geração por estilo por dia</p>
+              <p>• Cyberpunk</p>
+              <p>• Cartoon</p>
+              <p>• Fantasy</p>
+              <p>• Hero</p>
+              <p>• Anime</p>
+              <p>• Qualidade padrão</p>
+
             </div>
 
-            <div className="space-y-5 mt-10 text-lg text-zinc-300">
-
-              <div>✅ Transformações básicas</div>
-              <div>✅ Alguns estilos IA</div>
-              <div>✅ Qualidade padrão</div>
-              <div>❌ Sem HD</div>
-              <div>❌ Sem render rápido</div>
-
-        </div>
-
-            <button className="w-full mt-12 bg-zinc-800 hover:bg-zinc-700 transition rounded-2xl py-5 font-bold text-lg">
+            <button className="w-full mt-10 bg-white/5 border border-white/10 py-4 rounded-2xl">
               Plano atual
             </button>
+
           </div>
 
           {/* PRO */}
-          <div className="relative bg-gradient-to-b from-purple-600 to-pink-600 rounded-[40px] p-[1px] shadow-[0_0_80px_rgba(168,85,247,0.45)] scale-105">
+          <div className="bg-[#141414] border border-purple-500/20 rounded-3xl p-8 relative">
 
-            <div className="bg-[#14001f] rounded-[40px] p-10 h-full">
+            <div className="absolute top-5 right-5 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs px-4 py-2 rounded-full">
+              MAIS POPULAR
+            </div>
 
-              <div className="absolute top-5 right-5 bg-white text-black text-sm font-bold px-4 py-2 rounded-full">
-                MAIS POPULAR
-              </div>
+            <p className="text-purple-400 text-sm mb-4">
+              PRO
+            </p>
 
-              <h2 className="text-4xl font-black">
-                PRO 🚀
-              </h2>
+            <h2 className="text-5xl font-bold">
+              R$19
+            </h2>
 
-              <div className="mt-8">
-                <span className="text-7xl font-black">
-                  R$19
-                </span>
+            <p className="text-zinc-500 mt-3">
+              Para criadores e uso diário
+            </p>
 
-                <span className="text-purple-200 text-xl">
-                  /mês
-                </span>
-              </div>
+            <div className="space-y-4 mt-10 text-zinc-300">
 
-              <div className="space-y-5 mt-10 text-lg">
+              <p>• 10 gerações por dia</p>
+              <p>• Todos estilos IA</p>
+              <p>• Qualidade HD</p>
+              <p>• Renderização rápida</p>
+              <p>• Sem anúncios</p>
+              <p>• Vídeo IA: 10 por dia</p>
 
-  <div>🔥 Imagens em HD</div>
-  <div>🔥 Mais estilos cinematográficos</div>
-  <div>🔥 Renderização rápida</div>
-  <div>🔥 Sem anúncios</div>
-  <div>🔥 Melhor qualidade IA</div>
+            </div>
 
-</div>
-
-             <a
+            <a
               href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/be15a2f2-8466-42bf-b718-02b9598aeed0/payment-option-form/?preference-id=1879629028-906b956f-aa32-4a16-8d25-709a80ea4808&router-request-id=dff32d14-bd27-488d-b8fe-8753bc28c363&p=87921cc13cf0af960fb39866d1a241b4"
               target="_blank"
-            >      
-          <button className="w-full bg-white text-black font-black py-5 rounded-2xl hover:scale-105 transition">
-           Assinar PRO
-         </button>
-         </a> 
-      
-            </div>
+            >
+              <button className="w-full mt-10 bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-medium">
+                Assinar PRO
+              </button>
+            </a>
+
           </div>
 
           {/* BUSINESS */}
-          <div className="relative bg-gradient-to-b from-yellow-500/30 to-black border border-yellow-500/40 rounded-[35px] p-10 backdrop-blur-xl hover:border-yellow-400 transition">
+          <div className="bg-[#111111] border border-white/10 rounded-3xl p-8">
 
-            <div className="absolute top-5 right-5 bg-yellow-400 text-black text-sm font-black px-4 py-2 rounded-full">
+            <p className="text-zinc-500 text-sm mb-4">
               BUSINESS
-            </div>
+            </p>
 
-            <h2 className="text-4xl font-black text-yellow-400">
-              BUSINESS IA
+            <h2 className="text-5xl font-bold">
+              R$49
             </h2>
 
-            <div className="mt-8">
-              <span className="text-7xl font-black">
-                R$49
-              </span>
+            <p className="text-zinc-500 mt-3">
+              Uso profissional ilimitado
+            </p>
 
-              <span className="text-yellow-200 text-xl">
-                /mês
-              </span>
+            <div className="space-y-4 mt-10 text-zinc-300">
+
+              <p>• Gerações ilimitadas</p>
+              <p>• Vídeo IA ilimitado</p>
+              <p>• IA ultra realista</p>
+              <p>• Prioridade máxima</p>
+              <p>• Modelos exclusivos</p>
+              <p>• API futura</p>
+
             </div>
 
-            <div className="space-y-5 mt-10 text-lg text-zinc-200">
-
-  <div>⚡ Tudo do PRO</div>
-  <div>⚡ IA ultra realista</div>
-  <div>⚡ Renderização prioritária</div>
-  <div>⚡ Modelos exclusivos</div>
-  <div>⚡ Futuro vídeo IA</div>
-  <div>⚡ Acesso antecipado</div>
-
-</div>
-
             <a
-  href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
-  target="_blank"
->
-  <button className="w-full bg-yellow-400 text-black font-bold py-4 rounded-2xl hover:scale-105 transition">
-    Assinar BUSINESS
-  </button>
-</a>
+              href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
+              target="_blank"
+            >
+              <button className="w-full mt-10 bg-white text-black py-4 rounded-2xl font-medium hover:opacity-90 transition">
+                Assinar BUSINESS
+              </button>
+            </a>
+
           </div>
+
         </div>
+
       </section>
     </main>
   );
 }
+
