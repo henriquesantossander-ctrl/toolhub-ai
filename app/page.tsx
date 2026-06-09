@@ -5,34 +5,17 @@ import { useState } from "react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
-  const [showLogin, setShowLogin] = useState(false);
 
   const examples = [
-    {
-      title: "Cyberpunk",
-      image: "/examples/cyber-after.png",
-      prompt: "Transforme essa foto em cyberpunk neon cinematográfico",
-    },
-    {
-      title: "Fantasy",
-      image: "/examples/fantasy-after.png",
-      prompt: "Transforme essa foto em guerreira medieval fantasy",
-    },
-    {
-      title: "Hero",
-      image: "/examples/hero-after.png",
-      prompt: "Transforme essa foto em super herói realista",
-    },
-    {
-      title: "Cartoon",
-      image: "/examples/cartoon-after.png",
-      prompt: "Transforme essa foto em cartoon 3D Pixar",
-    },
+    ["Cyberpunk", "Cidade futurista com neon", "/examples/cyber-after.png"],
+    ["Fantasy", "Castelo em um vale mágico", "/examples/fantasy-after.png"],
+    ["Hero", "Herói cinematográfico", "/examples/hero-after.png"],
+    ["Cartoon", "Estilo cartoon 3D", "/examples/cartoon-after.png"],
   ];
 
-  function handleGenerate() {
+  function generateImage() {
     if (!prompt.trim()) {
-      alert("Digite um prompt primeiro");
+      alert("Digite uma descrição primeiro.");
       return;
     }
 
@@ -40,227 +23,121 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-[#070707] text-white overflow-hidden">
-
-      {/* HEADER */}
-      <header className="w-full border-b border-white/5 bg-black/40 backdrop-blur-xl sticky top-0 z-50">
-
-        <div className="max-w-7xl mx-auto px-6 h-[82px] flex items-center justify-between">
-
-          {/* LOGO */}
-          <Link href="/">
-            <h1 className="text-3xl font-black cursor-pointer hover:opacity-80 transition">
-              ToolHub <span className="text-purple-500">IA</span>
+    <main className="min-h-screen bg-[#0b0f14] text-white">
+      <header className="h-20 border-b border-white/10 bg-[#0b0f14]/90 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center font-black">
+              ✦
+            </div>
+            <h1 className="text-2xl font-black">
+              ToolHub <span className="text-purple-400">AI</span>
             </h1>
           </Link>
 
-          {/* MENU */}
-          <div className="hidden md:flex items-center gap-10 text-sm text-zinc-400">
-
-            <a href="#exemplos" className="hover:text-white transition">
-              Exemplos
-            </a>
-
-            <a href="/premium" className="hover:text-white transition">
-              Planos
-            </a>
-
-          </div>
-
-          {/* AUTH BUTTONS */}
-          <div className="flex items-center gap-3">
-
-            <button
-              onClick={() => setShowLogin(true)}
-              className="bg-zinc-900 hover:bg-zinc-800 transition px-6 py-3 rounded-2xl font-semibold border border-white/10"
-            >
-              Conecte-se
-            </button>
-
-            <button
-              onClick={() => setShowLogin(true)}
-              className="bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition px-6 py-3 rounded-2xl font-bold"
-            >
-              Inscrever-se
-            </button>
-
-          </div>
-
+          <nav className="hidden md:flex items-center gap-8 text-zinc-300">
+            <Link href="/premium" className="hover:text-white">Planos</Link>
+            <Link href="/business" className="hover:text-white">API</Link>
+            <Link href="/login" className="hover:text-white">Entrar</Link>
+            <Link href="/premium" className="bg-purple-600 hover:bg-purple-500 px-5 py-3 rounded-xl font-bold">
+              Começar agora
+            </Link>
+          </nav>
         </div>
-
       </header>
 
-      {/* CONTEÚDO */}
-      <section className="w-full px-6 py-10">
-
-        <div className="max-w-5xl mx-auto">
-
-          {/* TITLE */}
-          <div className="mb-6 text-center">
-
-            <h1 className="text-4xl md:text-5xl font-black">
-              Gerador de Imagens com IA
-            </h1>
-
-            <p className="text-zinc-500 text-sm md:text-base mt-3">
-              Crie imagens incríveis em segundos usando IA.
-            </p>
-
+      <div className="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-[240px_1fr_380px] gap-8">
+        <aside className="hidden lg:flex flex-col justify-between border border-white/10 rounded-2xl p-4 bg-white/[0.03] min-h-[760px]">
+          <div className="space-y-3">
+            <button className="w-full text-left bg-purple-600/20 text-purple-300 px-4 py-3 rounded-xl">
+              🖼️ Gerador de Imagens
+            </button>
+            <button className="w-full text-left hover:bg-white/5 px-4 py-3 rounded-xl">
+              🎭 Imagem para Imagem
+            </button>
+            <button className="w-full text-left hover:bg-white/5 px-4 py-3 rounded-xl">
+              ✍️ Texto para Imagem
+            </button>
+            <button className="w-full text-left hover:bg-white/5 px-4 py-3 rounded-xl">
+              📁 Meus Projetos
+            </button>
+            <button className="w-full text-left hover:bg-white/5 px-4 py-3 rounded-xl">
+              ❤️ Favoritos
+            </button>
           </div>
 
-          {/* BOX */}
-          <div className="bg-[#111111] border border-white/10 rounded-[32px] p-5">
-
-            {/* TABS */}
-            <div className="flex gap-3 mb-5">
-
-              <button className="bg-purple-600 px-4 py-3 rounded-xl font-bold">
-                Imagem para Imagem
+          <div className="border border-white/10 rounded-2xl p-4 bg-white/[0.04]">
+            <h3 className="font-bold text-lg">Upgrade para Pro</h3>
+            <p className="text-zinc-400 text-sm mt-2">
+              Gere imagens em alta resolução sem limites.
+            </p>
+            <Link href="/premium">
+              <button className="w-full mt-4 bg-purple-600 py-3 rounded-xl font-bold">
+                Ver planos
               </button>
+            </Link>
+          </div>
+        </aside>
 
-              <button className="bg-zinc-900 px-5 py-3 rounded-xl">
-                Texto para Imagem
-              </button>
+        <section className="border border-white/10 rounded-2xl p-8 bg-white/[0.03]">
+          <h2 className="text-3xl font-black">Gerador de Imagens com IA</h2>
+          <p className="text-zinc-400 mt-3">
+            Crie imagens incríveis em segundos com inteligência artificial.
+          </p>
 
-            </div>
+          <div className="flex gap-3 mt-8">
+            <button className="bg-purple-600/20 text-purple-300 px-5 py-3 rounded-xl">
+              Texto para Imagem
+            </button>
+            <button className="border border-white/10 px-5 py-3 rounded-xl text-zinc-300">
+              Imagem para Imagem
+            </button>
+          </div>
 
-            {/* UPLOAD */}
-            <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 text-center bg-black/30">
+          <textarea
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Descreva a imagem que você quer criar..."
+            className="w-full h-[260px] mt-6 bg-[#111820] border border-white/10 rounded-2xl p-5 outline-none resize-none text-zinc-200"
+          />
 
-              <p className="text-zinc-400 text-base">
-                Clique ou solte uma imagem aqui
-              </p>
+          <label className="block mt-5 text-sm text-zinc-400">Estilo</label>
+          <select className="w-full mt-2 bg-[#111820] border border-white/10 rounded-xl p-4 outline-none">
+            <option>Realista</option>
+            <option>Cinematográfico</option>
+            <option>Anime</option>
+            <option>Cyberpunk</option>
+            <option>Fantasy</option>
+          </select>
 
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                id="imageUpload"
-              />
+          <button
+            onClick={generateImage}
+            className="w-full mt-8 bg-gradient-to-r from-purple-600 to-indigo-500 hover:scale-[1.01] transition py-4 rounded-xl font-black text-lg"
+          >
+            ✨ Gerar Imagem
+          </button>
+        </section>
 
-              <label
-                htmlFor="imageUpload"
-                className="inline-block mt-4 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-xl transition cursor-pointer"
+        <aside className="border border-white/10 rounded-2xl p-6 bg-white/[0.03]">
+          <h2 className="text-2xl font-black mb-6">Exemplos</h2>
+
+          <div className="grid grid-cols-2 gap-5">
+            {examples.map(([title, desc, image]) => (
+              <div
+                key={title}
+                onClick={() => setPrompt(desc)}
+                className="rounded-2xl overflow-hidden border border-white/10 bg-black/30 cursor-pointer hover:border-purple-500/60 transition"
               >
-                Selecionar imagem
-              </label>
-
-            </div>
-
-            {/* PROMPT */}
-            <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Descreva sua imagem..."
-              className="w-full h-[120px] bg-black/40 border border-white/10 rounded-3xl p-6 mt-6 outline-none resize-none text-lg"
-            />
-
-            {/* BUTTON */}
-            <button
-              onClick={handleGenerate}
-              className="w-full mt-6 bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-[1.02] transition py-5 rounded-2xl font-black text-xl shadow-[0_0_60px_rgba(168,85,247,0.35)]"
-            >
-              ✨ GERAR COM IA
-            </button>
-
-          </div>
-
-          {/* EXEMPLOS */}
-          <div id="exemplos" className="mt-10">
-
-            <h2 className="text-2xl font-black mb-5">
-              Exemplos prontos
-            </h2>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-
-              {examples.map((item) => (
-                <div
-                  key={item.title}
-                  onClick={() => setPrompt(item.prompt)}
-                  className="bg-[#111111] border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/50 transition cursor-pointer"
-                >
-
-                  <img
-                    src={item.image}
-                    className="h-[180px] w-full object-cover"
-                  />
-
-                  <div className="p-4">
-
-                    <h3 className="text-xl font-black">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-zinc-500 text-xs mt-2 leading-relaxed">
-                      {item.prompt}
-                    </p>
-
-                  </div>
-
+                <img src={image} className="h-[150px] w-full object-cover" />
+                <div className="p-3">
+                  <h3 className="font-bold">{title}</h3>
+                  <p className="text-zinc-400 text-xs mt-1">{desc}</p>
                 </div>
-              ))}
-
-            </div>
-
+              </div>
+            ))}
           </div>
-
-        </div>
-
-      </section>
-
-      {/* LOGIN MODAL */}
-      {showLogin && (
-
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-6">
-
-          <div className="w-full max-w-md bg-[#111111] border border-white/10 rounded-[32px] p-8 relative">
-
-            {/* CLOSE */}
-            <button
-              onClick={() => setShowLogin(false)}
-              className="absolute top-5 right-5 text-zinc-500 hover:text-white"
-            >
-              ✕
-            </button>
-
-            <h2 className="text-3xl font-black mb-2">
-              Bem-vindo
-            </h2>
-
-            <p className="text-zinc-500 mb-8">
-              Entre na sua conta do ToolHub IA
-            </p>
-
-            <div className="space-y-4">
-
-              {/* LOGIN */}
-              <a href="/login">
-                <button className="w-full bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-bold">
-                  Entrar na conta
-                </button>
-              </a>
-
-              {/* REGISTER */}
-              <a href="/register">
-                <button className="w-full bg-zinc-900 hover:bg-zinc-800 transition py-4 rounded-2xl font-bold border border-white/10">
-                  Criar cadastro
-                </button>
-              </a>
-
-              {/* GOOGLE */}
-              <button className="w-full bg-white text-black hover:scale-[1.02] transition py-4 rounded-2xl font-bold">
-                Continuar com Google
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      )}
-
+        </aside>
+      </div>
     </main>
   );
 }
