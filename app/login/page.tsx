@@ -1,5 +1,6 @@
 "use client";
 
+import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -75,11 +76,19 @@ export default function LoginPage() {
             </button>
 
             {/* GOOGLE */}
-            <button className="w-full h-14 bg-[#111111] border border-white/10 rounded-2xl font-semibold hover:border-white/20 transition">
-
-              Continuar com Google
-
-            </button>
+            <button
+  onClick={async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: "https://toolhubia.com.br",
+      },
+    });
+  }}
+  className="w-full bg-[#111] border border-white/10 hover:bg-white/5 transition py-4 rounded-xl font-medium"
+>
+  Continuar com Google
+</button>
 
           </div>
 
