@@ -114,18 +114,28 @@ export default function Home() {
 
             </div>
 
-            {/* UPLOAD */}
-            <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 text-center bg-black/30">
+             {/* UPLOAD */}
+             <div className="border-2 border-dashed border-white/10 rounded-3xl p-8 text-center bg-black/30">
 
-              <p className="text-zinc-400 text-base">
-                Clique ou solte uma imagem aqui
-              </p>
+                <p className="text-zinc-400 text-base">
+                 Clique ou solte uma imagem aqui
+                 </p>
 
-              <button className="mt-4 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-xl transition">
-                Selecionar imagem
-              </button>
+                 <input
+                   type="file"
+                   accept="image/*"
+                   className="hidden"
+                   id="imageUpload"
+                    />
 
-            </div>
+                      <label
+                       htmlFor="imageUpload"
+                        className="inline-block mt-4 bg-zinc-900 hover:bg-zinc-800 px-6 py-3 rounded-xl transition cursor-pointer"
+                         >
+                         Selecionar imagem
+                      </label>
+
+                      </div>
 
             {/* PROMPT */}
             <textarea
