@@ -1,11 +1,15 @@
+
+"use client";
+
 import Script from "next/script";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export const metadata = {
   title: "ToolHub IA - Ferramentas Modernas para Internet",
-
 
   openGraph: {
     title: "ToolHub IA",
@@ -22,6 +26,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [user, setUser] = useState<any>(null);
+  const [plan, setPlan] = useState("FREE");
+
+  useEffect(() => {
+    async function loadUser() {
+      const { data } = await supabase.auth.getUser();
+
+      if (data.user) {
+        setUser(data.user);
+
+        const { data: sub } = await supabase
+          .from("subscriptions")
+          .select("plan")
+          .eq("user_id", data.user.id)
+          .single();
+
+        if (sub?.plan) {
+          setPlan(sub.plan.toUpperCase());
+        }
+      }
+    }
+
+    loadUser();
+  }, []);
+
+  const letter =
+    user?.email?.charAt(0).toUpperCase() || "U";
+
   return (
     <html lang="pt-br">
       <head>
@@ -30,16 +62,17 @@ export default function RootLayout({
           content="FnhHzNTsXtvFiDrx4EXek2cF5q2GeJolNejb2-eV_cs"
         />
 
-       <Script
-  async
- src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953212773298111"
-  crossOrigin="anonymous"
-  strategy="afterInteractive"
-/>
-
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6953212773298111"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
 
       <body className="bg-black text-white">
+
+        {/* GOOGLE ANALYTICS */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-GJRYDE7TVH"
           strategy="afterInteractive"
@@ -54,6 +87,7 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* TOAST */}
         <Toaster
           position="top-right"
           toastOptions={{
@@ -65,69 +99,83 @@ export default function RootLayout({
           }}
         />
 
+        {/* HEADER */}
         <header className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-black/80 backdrop-blur-xl">
 
-  <div className="max-w-[1400px] mx-auto px-8 h-[64px] flex items-center justify-between">
+          <div className="max-w-[1400px] mx-auto px-8 h-[72px] flex items-center justify-between">
 
-    {/* LOGO */}
-    <div className="flex items-center gap-3">
-      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center font-black text-lg">
-        ✦
-      </div>
+            {/* LOGO */}
+            <Link href="/">
+              <div className="flex items-center gap-3 cursor-pointer">
 
-      <h1 className="text-[32px] font-black tracking-tight">
-        ToolHub <span className="text-purple-500">IA</span>
-      </h1>
-    </div>
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center font-black text-lg">
+                  ✦
+                </div>
 
-    {/* MENU */}
-    <nav className="hidden lg:flex items-center gap-7 text-[14px] font-medium text-zinc-400">
+                <h1 className="text-[30px] font-black tracking-tight">
+                  ToolHub <span className="text-purple-500">IA</span>
+                </h1>
 
-      <a href="/" className="hover:text-white transition">
-        Início
-      </a>
+              </div>
+            </Link>
 
-      <a href="/dashboard" className="hover:text-white transition">
-        Ferramentas
-      </a>
+            {/* MENU */}
+            <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-400">
 
-      <a href="/premium" className="hover:text-white transition">
-        Planos
-      </a>
+              <Link href="/" className="hover:text-white transition">
+                Início
+              </Link>
 
-      <a href="#exemplos" className="hover:text-white transition">
-        Exemplos
-      </a>
+              <Link href="/premium" className="hover:text-white transition">
+                Planos
+              </Link>
 
-      <a href="/business" className="hover:text-white transition">
-        Business
-      </a>
+            </nav>
 
-    </nav>
+            {/* USER AREA */}
+            <div className="flex items-center gap-3">
 
-    {/* BUTTONS */}
-    <div className="flex items-center gap-4">
+              {!user ? (
+                <Link href="/login">
+                  <button className="h-11 px-7 rounded-2xl bg-white text-black font-semibold hover:opacity-90 transition">
+                    Login
+                  </button>
+                </Link>
+              ) : (
+                <>
+                  <div className="h-11 px-5 rounded-full bg-white text-black flex items-center gap-2 font-semibold">
 
-      <a href="/login">
-  <button className="h-11 px-7 rounded-2xl bg-zinc-900 border border-white/5 hover:border-purple-500/30 transition text-sm font-semibold">
-    Entrar
-  </button>
-</a>
+                    <span className="text-purple-600">
+                      ◆
+                    </span>
 
-      <a href="/">
-  <button className="h-11 px-8 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-purple-600 hover:scale-105 transition text-sm font-bold shadow-[0_0_40px_rgba(168,85,247,0.35)]">
-    Começar agora
-  </button>
-</a>
+                    <span>
+                      {plan}
+                    </span>
 
-    </div>
+                  </div>
 
-  </div>
+                  <Link href="/profile">
+                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-fuchsia-600 to-purple-600 flex items-center justify-center font-black cursor-pointer">
+                      {letter}
+                    </div>
+                  </Link>
+                </>
+              )}
 
-</header>
+            </div>
 
-        {children}
+          </div>
+
+        </header>
+
+        {/* PAGE */}
+        <div className="pt-[72px]">
+          {children}
+        </div>
+
       </body>
     </html>
   );
 }
+
