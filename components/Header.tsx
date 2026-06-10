@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 export default function Header() {
   const [user, setUser] = useState<any>(null);
   const [plan, setPlan] = useState("FREE");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     async function loadUser() {
@@ -89,11 +90,32 @@ export default function Header() {
 
               </div>
 
-              <Link href="/profile">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-fuchsia-600 to-purple-600 flex items-center justify-center font-black cursor-pointer">
+              <div className="relative">
+
+                <button
+                  onClick={() => setOpen(!open)}
+                  className="w-11 h-11 rounded-full bg-gradient-to-br from-fuchsia-600 to-purple-600 flex items-center justify-center font-black"
+                >
                   {letter}
-                </div>
-              </Link>
+                </button>
+
+                {open && (
+                  <div className="absolute right-0 mt-3 w-44 bg-[#111111] border border-white/10 rounded-2xl p-2 shadow-2xl">
+
+                    <button
+                      onClick={async () => {
+                        await supabase.auth.signOut();
+                        location.reload();
+                      }}
+                      className="w-full text-left px-4 py-3 rounded-xl hover:bg-white/5 transition"
+                    >
+                      Sair
+                    </button>
+
+                  </div>
+                )}
+
+              </div>
             </>
           )}
 
