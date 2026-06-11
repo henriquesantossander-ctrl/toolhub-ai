@@ -1,371 +1,328 @@
-
 "use client";
 
 import { useState } from "react";
-import { Upload } from "lucide-react";
+import { ArrowRight, ImagePlus, Upload, Wand2, X } from "lucide-react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState("");
-  const [mode, setMode] = useState("text");
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
 
-  const examples = [
+  const showcase = [
     {
-      title: "Cyberpunk",
-      desc: "Cidade futurista neon",
+      title: "Produto premium",
+      desc: "Fotografia comercial com fundo escuro",
       image: "/examples/cyber-after.png",
+      prompt: "Produto tecnológico premium em fundo escuro, iluminação cinematográfica, fotografia comercial",
     },
     {
-      title: "Fantasy",
-      desc: "Guerreira medieval fantasy",
-      image: "/examples/fantasy-after.png",
-    },
-    {
-      title: "Anime",
-      desc: "Anime cinematográfico",
+      title: "Retrato cinematográfico",
+      desc: "Luz suave e aparência profissional",
       image: "/examples/hero-after.png",
+      prompt: "Retrato cinematográfico profissional, luz suave, fundo minimalista, ultra realista",
+    },
+    {
+      title: "Fantasia realista",
+      desc: "Arte conceitual de alto impacto",
+      image: "/examples/fantasy-after.png",
+      prompt: "Arte conceitual fantasy realista, iluminação dramática, detalhes premium, composição épica",
     },
     {
       title: "Cartoon 3D",
-      desc: "Pixar ultra detalhado",
+      desc: "Personagem estilizado profissional",
       image: "/examples/cartoon-after.png",
+      prompt: "Personagem cartoon 3D profissional, render premium, luz de estúdio, fundo limpo",
     },
   ];
 
-        async function generateImage() {
+  async function generateImage() {
+    if (!prompt.trim() && uploadedImages.length === 0) {
+      alert("Digite uma descrição ou envie uma imagem.");
+      return;
+    }
 
-    if (
-  mode === "text" &&
-  !prompt.trim()
-) {
-  alert("Digite uma descrição.");
-  return;
-}
+    setLoading(true);
+    setGeneratedImage("");
 
-  setLoading(true);
-
-  try {
-
-    const randomImages = [
-
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
-
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop",
-
-      "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1400&auto=format&fit=crop",
-
-      "https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=1400&auto=format&fit=crop",
-
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop",
-
-    ];
-
-    const random =
-      randomImages[
-        Math.floor(Math.random() * randomImages.length)
+    try {
+      const randomImages = [
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop",
       ];
 
-    setTimeout(() => {
+      const random =
+        randomImages[Math.floor(Math.random() * randomImages.length)];
 
-      setGeneratedImage(random);
+      setTimeout(() => {
+        setGeneratedImage(random);
+        setLoading(false);
+      }, 2200);
+    } catch (error) {
+      console.log(error);
       setLoading(false);
-
-    }, 2500);
-
-  } catch (error) {
-
-    console.log(error);
-    setLoading(false);
-
+    }
   }
-}
 
-  return (
-    <main className="min-h-screen bg-[#09090b] text-white overflow-hidden">
+  function handleUpload(files: FileList | null) {
+    if (!files) return;
 
-      {/* BACKGROUND */}
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.08),transparent_35%)] pointer-events-none" />
-
-      {/* HERO */}
-      <section className="max-w-5xl mx-auto px-6 pt-20 pb-8 text-center relative z-10">
-
-       <p className="text-zinc-500 text-sm uppercase tracking-[0.3em]">
-  TOOLHUB IA
-</p>
-
-<h1 className="text-5xl md:text-7xl font-bold leading-tight mt-6">
-  Crie imagens profissionais
-  <br />
-  com inteligência artificial
-</h1>
-
-        <p className="text-zinc-500 text-lg mt-8 max-w-2xl mx-auto leading-relaxed">
-         Transforme descrições simples em imagens realistas,
-         cinematográficas e comerciais em poucos segundos.
-        </p>
-
-      </section>
-
-      {/* GENERATOR */}
-      <section className="max-w-4xl mx-auto px-6 relative z-10">
-
-        <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[28px] p-6 shadow-[0_0_40px_rgba(255,255,255,0.03)]">
-        </div>
-
-          {/* TABS */}
-          <div className="flex gap-3 mb-5">
-
-            <button
-  onClick={() => setMode("text")}
-  className={`px-5 py-3 rounded-2xl text-sm font-semibold transition ${
-    mode === "text"
-      ? "bg-purple-600 text-white"
-      : "bg-white/[0.03] border border-white/5 text-zinc-500"
-  }`}
->
-  Texto para imagem
-</button>
-
-<button
-  onClick={() => setMode("image")}
-  className={`px-5 py-3 rounded-2xl text-sm font-semibold transition ${
-    mode === "image"
-      ? "bg-purple-600 text-white"
-      : "bg-white/[0.03] border border-white/5 text-zinc-500"
-  }`}
->
-  Imagem para imagem
-</button>
-
-          </div>
-
-          {/* TEXTAREA */}
-           {mode === "text" ? (
-  <textarea
-    value={prompt}
-    onChange={(e) => setPrompt(e.target.value)}
-    placeholder="Descreva a imagem que você quer criar..."
-    className="w-full h-[180px] bg-black/30 border border-white/10 rounded-3xl p-6 outline-none resize-none text-lg text-zinc-200 placeholder:text-zinc-600"
-  />
-) : (
-  <label className="w-full h-[180px] border-2 border-dashed border-white/10 rounded-3xl flex flex-col items-center justify-center cursor-pointer hover:border-purple-500/40 transition">
-
-    <input
-  type="file"
-  multiple
-  accept="image/*"
-  className="hidden"
-  onChange={(e) => {
-    const files = Array.from(e.target.files || []);
-
-    const previews = files.map((file) =>
+    const previews = Array.from(files).map((file) =>
       URL.createObjectURL(file)
     );
 
-    setUploadedImages(previews);
-  }}
-/>
+    setUploadedImages((prev) => [...prev, ...previews]);
+  }
 
-    {uploadedImages.length === 0 ? (
-  <>
-    <Upload className="w-10 h-10 text-zinc-500 mb-4" />
+  function removeImage(index: number) {
+    setUploadedImages((prev) => prev.filter((_, i) => i !== index));
+  }
 
-    <p className="text-zinc-400">
-      Envie uma ou mais imagens
-    </p>
-  </>
- ) : (
-  <div className="flex gap-3 flex-wrap p-4">
-    {uploadedImages.map((image, index) => (
-      <img
-        key={index}
-        src={image}
-        className="w-24 h-24 rounded-xl object-cover border border-white/10"
-      />
-    ))}
-  </div>
-)}
+  return (
+    <main className="min-h-screen bg-[#08090b] text-white overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_34%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.08),transparent_28%)]" />
 
-</label>
-)}
+      <section className="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-10 text-center">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-zinc-400">
+          <span className="h-2 w-2 rounded-full bg-blue-500" />
+          ToolHub IA Studio
+        </div>
 
+        <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
+          Crie imagens que parecem
+          <br />
+          feitas por profissionais.
+        </h1>
 
-          {/* OPTIONS */}
-          <div className="grid md:grid-cols-3 gap-4 mt-5">
-            <select
-            className="appearance-none bg-black/30 border border-white/10 rounded-2xl px-5 h-14 outline-none text-zinc-300"
-           >
-
-            
-              <option>Realista</option>
-              <option>Cinematográfico</option>
-              <option>Anime</option>
-              <option>Cyberpunk</option>
-              <option>Fantasy</option>
-            </select>
-
-            <select className="bg-black/30 border border-white/10 rounded-2xl px-5 h-14 outline-none text-zinc-300">
-              <option>16:9</option>
-              <option>1:1</option>
-              <option>9:16</option>
-            </select>
-
-            <button
-              onClick={generateImage}
-              className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:opacity-90 transition rounded-2xl font-bold text-white"
-            >
-              Gerar imagem
-            </button>
-
-          </div>
-
-
+        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
+          Gere, transforme e refine imagens com IA em uma interface limpa,
+          rápida e visual.
+        </p>
       </section>
 
-    
- {/* RESULT */}
- <div className="mt-8">
+      <section className="relative z-10 max-w-4xl mx-auto px-6">
+        <div className="rounded-[32px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_0_80px_rgba(255,255,255,0.04)] p-4">
+          <div className="rounded-[24px] border border-white/10 bg-black/30 p-4">
+            <textarea
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              placeholder="Descreva a imagem que você quer criar ou envie imagens como referência..."
+              className="h-[150px] w-full resize-none bg-transparent outline-none text-lg text-zinc-100 placeholder:text-zinc-600"
+            />
 
-  {loading && (
+            {uploadedImages.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-3">
+                {uploadedImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative h-20 w-20 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]"
+                  >
+                    <img
+                      src={image}
+                      alt="Imagem enviada"
+                      className="h-full w-full object-cover"
+                    />
 
-    <div className="relative overflow-hidden h-[520px] rounded-[32px] border border-white/10 bg-[#0b0b0f] flex items-center justify-center">
+                    <button
+                      onClick={() => removeImage(index)}
+                      className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-black/70 text-white"
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
 
-      {/* glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_45%)]" />
+            <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-wrap items-center gap-3">
+                <label className="flex h-11 cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 transition hover:bg-white/[0.08]">
+                  <Upload className="h-4 w-4" />
+                  Enviar imagens
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => handleUpload(e.target.files)}
+                  />
+                </label>
 
-      <div className="relative z-10 text-center">
+                <select className="h-11 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 outline-none">
+                  <option>Realista</option>
+                  <option>Cinematográfico</option>
+                  <option>Anime</option>
+                  <option>Cartoon 3D</option>
+                  <option>Produto comercial</option>
+                </select>
 
-        <div className="w-16 h-16 border-[3px] border-purple-500 border-t-transparent rounded-full animate-spin mx-auto" />
-
-        <h3 className="text-2xl font-bold mt-8">
-  Criando sua imagem
-</h3>
-
-<div className="w-72 h-2 bg-white/10 rounded-full mx-auto mt-6 overflow-hidden">
-
-  <div className="h-full bg-gradient-to-r from-purple-600 to-fuchsia-600 animate-pulse w-2/3" />
-
-</div>
-
-        <p className="text-zinc-500 mt-3">
-          A inteligência artificial está criando sua arte...
-        </p>
-
-      </div>
-
-    </div>
-
-  )}
-
-  {!loading && generatedImage && (
-
-    <div className="animate-[fadeIn_0.5s_ease]">
-
-      <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0f]">
-
-  <div className="flex justify-center p-6">
-    <img
-      src={generatedImage}
-      className="max-w-full max-h-[700px] rounded-2xl object-contain"
-    />
-  </div>
-
-  {/* overlay */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-  {/* buttons */}
-  <div className="absolute bottom-6 left-6 flex gap-4">
-          <button className="h-12 px-6 rounded-2xl bg-white text-black font-semibold hover:scale-105 transition">
-            Download
-          </button>
-
-          <button className="h-12 px-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 hover:bg-white/20 transition">
-            Gerar novamente
-          </button>
-
-          <button className="h-12 px-6 rounded-2xl bg-purple-600 hover:bg-purple-500 transition font-semibold">
-            Upscale HD
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  )}
-
-</div>
-
-
-
-      {/* EXAMPLES */}
-      <section className="max-w-6xl mx-auto px-6 py-20 relative z-10">
-
-        <div className="flex items-center justify-between mb-10">
-
-          <div>
-            <h2 className="text-3xl font-black">
-              Exemplos
-            </h2>
-
-            <p className="text-zinc-500 mt-2">
-              Clique em um exemplo para usar o prompt
-            </p>
-          </div>
-
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-5">
-
-          {examples.map((item) => (
-
-            <div
-              key={item.title}
-              onClick={() => setPrompt(item.desc)}
-              className="bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden hover:border-purple-500/40 transition cursor-pointer"
-            >
-
-              <img
-                src={item.image}
-                className="h-[320px] w-full object-cover"
-              />
-
-              <div className="p-5">
-
-                <h3 className="text-lg font-bold">
-                  {item.title}
-                </h3>
-
-                <p className="text-zinc-500 text-sm mt-2">
-                  {item.desc}
-                </p>
-
+                <select className="h-11 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 outline-none">
+                  <option>16:9</option>
+                  <option>1:1</option>
+                  <option>9:16</option>
+                  <option>4:5</option>
+                </select>
               </div>
 
+              <button
+                onClick={generateImage}
+                disabled={loading}
+                className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-white px-6 font-semibold text-black transition hover:scale-[1.02] disabled:opacity-60"
+              >
+                {loading ? "Criando..." : "Gerar imagem"}
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
+          </div>
+        </div>
+      </section>
 
-          ))}
+      {(loading || generatedImage) && (
+        <section className="relative z-10 max-w-5xl mx-auto px-6 pt-10">
+          <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-4">
+            {loading && (
+              <div className="flex h-[420px] flex-col items-center justify-center rounded-[24px] bg-black/30 text-center">
+                <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-white/10 bg-white/[0.04]">
+                  <Wand2 className="h-7 w-7 animate-pulse text-blue-400" />
+                </div>
 
+                <h3 className="mt-6 text-2xl font-semibold">
+                  Criando sua imagem
+                </h3>
+
+                <p className="mt-2 text-zinc-500">
+                  Preparando uma composição visual premium.
+                </p>
+              </div>
+            )}
+
+            {!loading && generatedImage && (
+              <div className="animate-[fadeIn_0.5s_ease]">
+                <div className="flex justify-center rounded-[24px] bg-black/30 p-5">
+                  <img
+                    src={generatedImage}
+                    alt="Imagem gerada"
+                    className="max-h-[650px] max-w-full rounded-2xl object-contain"
+                  />
+                </div>
+
+                <div className="mt-4 flex flex-col gap-3 md:flex-row md:justify-center">
+                  <button className="h-12 rounded-2xl bg-white px-6 font-semibold text-black transition hover:scale-[1.02]">
+                    Download
+                  </button>
+
+                  <button
+                    onClick={generateImage}
+                    className="h-12 rounded-2xl border border-white/10 bg-white/[0.04] px-6 font-semibold text-white transition hover:bg-white/[0.08]"
+                  >
+                    Gerar novamente
+                  </button>
+
+                  <button className="h-12 rounded-2xl border border-blue-500/30 bg-blue-500/10 px-6 font-semibold text-blue-200 transition hover:bg-blue-500/20">
+                    Upscale HD
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      <section className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+        <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-sm uppercase tracking-[0.3em] text-zinc-600">
+              Inspiração
+            </p>
+
+            <h2 className="mt-3 text-3xl md:text-4xl font-semibold">
+              Ideias prontas para criar
+            </h2>
+          </div>
+
+          <p className="max-w-md text-zinc-500">
+            Clique em qualquer card para carregar um prompt profissional.
+          </p>
         </div>
 
+        <div className="grid gap-5 md:grid-cols-2">
+          {showcase.map((item) => (
+            <button
+              key={item.title}
+              onClick={() => setPrompt(item.prompt)}
+              className="group overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] text-left transition hover:border-white/20 hover:bg-white/[0.06]"
+            >
+              <div className="relative h-[330px] overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+                <div className="absolute bottom-5 left-5 right-5">
+                  <h3 className="text-2xl font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm text-zinc-400">{item.desc}</p>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
       </section>
+
+      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-24">
+        <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-6 md:p-8">
+          <div className="grid gap-5 md:grid-cols-3">
+            <div className="rounded-[24px] border border-white/10 bg-black/20 p-6">
+              <h3 className="text-xl font-semibold">FREE</h3>
+              <p className="mt-2 text-zinc-500">Para testar a plataforma.</p>
+              <p className="mt-6 text-3xl font-semibold">R$0</p>
+              <p className="mt-3 text-sm text-zinc-500">5 gerações por dia</p>
+            </div>
+
+            <div className="rounded-[24px] border border-white/10 bg-black/20 p-6">
+              <h3 className="text-xl font-semibold">PRO</h3>
+              <p className="mt-2 text-zinc-500">Para criar com mais limite.</p>
+              <p className="mt-6 text-3xl font-semibold">R$19,90</p>
+              <p className="mt-3 text-sm text-zinc-500">
+                Mais gerações e sem anúncios
+              </p>
+            </div>
+
+            <div className="rounded-[24px] border border-blue-500/30 bg-blue-500/10 p-6">
+              <div className="mb-4 inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs text-blue-200">
+                Melhor plano
+              </div>
+
+              <h3 className="text-xl font-semibold">BUSINESS</h3>
+              <p className="mt-2 text-zinc-400">
+                Imagem, vídeo, análise e IA multimodal.
+              </p>
+              <p className="mt-6 text-3xl font-semibold">R$49,90</p>
+              <p className="mt-3 text-sm text-zinc-400">
+                Ferramentas avançadas para criadores
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <style jsx global>{`
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
 
-    to {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
-`}</style>
-
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </main>
   );
 }
