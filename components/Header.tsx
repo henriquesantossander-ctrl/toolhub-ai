@@ -39,33 +39,45 @@ export default function Header() {
 
       <div className="max-w-[1400px] mx-auto px-8 h-[72px] flex items-center justify-between">
 
-        {/* LOGO */}
-        <Link href="/">
-          <div className="flex items-center gap-3 cursor-pointer">
+         {/* LOGO */}
+<Link href="/">
+  <div className="flex items-center gap-3 cursor-pointer">
 
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center font-black text-lg">
-              ✦
-            </div>
+    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-fuchsia-500 to-purple-700 flex items-center justify-center font-black text-lg shadow-lg shadow-purple-500/20">
+      ✦
+    </div>
 
-            <h1 className="text-[30px] font-black tracking-tight">
-              ToolHub <span className="text-purple-500">IA</span>
-            </h1>
+    <div>
+      <h1 className="text-2xl font-bold tracking-tight">
+        ToolHub <span className="text-purple-500">IA</span>
+      </h1>
 
-          </div>
-        </Link>
+      <p className="text-[11px] text-zinc-500">
+        AI Creation Platform
+      </p>
+    </div>
 
-        {/* MENU */}
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-400">
+  </div>
+</Link>
 
-          <Link href="/" className="hover:text-white transition">
-            Início
-          </Link>
+{/* MENU */}
+<nav className="hidden lg:flex items-center gap-2 bg-white/[0.03] border border-white/10 rounded-full p-1">
 
-          <Link href="/premium" className="hover:text-white transition">
-            Planos
-          </Link>
+  <Link
+    href="/"
+    className="px-5 py-2 rounded-full hover:bg-white/5 transition text-zinc-400 hover:text-white"
+  >
+    Início
+  </Link>
 
-        </nav>
+  <Link
+    href="/premium"
+    className="px-5 py-2 rounded-full hover:bg-white/5 transition text-zinc-400 hover:text-white"
+  >
+    Planos
+  </Link>
+
+</nav>
 
         {/* USER */}
         <div className="flex items-center gap-3">
@@ -78,15 +90,21 @@ export default function Header() {
             </Link>
           ) : (
             <>
-              <div className="h-11 px-5 rounded-full bg-white text-black flex items-center gap-2 font-semibold">
+              <div className="h-11 px-5 rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-xl flex items-center gap-2 font-semibold">
 
                 <span className="text-purple-600">
                   ◆
                 </span>
 
-                <span>
-                  {plan}
-                </span>
+                <div className="flex flex-col leading-none">
+  <span className="text-[10px] text-zinc-400">
+    PLANO
+  </span>
+
+  <span className="text-white text-sm">
+    {plan}
+  </span>
+</div>
 
               </div>
 
@@ -94,7 +112,7 @@ export default function Header() {
 
                 <button
                   onClick={() => setOpen(!open)}
-                  className="w-11 h-11 rounded-full bg-gradient-to-br from-fuchsia-600 to-purple-600 flex items-center justify-center font-black"
+                  className="w-11 h-11 rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-xl flex items-center justify-center font-black text-white"
                 >
                   {letter}
                 </button>
