@@ -265,17 +265,18 @@ export default function Home() {
 
       <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0f]">
 
-        <img
-          src={generatedImage}
-          className="w-full h-[620px] object-cover"
-        />
+  <div className="flex justify-center p-6">
+    <img
+      src={generatedImage}
+      className="max-w-full max-h-[700px] rounded-2xl object-contain"
+    />
+  </div>
 
-        {/* overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+  {/* overlay */}
+  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-        {/* buttons */}
-        <div className="absolute bottom-6 left-6 flex gap-4">
-
+  {/* buttons */}
+  <div className="absolute bottom-6 left-6 flex gap-4">
           <button className="h-12 px-6 rounded-2xl bg-white text-black font-semibold hover:scale-105 transition">
             Download
           </button>
