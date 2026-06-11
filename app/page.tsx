@@ -9,7 +9,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState("");
   const [mode, setMode] = useState("text");
-  const [uploadedImage, setUploadedImage] = useState("");
+  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
 
   const examples = [
     {
@@ -36,10 +36,13 @@ export default function Home() {
 
         async function generateImage() {
 
-  if (!prompt.trim()) {
-    alert("Digite uma descrição.");
-    return;
-  }
+    if (
+  mode === "text" &&
+  !prompt.trim()
+) {
+  alert("Digite uma descrição.");
+  return;
+}
 
   setLoading(true);
 
@@ -80,35 +83,27 @@ export default function Home() {
 }
 
   return (
-    <main className="min-h-screen bg-[#07070a] text-white overflow-hidden">
+    <main className="min-h-screen bg-[#09090b] text-white overflow-hidden">
 
       {/* BACKGROUND */}
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_35%)] pointer-events-none" />
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.08),transparent_35%)] pointer-events-none" />
 
       {/* HERO */}
       <section className="max-w-5xl mx-auto px-6 pt-20 pb-8 text-center relative z-10">
 
-        <p className="text-purple-400 text-sm font-semibold tracking-[0.25em] uppercase">
-          Gerador de imagens IA
-        </p>
+       <p className="text-zinc-500 text-sm uppercase tracking-[0.3em]">
+  TOOLHUB IA
+</p>
 
-        <h1 className="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight mt-6">
-
-          Inteligência artificial
-          <br />
-
-          <span className="bg-gradient-to-r from-white via-purple-200 to-purple-500 bg-clip-text text-transparent">
-            que transforma ideias
-          </span>
-
-          <br />
-          em imagens.
-
-        </h1>
+<h1 className="text-5xl md:text-7xl font-bold leading-tight mt-6">
+  Crie imagens profissionais
+  <br />
+  com inteligência artificial
+</h1>
 
         <p className="text-zinc-500 text-lg mt-8 max-w-2xl mx-auto leading-relaxed">
-          Crie artes cinematográficas, ultra realistas,
-          anime e imagens profissionais em segundos.
+         Transforme descrições simples em imagens realistas,
+         cinematográficas e comerciais em poucos segundos.
         </p>
 
       </section>
@@ -116,7 +111,7 @@ export default function Home() {
       {/* GENERATOR */}
       <section className="max-w-4xl mx-auto px-6 relative z-10">
 
-        <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[34px] p-6 shadow-[0_0_80px_rgba(124,58,237,0.08)]">
+        <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[28px] p-6 shadow-[0_0_40px_rgba(255,255,255,0.03)]">
 
           {/* TABS */}
           <div className="flex gap-3 mb-5">
@@ -157,33 +152,42 @@ export default function Home() {
   <label className="w-full h-[180px] border-2 border-dashed border-white/10 rounded-3xl flex flex-col items-center justify-center cursor-pointer hover:border-purple-500/40 transition">
 
     <input
-      type="file"
-      accept="image/*"
-      className="hidden"
-      onChange={(e) => {
-        const file = e.target.files?.[0];
+  type="file"
+  multiple
+  accept="image/*"
+  className="hidden"
+  onChange={(e) => {
+    const files = Array.from(e.target.files || []);
 
-        if (file) {
-          setUploadedImage(URL.createObjectURL(file));
-        }
-      }}
-    />
+    const previews = files.map((file) =>
+      URL.createObjectURL(file)
+    );
 
-    {!uploadedImage ? (
-      <>
-       
-        <p className="text-zinc-400">
-          Clique para enviar uma imagem
-        </p>
-      </>
-    ) : (
+    setUploadedImages(previews);
+  }}
+/>
+
+    {uploadedImages.length === 0 ? (
+  <>
+    <Upload className="w-10 h-10 text-zinc-500 mb-4" />
+
+    <p className="text-zinc-400">
+      Envie uma ou mais imagens
+    </p>
+  </>
+ ) : (
+  <div className="flex gap-3 flex-wrap p-4">
+    {uploadedImages.map((image, index) => (
       <img
-        src={uploadedImage}
-        className="h-full w-full object-cover rounded-3xl"
+        key={index}
+        src={image}
+        className="w-24 h-24 rounded-xl object-cover border border-white/10"
       />
-    )}
-  </label>
+    ))}
+  </div>
 )}
+
+</label>
 
           {/* OPTIONS */}
           <div className="grid md:grid-cols-3 gap-4 mt-5">
@@ -207,55 +211,19 @@ export default function Home() {
 
             <button
               onClick={generateImage}
-              className="bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:opacity-90 transition rounded-2xl font-bold text-white"
+              className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:opacity-90 transition rounded-2xl font-bold text-white"
             >
-              Gerar imagem ✨
+              Gerar imagem
             </button>
 
           </div>
 
-          {/* FEATURES */}
-          <div className="grid md:grid-cols-3 gap-4 mt-6">
-
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4">
-              <h3 className="font-semibold">
-                Geração rápida
-              </h3>
-
-              <p className="text-zinc-500 text-sm mt-2">
-                Resultados em segundos
-              </p>
-            </div>
-
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4">
-              <h3 className="font-semibold">
-                Qualidade profissional
-              </h3>
-
-              <p className="text-zinc-500 text-sm mt-2">
-                Imagens em alta definição
-              </p>
-            </div>
-
-            <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-4">
-              <h3 className="font-semibold">
-                Privado e seguro
-              </h3>
-
-              <p className="text-zinc-500 text-sm mt-2">
-                Suas imagens pertencem a você
-              </p>
-            </div>
-
-          </div>
-
-        </div>
 
       </section>
 
     
-{/* RESULT */}
-<div className="mt-8">
+ {/* RESULT */}
+ <div className="mt-8">
 
   {loading && (
 
@@ -346,7 +314,7 @@ export default function Home() {
 
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-5">
 
           {examples.map((item) => (
 
@@ -358,7 +326,7 @@ export default function Home() {
 
               <img
                 src={item.image}
-                className="h-[220px] w-full object-cover"
+                className="h-[320px] w-full object-cover"
               />
 
               <div className="p-5">
