@@ -6,33 +6,53 @@ export default function PremiumPage() {
     <main className="min-h-screen bg-[#070707] text-white overflow-hidden">
 
       {/* BACKGROUND */}
-      <div className="fixed inset-0 bg-purple-600/5 blur-[180px] pointer-events-none" />
-
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.08),transparent_28%)] pointer-events-none" />
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-24">
 
         {/* HEADER */}
         <div className="text-center mb-20">
 
-          <p className="text-purple-400 text-sm tracking-[0.3em] uppercase mb-5">
-            PREMIUM PLANS
-          </p>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-zinc-400">
+           <span className="h-2 w-2 rounded-full bg-blue-500" />
+          ToolHub IA Premium
+        </div>
 
-          <h1 className="text-5xl md:text-6xl font-black">
-            Escolha seu plano
-          </h1>
+      <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
+         Desbloqueie todo o
+         <br />
+         potencial da IA
+      </h1>
 
           <p className="text-zinc-500 text-lg mt-6 max-w-2xl mx-auto">
-            Ferramentas profissionais de IA para criação de imagens,
-            vídeos e projetos avançados.
+               Imagem, vídeo, análise multimodal,
+               PDFs inteligentes e ferramentas profissionais.
           </p>
+<div className="flex flex-wrap justify-center gap-3 mt-8">
 
+  <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
+    IA de imagens
+  </div>
+
+  <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
+    Vídeos IA
+  </div>
+
+  <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
+    PDFs inteligentes
+  </div>
+
+  <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
+    Multimodal
+  </div>
+
+</div>
         </div>
 
         {/* CARDS */}
         <div className="grid lg:grid-cols-3 gap-8">
 
           {/* FREE */}
-          <div className="bg-[#111111] border border-white/10 rounded-3xl p-8">
+          <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-8">
 
             <p className="text-zinc-500 text-sm mb-4">
               FREE
@@ -65,7 +85,7 @@ export default function PremiumPage() {
           </div>
 
           {/* PRO */}
-          <div className="bg-[#141414] border border-purple-500/20 rounded-3xl p-8 relative">
+          <div className="bg-white/[0.05] border border-purple-500/20 rounded-3xl p-8 relative">
 
             <div className="absolute top-5 right-5 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs px-4 py-2 rounded-full">
               MAIS POPULAR
@@ -76,7 +96,7 @@ export default function PremiumPage() {
             </p>
 
             <h2 className="text-5xl font-bold">
-              R$19
+              R$19,90
             </h2>
 
             <p className="text-zinc-500 mt-3">
@@ -106,14 +126,18 @@ export default function PremiumPage() {
           </div>
 
           {/* BUSINESS */}
-          <div className="bg-[#111111] border border-white/10 rounded-3xl p-8">
+          <div className="bg-blue-500/10 border border-blue-500/30 rounded-3xl p-8 relative">
+
+          <div className="mb-5 inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs text-blue-200">
+  Melhor plano
+</div>
 
             <p className="text-zinc-500 text-sm mb-4">
               BUSINESS
             </p>
 
             <h2 className="text-5xl font-bold">
-              R$49
+              R$49,90
             </h2>
 
             <p className="text-zinc-500 mt-3">
