@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { Upload } from "lucide-react";
 
 export default function Home() {
   const [prompt, setPrompt] = useState("");
@@ -170,7 +171,7 @@ export default function Home() {
 
     {!uploadedImage ? (
       <>
-        <span className="text-3xl mb-3">📁</span>
+       
         <p className="text-zinc-400">
           Clique para enviar uma imagem
         </p>
@@ -187,10 +188,10 @@ export default function Home() {
           {/* OPTIONS */}
           <div className="grid md:grid-cols-3 gap-4 mt-5">
             <select
-            className="appearance-none bg-black/30 border border-white/10 rounded-2xl px-5 h-14 outline-none text-zinc-300">
-           </select>
+            className="appearance-none bg-black/30 border border-white/10 rounded-2xl px-5 h-14 outline-none text-zinc-300"
+           >
 
-            <select className="bg-black/30 border border-white/10 rounded-2xl px-5 h-14 outline-none text-zinc-300">
+            
               <option>Realista</option>
               <option>Cinematográfico</option>
               <option>Anime</option>
