@@ -112,6 +112,7 @@ export default function Home() {
       <section className="max-w-4xl mx-auto px-6 relative z-10">
 
         <div className="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-[28px] p-6 shadow-[0_0_40px_rgba(255,255,255,0.03)]">
+        </div>
 
           {/* TABS */}
           <div className="flex gap-3 mb-5">
@@ -188,6 +189,8 @@ export default function Home() {
 )}
 
 </label>
+)}
+
 
           {/* OPTIONS */}
           <div className="grid md:grid-cols-3 gap-4 mt-5">
