@@ -20,25 +20,21 @@ export default function PremiumPage() {
   Mais recursos. Mais velocidade. Mais possibilidades.
 </p>
       <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
-         Desbloqueie todo o
-         <br />
-         potencial da IA
-      </h1>
+  Desbloqueie todo o
+  <br />
+  potencial da IA
+</h1>
 
-          <p className="text-zinc-500 text-lg mt-6 max-w-2xl mx-auto">
-               Imagem, vídeo, análise multimodal,
-               PDFs inteligentes e ferramentas profissionais.
-          </p>
+<p className="text-xl text-zinc-400 mt-6">
+  Crie imagens, vídeos e conteúdos profissionais em segundos.
+</p>
+
+<p className="text-zinc-500 text-lg mt-4 max-w-2xl mx-auto">
+  Imagem, vídeo, análise multimodal,
+  PDFs inteligentes e ferramentas profissionais.
+</p>
 <div className="flex flex-wrap justify-center gap-3 mt-8">
   
-<div className="mt-8 text-center">
-  <p className="text-zinc-500 text-sm">
-    Criadores, designers e empreendedores utilizam o ToolHub IA para acelerar seu trabalho.
-  </p>
-</div>
-
-  
-
   <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
     IA de imagens
   </div>
@@ -62,7 +58,7 @@ export default function PremiumPage() {
         <div className="grid lg:grid-cols-3 gap-8">
 
           {/* FREE */}
-          <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 opacity-80">
+          <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 opacity-120">
 
             <p className="text-zinc-500 text-sm mb-4">
               FREE
@@ -136,7 +132,7 @@ export default function PremiumPage() {
           </div>
 
           {/* BUSINESS */}
-          <div className="bg-blue-500/10 border border-blue-500/30 rounded-3xl p-8 relative">
+          <div className="bg-gradient-to-b from-blue-500/10 to-transparent border-blue-500/30 rounded-3xl p-8 relative">
 
           <div className="mb-5 inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs text-blue-200">
   Melhor plano
