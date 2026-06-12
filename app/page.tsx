@@ -46,25 +46,30 @@ export default function Home() {
     setGeneratedImage("");
 
     try {
-      const randomImages = [
-        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?q=80&w=1400&auto=format&fit=crop",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop",
-      ];
+      const response = await fetch("/api/business-image", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    prompt,
+  }),
+});
 
-      const random =
-        randomImages[Math.floor(Math.random() * randomImages.length)];
+const data = await response.json();
 
-      setTimeout(() => {
-        setGeneratedImage(random);
-        setLoading(false);
-      }, 2200);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
+if (!response.ok) {
+  throw new Error(data.error || "Erro ao gerar imagem");
+}
+
+       setGeneratedImage(data.image);
+  } catch (error) {
+    console.error(error);
+    alert("Erro ao gerar imagem.");
+  } finally {
+    setLoading(false);
   }
+}
 
   function handleUpload(files: FileList | null) {
     if (!files) return;
