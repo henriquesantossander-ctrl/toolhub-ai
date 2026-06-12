@@ -16,7 +16,9 @@ export default function PremiumPage() {
            <span className="h-2 w-2 rounded-full bg-blue-500" />
           ToolHub IA Premium
         </div>
-
+          <p className="text-zinc-600 text-sm mt-4">
+  Mais recursos. Mais velocidade. Mais possibilidades.
+</p>
       <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
          Desbloqueie todo o
          <br />
@@ -28,6 +30,14 @@ export default function PremiumPage() {
                PDFs inteligentes e ferramentas profissionais.
           </p>
 <div className="flex flex-wrap justify-center gap-3 mt-8">
+  
+<div className="mt-8 text-center">
+  <p className="text-zinc-500 text-sm">
+    Criadores, designers e empreendedores utilizam o ToolHub IA para acelerar seu trabalho.
+  </p>
+</div>
+
+  
 
   <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
     IA de imagens
@@ -52,7 +62,7 @@ export default function PremiumPage() {
         <div className="grid lg:grid-cols-3 gap-8">
 
           {/* FREE */}
-          <div className="bg-white/[0.03] border border-white/10 rounded-3xl p-8">
+          <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 opacity-80">
 
             <p className="text-zinc-500 text-sm mb-4">
               FREE
@@ -78,8 +88,8 @@ export default function PremiumPage() {
 
             </div>
 
-            <button className="w-full mt-10 bg-white/5 border border-white/10 py-4 rounded-2xl">
-              Plano atual
+           <button className="w-full mt-10 bg-white/5 border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition">
+              Começar grátis
             </button>
 
           </div>
@@ -146,12 +156,13 @@ export default function PremiumPage() {
 
             <div className="space-y-4 mt-10 text-zinc-300">
 
-              <p>• Gerações ilimitadas</p>
-              <p>• Vídeo IA ilimitado</p>
-              <p>• IA ultra realista</p>
-              <p>• Prioridade máxima</p>
-              <p>• Modelos exclusivos</p>
-              <p>• API futura</p>
+             <p>• Gerações ilimitadas</p>
+<p>• Vídeo IA ilimitado</p>
+<p>• Chat IA avançado</p>
+<p>• Análise de PDFs</p>
+<p>• Upload múltiplo de imagens</p>
+<p>• Sem anúncios</p>
+<p>• Prioridade máxima</p>
 
             </div>
 
@@ -159,7 +170,7 @@ export default function PremiumPage() {
               href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
               target="_blank"
             >
-              <button className="w-full mt-10 bg-white text-black py-4 rounded-2xl font-medium hover:opacity-90 transition">
+              <button className="w-full mt-10 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 rounded-2xl font-semibold hover:scale-[1.02] transition">
                 Assinar BUSINESS
               </button>
             </a>
