@@ -1,0 +1,145 @@
+[33m94d22b0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m OpenAI image generation funcionando
+[33m6a8bca3[m[33m ([m[1;31morigin/main[m[33m)[m teste
+[33md7f5ff3[m ativar openai image
+[33m1865455[m Melhorias pagina premium
+[33m2c13032[m Premium page final
+[33m4d23547[m Nova navbar premium
+[33m9ff69aa[m Melhora visual pagina premium
+[33m4e07022[m Cria home premium do ToolHub IA
+[33m1ad78c5[m Melhora layout da imagem gerada
+[33m96c1203[m Corrige upload multiplo e estrutura JSX
+[33m3020066[m Melhora home ToolHub IA com upload múltiplo
+[33m5cf689a[m Atualiza home ToolHub IA
+[33m649ed0a[m Melhorado select estilos
+[33m1a44e9c[m Novo visual premium home
+[33mccd6844[m Novo header profissional
+[33m6884b12[m Removido header duplicado da Home
+[33m67cf889[m Corrigido layout
+[33m7abdb29[m Novo header profissional com user area
+[33ma6c5bd6[m Novo design premium profissional
+[33mda32ae0[m Corrigido redirect Google OAuth
+[33m275ad52[m Corrigido login Google e página register
+[33m5f94c41[m Novo design profissional login
+[33m65ddfe8[m Novo layout premium profissional
+[33med831c3[m Nova interface profissional ToolHub IA
+[33m8732faa[m Removidas ferramentas antigas e simplificado foco do produto
+[33m3cfc643[m Atualização ToolHub IA
+[33mc276780[m Nova interface limpa profissional
+[33me8517c1[m Logo volta para home
+[33m0d3a340[m Upload de imagem funcionando
+[33m933824a[m Correções gerais interface IA
+[33m8583d81[m Corrigindo rotas e ativando funcionalidades iniciais
+[33m4ff7dcb[m Nova interface minimalista da home
+[33m41be154[m Layout minimalista estilo IA profissional
+[33m521a4ba[m Nova home estilo IA profissional
+[33mea03119[m Atualizando planos do novo site
+[33m5ee15b2[m Corrigindo responsividade do site
+[33m9ba3234[m Removendo ferramentas antigas
+[33mb13080d[m Responsividade mobile corrigida
+[33me957645[m Botão BUSINESS funcionando
+[33m4faa56f[m Corrigido botão BUSINESS
+[33maa51f7c[m Corrigido botão PRO
+[33m331b5d6[m Corrigido botão PRO
+[33me293369[m Navbar profissional
+[33ma0ac333[m Layout profissional homepage
+[33m6a63d61[m Compactando layout premium
+[33m9a2fe84[m Novo visual premium profile
+[33md74ea16[m Novo visual profile
+[33mb322f2b[m Nova interface premium profile
+[33me1f630c[m Nova página premium profissional
+[33m0c714dc[m Homepage premium final
+[33mfe5f9e6[m Homepage premium final
+[33m8464bab[m Homepage cinematografica final
+[33md79a22c[m Corrigindo layout premium
+[33mb8f0802[m Hero premium cinematografica
+[33m66b6ad6[m Melhorando visual cinematografico
+[33m16ffd60[m Nova hero cinematografica
+[33m5a57d49[m Corrigindo paths imagens
+[33m1f15490[m Corrigindo imagens hero
+[33m2177e9c[m Adicionando cards cinematicos
+[33m65024c6[m Nova homepage cinematografica
+[33mdfb3272[m Nova homepage cinematografica
+[33mcaaddb2[m IA agora edita imagem original
+[33mf015127[m Melhorando preservação da imagem IA
+[33mf7282a7[m Novo editor de imagem IA
+[33m705ea56[m Melhorando estilos cinematic AI
+[33md727f61[m Adicionando ferramentas business no perfil
+[33m1aba595[m Perfil reconhecendo business
+[33m6a6c0a4[m Corrigindo webhook para liberar Business
+[33m8ce986b[m Atualizando Business e Cinematic AI
+[33mc5f3e05[m Criando checkout Business Mercado Pago
+[33m8fa83aa[m Adicionando escolha entre PRO e Business
+[33m39aaa26[m Adicionando rota Business Mercado Pago
+[33m2c04122[m Adicionando pagamento Business Mercado Pago
+[33mdbd03bd[m Corrigindo rota Business Image
+[33mb2dec9c[m Corrigindo build Business Image
+[33ma9f8802[m Publicando pagina Business
+[33m94301c4[m Melhorando landing page Business
+[33ma23e699[m Criando Business AI Vision
+[33m75e6171[m Criando API Business AI
+[33m0f3e257[m Adicionando limite na ferramenta free fire
+[33mc33ef34[m Adicionando limite na ferramenta username tiktok
+[33m80e1cdf[m Adicionando limite na ferramenta nickname
+[33mfc87747[m Adicionando limite na ferramenta legenda instagram
+[33mfa77e50[m Adicionando limite na ferramenta hashtags
+[33med56c94[m Nova ferramenta roteiro IA
+[33mfda31ae[m Criando API video script
+[33m8529620[m Nova ferramenta IA
+[33me531a1c[m Nova ferramenta roteiros IA
+[33ma02455a[m Nova ferramenta gerador de roteiro viral
+[33md97c767[m Atualizando limites
+[33m0a0122f[m Adicionando limite gratis em todas ferramentas
+[33m9c17061[m Adicionando limite gratis em todas ferramentas
+[33ma11ad21[m Adicionando sistema de anuncios
+[33m8347210[m Adicionando banners AdSense
+[33mc6b863e[m Adicionando ads.txt para AdSense
+[33m1493d31[m adiciona limite diario
+[33m3159d55[m melhora pagina premium conversao
+[33m978ba7f[m melhora landing page conversao pro
+[33m3c27c10[m adiciona links contato termos privacidade
+[33m85eab88[m adiciona paginas legais
+[33ma923547[m corrige plano no dashboard
+[33m45d0920[m add metadata user email
+[33m60d56ba[m mostra plano pro no perfil
+[33md09cace[m fix premium session token
+[33mf7b16e2[m fix premium auth
+[33mdd0aaa6[m redeploy mp token
+[33m3448362[m fix mercado pago api
+[33m81e28d7[m redeploy
+[33mea360d4[m corrige checkout premium
+[33m9ab35ad[m fix premium checkout
+[33mde5e2a6[m fix premium button
+[33m5d9c97b[m fix premium button
+[33mfc80b7a[m fix google redirect
+[33m911d4e0[m Adiciona login Google
+[33ma5ff1cc[m Corrige script adsense
+[33ma611c73[m Corrige layout e adiciona verificacao google
+[33m057df7b[m Adiciona verificacao google
+[33m716fc2e[m Melhora SEO das ferramentas
+[33m5fa96c4[m Atualiza landing page premium
+[33m7209cf9[m Atualiza caption generator premium
+[33mfecf872[m Atualiza freefire generator premium
+[33m1505707[m Adiciona loading no nickname generator
+[33m9a52893[m Adiciona loading premium
+[33m0d779e3[m Adiciona IA no TikTok username generator
+[33mc36ead6[m Melhora visual nickname generator
+[33mf5b3385[m Melhora nicknames IA
+[33md3fcbfd[m Adiciona IA no nickname generator
+[33m6bf0827[m Remove legenda fake
+[33m2cfd294[m Adiciona IA no gerador de legendas
+[33ma159edc[m Adiciona IA no gerador de hashtags
+[33mf53bd9f[m IA real conectada
+[33m996fd56[m melhora seo
+[33m1f548a1[m adiciona google analytics
+[33m8e72323[m adiciona seção popular
+[33m2737c6d[m adiciona ferramenta free fire
+[33m4ecae10[m adiciona favicon
+[33m9ebea95[m melhora seo
+[33m08ad74d[m adiciona gerador de hashtags
+[33m5178b75[m adiciona ferramenta tiktok
+[33m3a00777[m corrige grid da home
+[33m9c1a074[m nova ferramenta
+[33m4118bee[m visual update
+[33mc13bda9[m glow effect
+[33m10f8197[m visual update
+[33m51aa287[m primeiro commit
