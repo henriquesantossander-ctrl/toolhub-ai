@@ -5,19 +5,11 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-console.log(Object.keys(openai.images));
 export async function POST(req: Request) {
   try {
-    console.log("API BUSINESS IMAGE CHAMADA");
-
     const formData = await req.formData();
 
     const prompt = formData.get("prompt") as string;
-    const images = formData.getAll("images");
-
-console.log("PROMPT:", prompt);
-console.log("IMAGENS:", images.length);
-console.log(images);
 
     if (!prompt) {
       return NextResponse.json(
