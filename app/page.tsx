@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { ArrowRight, ImagePlus, Upload, Wand2, X } from "lucide-react";
 
-export default function Home() {
+  export default function Home() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState("");
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const showcase = [
     {
@@ -36,55 +37,82 @@ export default function Home() {
     },
   ];
 
-  async function generateImage() {
-    if (!prompt.trim() && uploadedImages.length === 0) {
-      alert("Digite uma descrição ou envie uma imagem.");
-      return;
-    }
+     async function generateImage() {
+  if (!prompt.trim() && uploadedImages.length === 0) {
+    alert("Digite uma descrição ou envie uma imagem.");
+    return;
+  }
 
-    setLoading(true);
-    setGeneratedImage("");
+  setLoading(true);
+  setGeneratedImage("");
 
-    try {
-      const response = await fetch("/api/business-image", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    prompt,
-  }),
+  try {
+    const formData = new FormData();
+
+    formData.append("prompt", prompt);
+
+    uploadedFiles.forEach((file) => {
+      formData.append("images", file);
+    });
+
+    console.log("BOTAO CLICADO");
+    console.log("VOU CHAMAR A API");
+
+const response = await fetch("/api/business-image", {
+  method: "POST", 
+  body: formData,
 });
 
-const data = await response.json();
 
-if (!response.ok) {
-  throw new Error(data.error || "Erro ao gerar imagem");
-}
+    console.log("API RESPONDEU");
 
-       setGeneratedImage(data.image);
+    console.log("STATUS:", response.status);
+
+const text = await response.text();
+
+console.log("RESPOSTA API:", text);
+
+const data = JSON.parse(text);
+
+    if (!response.ok) {
+      throw new Error(data.error || "Erro ao gerar imagem");
+    }
+
+    setGeneratedImage(data.image);
   } catch (error) {
-    console.error(error);
-    alert("Erro ao gerar imagem.");
-  } finally {
-    setLoading(false);
-  }
+   console.error("ERRO COMPLETO:", error);
+
+if (error instanceof Error) {
+  alert(error.message);
+} else {
+  alert(String(error));
+}
+} finally {
+  setLoading(false);
 }
 
-  function handleUpload(files: FileList | null) {
-    if (!files) return;
+    function handleUpload(files: FileList | null) {
+  if (!files) return;
 
-    const previews = Array.from(files).map((file) =>
-      URL.createObjectURL(file)
-    );
+  const fileArray = Array.from(files);
 
-    setUploadedImages((prev) => [...prev, ...previews]);
-  }
+  const previews = fileArray.map((file) =>
+    URL.createObjectURL(file)
+  );
 
-  function removeImage(index: number) {
-    setUploadedImages((prev) => prev.filter((_, i) => i !== index));
-  }
+  setUploadedImages((prev) => [...prev, ...previews]);
+  setUploadedFiles((prev) => [...prev, ...fileArray]);
+}
 
+      function removeImage(index: number) {
+  setUploadedImages((prev) =>
+    prev.filter((_, i) => i !== index)
+  );
+
+  setUploadedFiles((prev) =>
+    prev.filter((_, i) => i !== index)
+  );
+}
   return (
     <main className="min-h-screen bg-[#08090b] text-white overflow-hidden">
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_34%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.08),transparent_28%)]" />
@@ -95,12 +123,9 @@ if (!response.ok) {
           ToolHub IA Studio
         </div>
 
-        <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
-          Crie imagens que parecem
-          <br />
-          feitas por profissionais.
-        </h1>
-
+        <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-red-500">
+  PAGINA TESTE HENRIQUE 999
+</h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
           Gere, transforme e refine imagens com IA em uma interface limpa,
           rápida e visual.
@@ -331,4 +356,6 @@ if (!response.ok) {
     </main>
   );
 }
+
+
 
