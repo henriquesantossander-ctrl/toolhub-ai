@@ -10,38 +10,40 @@ try {
 const formData = await req.formData();
 
 
-const prompt = formData.get("prompt");
+const prompt = formData.get("prompt") as string;
 const image = formData.get("image") as File;
 
-console.log("PROMPT:", prompt);
-console.log("NOME:", image?.name);
-console.log("TIPO:", image?.type);
-console.log("TAMANHO:", image?.size);
+const result = await openai.images.edit({
+  model: "gpt-image-1",
+  image,
+  prompt,
+  size: "1024x1024",
+});
 
-console.log("OPENAI:", typeof openai);
-console.dir(openai.images, { depth: 2 });
+const imageBase64 = result.data?.[0]?.b64_json;
 
-console.log(
-  "PROTO:",
-  Object.getOwnPropertyNames(
-    Object.getPrototypeOf(openai.images)
-  )
-);
+if (!imageBase64) {
+  return NextResponse.json(
+    { error: "Nenhuma imagem retornada." },
+    { status: 500 }
+  );
+}
 
 return NextResponse.json({
-  image: "https://picsum.photos/1024/1024",
+  image: `data:image/png;base64,${imageBase64}`,
 });
 
 
 } catch (error) {
-console.error(error);
+console.error("ERRO OPENAI:", error);
 
 
 return NextResponse.json(
-  { error: "Erro interno do servidor." },
+  { error: "Erro ao editar imagem." },
   { status: 500 }
 );
 
 
 }
 }
+
