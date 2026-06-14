@@ -119,7 +119,7 @@ export default function Home() {
         </div>
 
         <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-red-500">
-          PAGINA TESTE HENRIQUE 999
+          
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
           Gere, transforme e refine imagens com IA em uma interface limpa,
