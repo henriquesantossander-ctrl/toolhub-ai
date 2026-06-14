@@ -7,8 +7,7 @@ const formData = await req.formData();
 const prompt = formData.get("prompt");
 const images = formData.getAll("images");
 
-console.log("PROMPT:", prompt);
-console.log("QUANTIDADE DE IMAGENS:", images.length);
+console.log("IMAGENS:", images.length);
 
 return NextResponse.json({
   image: "https://picsum.photos/1024/1024",
@@ -24,5 +23,8 @@ return NextResponse.json(
   { status: 500 }
 );
 
+
 }
 }
+
+
