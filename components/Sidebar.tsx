@@ -61,12 +61,12 @@ return ( <aside className="w-72 min-h-screen bg-[#090909] border-r border-white/
 
     <div className="space-y-2">
 
-      <Link
-        href="/business-chat"
-        className="block px-4 py-3 rounded-xl hover:bg-white/10"
-      >
-        💬 Chat IA
-      </Link>
+    <Link
+      href="/studio?tool=chat"
+      className="block px-4 py-3 rounded-xl hover:bg-white/10"
+     >
+  💬 Chat IA
+</Link>
 
     </div>
   </div>
