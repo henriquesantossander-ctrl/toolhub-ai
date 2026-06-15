@@ -15,6 +15,14 @@ export async function checkBusinessAccess() {
 
   const email = userData.user.email;
 
+  alert("EMAIL LOGADO: " + email);
+  
+  const { data } = await supabase.auth.getUser();
+console.log(data.user?.email);
+
+
+  console.log("EMAIL LOGADO:", email);
+
   const { data: subscription } = await supabase
     .from("subscriptions")
     .select("*")
@@ -22,6 +30,8 @@ export async function checkBusinessAccess() {
     .eq("status", "approved")
     .eq("plan", "business")
     .maybeSingle();
+
+    console.log("SUBSCRIPTION:", subscription);
 
   if (!subscription) {
     toast.error("🚀 Recurso exclusivo do plano Business.");
