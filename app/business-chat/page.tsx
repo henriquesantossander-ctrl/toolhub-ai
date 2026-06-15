@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { checkBusinessAccess } from "@/lib/checkBusinessAccess";
 
-export default function BusinessChatPage() {
+export default function BusinessChat() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<
     { role: string; content: string }[]

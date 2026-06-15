@@ -1,6 +1,8 @@
+
 import ImageGenerator from "@/components/ImageGenerator";
 import Sidebar from "@/components/Sidebar";
 import PhotoEditorPage from "@/components/PhotoEditor";
+import BusinessChat from "@/components/BusinessChat";
 
 export default async function StudioPage({
   searchParams,
@@ -17,9 +19,12 @@ export default async function StudioPage({
 
       <main className="flex-1 p-8">
 
+
         {tool === "image" && <ImageGenerator />}
 
         {tool === "photo-editor" && <PhotoEditorPage />}
+
+        {tool === "chat" && <BusinessChat />}
 
         {tool === "home" && (
           <>
