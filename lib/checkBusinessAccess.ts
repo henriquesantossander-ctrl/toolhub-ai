@@ -23,15 +23,17 @@ console.log(data.user?.email);
 
   console.log("EMAIL LOGADO:", email);
 
-  const { data: subscription, error } = await supabase
+  const { data: subscriptions, error } = await supabase
   .from("subscriptions")
   .select("*")
   .eq("user_email", email)
   .eq("status", "approved")
-  .eq("plan", "business")
-  .maybeSingle();
-    console.log("SUBSCRIPTION:", subscription);
-    console.log("ERRO:", error);
+  .eq("plan", "business");
+
+  const subscription = subscriptions?.[0];
+
+console.log("SUBSCRIPTIONS:", subscriptions);
+console.log("ERRO:", error);
 
   if (!subscription) {
     toast.error("🚀 Recurso exclusivo do plano Business.");
