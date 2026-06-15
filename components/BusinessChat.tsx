@@ -11,20 +11,23 @@ export default function BusinessChat() {
   const [loading, setLoading] = useState(false);
 
   const [image, setImage] = useState<string | null>(null);
+  const [fileName, setFileName] = useState("");
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+
   const file = e.target.files?.[0];
 
   if (!file) return;
 
+  setFileName(file.name);
+
   const reader = new FileReader();
 
-  reader.onloadend = () => {
-    setImage(reader.result as string);
-  };
-
-  reader.readAsDataURL(file);
+ reader.onloadend = () => {
+  setImage(reader.result as string);
 };
 
+reader.readAsDataURL(file);
+};
   const sendMessage = async () => {
     if (!message.trim()) return;
 
@@ -96,6 +99,11 @@ export default function BusinessChat() {
           </div>
         )}
       </div>
+       {fileName && (
+  <div className="w-full max-w-3xl mb-4 bg-zinc-900 border border-zinc-700 rounded-2xl p-3">
+    📎 {fileName}
+  </div>
+)}
 
       <div className="w-full max-w-3xl flex gap-4 mt-6">
         <input
@@ -110,7 +118,7 @@ export default function BusinessChat() {
   📷
   <input
     type="file"
-    accept="image/*"
+   accept="image/*,.pdf"
     hidden
     onChange={handleImage}
   />
@@ -125,4 +133,5 @@ export default function BusinessChat() {
       </div>
     </main>
   );
+
 }
