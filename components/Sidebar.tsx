@@ -63,26 +63,7 @@ return ( <aside className="w-72 min-h-screen bg-[#090909] border-r border-white/
 
     <div className="space-y-2">
 
-      <Link
-        href="/hashtag"
-        className="block px-4 py-3 rounded-xl hover:bg-white/10"
-      >
-        #️⃣ Hashtags
-      </Link>
-
-      <Link
-        href="/caption"
-        className="block px-4 py-3 rounded-xl hover:bg-white/10"
-      >
-        📱 Legendas
-      </Link>
-
-      <Link
-        href="/nickname"
-        className="block px-4 py-3 rounded-xl hover:bg-white/10"
-      >
-        🎮 Nicknames
-      </Link>
+     
 
     </div>
   </div>
