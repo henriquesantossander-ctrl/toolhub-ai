@@ -154,7 +154,6 @@ export default function PremiumPage() {
 
              <p>• Gerações ilimitadas</p>
 <p>• Vídeo IA ilimitado</p>
-<p>• Chat IA avançado</p>
 <p>• Análise de PDFs</p>
 <p>• Upload múltiplo de imagens</p>
 <p>• Sem anúncios</p>
