@@ -1,8 +1,9 @@
 "use client";
-import { useState } from "react";
-import { ArrowRight, ImagePlus, Upload, Wand2, X } from "lucide-react";
 
-export default function Home() {
+import { useState } from "react";
+import { ArrowRight, Wand2, X } from "lucide-react";
+
+export default function ImageGenerator() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState("");
@@ -163,17 +164,7 @@ export default function Home() {
 
             <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
               <div className="flex flex-wrap items-center gap-3">
-                <label className="flex h-11 cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 transition hover:bg-white/[0.08]">
-                  <Upload className="h-4 w-4" />
-                  Enviar imagens
-                  <input
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => handleUpload(e.target.files)}
-                  />
-                </label>
+                
 
                 <select className="h-11 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 outline-none">
                   <option>Realista</option>
