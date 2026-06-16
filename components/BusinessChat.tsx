@@ -45,6 +45,10 @@ export default function BusinessChat() {
 
     setLoading(true);
 
+    console.log("FILE NAME:", fileName);
+    console.log("FILE TYPE:", fileType);
+    console.log("HAS FILE:", !!fileData);
+
     const res = await fetch("/api/business-chat", {
       method: "POST",
       headers: {
