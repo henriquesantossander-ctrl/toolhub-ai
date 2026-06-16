@@ -35,12 +35,18 @@ export default function Sidebar() {
             📸 Editor de Fotos
           </Link>
 
-          <Link href="/studio?tool=video">
-           🎬 Vídeo IA
+          <Link
+            href="/studio?tool=video"
+            className="block px-4 py-3 rounded-xl hover:bg-white/10"
+          >
+            🎬 Vídeo IA
           </Link>
 
-          <Link href="/studio?tool=video-script">
-           ✍️ Roteiro para Vídeo
+          <Link
+            href="/studio?tool=video-script"
+            className="block px-4 py-3 rounded-xl hover:bg-white/10"
+          >
+            ✍️ Roteiro para Vídeo
           </Link>
         </div>
       </div>
