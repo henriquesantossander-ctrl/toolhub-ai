@@ -9,24 +9,25 @@ export default function BusinessChat() {
     { role: string; content: string }[]
   >([]);
   const [loading, setLoading] = useState(false);
-
-  const [image, setImage] = useState<string | null>(null);
+  const [fileData, setFileData] = useState<string | null>(null);
   const [fileName, setFileName] = useState("");
+  const [fileType, setFileType] = useState("");
+  
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-
   const file = e.target.files?.[0];
 
   if (!file) return;
 
   setFileName(file.name);
+  setFileType(file.type);
 
   const reader = new FileReader();
 
- reader.onloadend = () => {
-  setImage(reader.result as string);
-};
+  reader.onloadend = () => {
+    setFileData(reader.result as string);
+  };
 
-reader.readAsDataURL(file);
+  reader.readAsDataURL(file);
 };
   const sendMessage = async () => {
     if (!message.trim()) return;
@@ -50,9 +51,11 @@ reader.readAsDataURL(file);
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-  message,
-  messages,
-  image,
+        message,
+        messages,
+        fileData,
+        fileName,
+        fileType,
 }),
     });
 
