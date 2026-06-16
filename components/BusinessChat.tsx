@@ -9,26 +9,7 @@ export default function BusinessChat() {
     { role: string; content: string }[]
   >([]);
   const [loading, setLoading] = useState(false);
-  const [fileData, setFileData] = useState<string | null>(null);
-  const [fileName, setFileName] = useState("");
-  const [fileType, setFileType] = useState("");
-  
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const file = e.target.files?.[0];
 
-  if (!file) return;
-
-  setFileName(file.name);
-  setFileType(file.type);
-
-  const reader = new FileReader();
-
-  reader.onloadend = () => {
-    setFileData(reader.result as string);
-  };
-
-  reader.readAsDataURL(file);
-};
   const sendMessage = async () => {
     if (!message.trim()) return;
 
@@ -45,39 +26,40 @@ export default function BusinessChat() {
 
     setLoading(true);
 
-    console.log("FILE NAME:", fileName);
-    console.log("FILE TYPE:", fileType);
-    console.log("HAS FILE:", !!fileData);
+    try {
+      const res = await fetch("/api/business-chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message,
+          messages,
+        }),
+      });
 
-    const res = await fetch("/api/business-chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message,
-        messages,
-        fileData,
-        fileName,
-        fileType,
-}),
-    });
-    console.log("FILE NAME:", fileName);
-    console.log("FILE TYPE:", fileType);
-    console.log("HAS FILE:", !!fileData);
-    console.log(fileData?.substring(0, 100));
+      const data = await res.json();
 
-    const data = await res.json();
+      const aiMessage = {
+        role: "assistant",
+        content: data.result,
+      };
 
-    const aiMessage = {
-      role: "assistant",
-      content: data.result,
-    };
+      setMessages((prev) => [...prev, aiMessage]);
+      setMessage("");
+    } catch (error) {
+      console.error(error);
 
-    setMessages((prev) => [...prev, aiMessage]);
-
-    setMessage("");
-    setLoading(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "Erro ao processar sua mensagem.",
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -110,11 +92,6 @@ export default function BusinessChat() {
           </div>
         )}
       </div>
-       {fileName && (
-  <div className="w-full max-w-3xl mb-4 bg-zinc-900 border border-zinc-700 rounded-2xl p-3">
-    📎 {fileName}
-  </div>
-)}
 
       <div className="w-full max-w-3xl flex gap-4 mt-6">
         <input
@@ -125,16 +102,6 @@ export default function BusinessChat() {
           className="flex-1 bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 outline-none"
         />
 
-        <label className="bg-zinc-900 border border-zinc-700 px-4 py-3 rounded-2xl cursor-pointer hover:bg-zinc-800 transition">
-  📷
-  <input
-    type="file"
-   accept="image/*,.pdf"
-    hidden
-    onChange={handleImage}
-  />
-</label>
-
         <button
           onClick={sendMessage}
           className="bg-white text-black px-8 rounded-2xl font-bold hover:scale-105 transition"
@@ -144,5 +111,4 @@ export default function BusinessChat() {
       </div>
     </main>
   );
-
 }
