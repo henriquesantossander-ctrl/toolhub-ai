@@ -2,7 +2,7 @@
 import ImageGenerator from "@/components/ImageGenerator";
 import Sidebar from "@/components/Sidebar";
 import PhotoEditorPage from "@/components/PhotoEditor";
-import BusinessChat from "@/components/BusinessChat";
+
 
 export default async function StudioPage({
   searchParams,
@@ -24,8 +24,7 @@ export default async function StudioPage({
 
         {tool === "photo-editor" && <PhotoEditorPage />}
 
-        {tool === "chat" && <BusinessChat />}
-
+       
         {tool === "home" && (
           <>
             <h1 className="text-4xl font-bold mb-4">
