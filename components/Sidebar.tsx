@@ -54,20 +54,6 @@ return ( <aside className="w-72 min-h-screen bg-[#090909] border-r border-white/
     </div>
   </div>
 
-
-
-  <div>
-    <p className="text-xs uppercase text-zinc-500 mb-3">
-      Redes Sociais
-    </p>
-
-    <div className="space-y-2">
-
-     
-
-    </div>
-  </div>
-
 </aside>
 
 
