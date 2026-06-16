@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
+const pdfParse = require("pdf-parse");
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -11,23 +12,50 @@ export async function POST(req: Request) {
   const message = body.message;
   const messages = body.messages || [];
   const image = body.image;
+  const fileData = body.fileData;
+  const fileName = body.fileName;
+  const fileType = body.fileType;
+   let pdfText = "";
 
-  const content: any[] = [
-    {
-      type: "text",
-      text: message,
+if (
+  fileData &&
+  fileType === "application/pdf"
+) {
+  const base64 = fileData.split(",")[1];
+
+  const buffer = Buffer.from(
+    base64,
+    "base64"
+  );
+
+  const pdf = await pdfParse(buffer);
+
+  pdfText = pdf.text;
+}
+   
+   const content: any[] = [
+  {
+    type: "text",
+    text:
+      message +
+      (pdfText
+        ? `\n\nConteúdo do PDF:\n${pdfText}`
+        : ""),
+  },
+];
+
+  
+   if (
+  fileData &&
+  fileType?.startsWith("image/")
+) {
+  content.push({
+    type: "image_url",
+    image_url: {
+      url: fileData,
     },
-  ];
-
-  if (image) {
-    content.push({
-      type: "image_url",
-      image_url: {
-        url: image,
-      },
-    });
-  }
-
+  });
+}
   const response = await openai.chat.completions.create({
     model: "gpt-4.1",
     messages: [
