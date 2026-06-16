@@ -65,6 +65,7 @@ export default function BusinessChat() {
     console.log("FILE NAME:", fileName);
     console.log("FILE TYPE:", fileType);
     console.log("HAS FILE:", !!fileData);
+    console.log(fileData?.substring(0, 100));
 
     const data = await res.json();
 
