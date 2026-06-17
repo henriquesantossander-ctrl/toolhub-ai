@@ -141,7 +141,7 @@ export default function PremiumPage() {
           </div>
 
           {/* BUSINESS */}
-          <div className="bg-gradient-to-br from-cyan-400/20 via-blue-900/10 to-transparent border border-cyan-400/30 rounded-3xl p-8 relative backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-purple-600 to-pink-600 to-transparent border border-cyan-400/30 rounded-3xl p-8 relative backdrop-blur-sm">
 
           <div className="mb-5 inline-flex rounded-full bg-cyan-400/20 px-3 py-1 text-xs text-cyan-200">
   Melhor plano
@@ -178,7 +178,7 @@ export default function PremiumPage() {
               href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
               target="_blank"
             >
-              <button className="w-full mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-4 rounded-2xl font-semibold hover:scale-[1.02] transition">
+              <button className="w-full mt-10 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-2xl font-semibold hover:scale-[1.02] transition">
                 Assinar BUSINESS
               </button>
             </a>

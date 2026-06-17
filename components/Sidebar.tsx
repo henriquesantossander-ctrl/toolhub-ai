@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 export default function Sidebar() {
-return ( <aside className="w-72 h-screen sticky top-0 bg-[#090909] border-r border-white/10 p-5 flex flex-col">
+return ( <aside className="w-72 h-screen sticky top-0 bg-[#0B1220] border-r border-white/10 p-5 flex flex-col">
 
 
   <div>
