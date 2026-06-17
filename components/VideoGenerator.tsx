@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 
 import {
   Lock,
   ImageIcon,
   Clapperboard,
+  Gem,
+  Crown,
 } from "lucide-react";
 
 export default function VideoAIPage() {
@@ -48,36 +51,90 @@ export default function VideoAIPage() {
 
       
 
-      <div className="flex gap-3 mb-8 flex-wrap">
-        <button className="px-4 py-3 rounded-xl bg-purple-600">
-          Texto → Vídeo
-        </button>
+        <div className="flex gap-3 mb-8 flex-wrap">
 
-          <button className="flex items-center gap-3 px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500">
-          <ImageIcon size={18} className="text-blue-400" />
+  {/* TEXTO -> VIDEO */}
+  <button
+    className="
+    relative
+    flex items-center justify-between
+    w-[290px]
+    h-14
+    px-5
+    rounded-2xl
+    border
+    border-purple-500/40
+    bg-purple-500/10
+    text-purple-300
+    "
+  >
+    <div className="flex items-center gap-3">
+      <Clapperboard size={16} />
+      <span>Texto para Vídeo</span>
+    </div>
 
-  <span>Imagem → Vídeo</span>
+    <div className="absolute bottom-0 left-0 w-full h-[2px] bg-purple-500 rounded-full" />
+  </button>
 
-  <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
-    BUSINESS
-  </span>
+  {/* IMAGEM -> VIDEO */}
+  <button
+    className="
+    flex items-center justify-between
+    w-[290px]
+    h-14
+    px-5
+    rounded-2xl
+    border
+    border-zinc-800
+    bg-zinc-900/60
+    hover:border-purple-500/50
+    transition
+    "
+  >
+    <div className="flex items-center gap-3">
+      <ImageIcon size={16} className="text-blue-400" />
+      <span>Imagem para Vídeo</span>
+    </div>
 
-   <Lock size={14} className="text-zinc-500 ml-2" />
-  
-</button>
+    <div className="flex items-center gap-3">
+      <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
+        BUSINESS
+      </span>
 
-        <button className="flex items-center gap-3 px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500">
-        <Clapperboard size={18} className="text-purple-400" />
+      <Lock size={14} className="text-zinc-500" />
+    </div>
+  </button>
 
-  <span>Vídeo → Vídeo</span>
+  {/* VIDEO -> VIDEO */}
+  <button
+    className="
+    flex items-center justify-between
+    w-[290px]
+    h-14
+    px-5
+    rounded-2xl
+    border
+    border-zinc-800
+    bg-zinc-900/60
+    hover:border-purple-500/50
+    transition
+    "
+  >
+    <div className="flex items-center gap-3">
+      <Clapperboard size={16} className="text-purple-400" />
+      <span>Vídeo para Vídeo</span>
+    </div>
 
-  <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
-    BUSINESS
-  </span>
+    <div className="flex items-center gap-3">
+      <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
+        BUSINESS
+      </span>
 
-  <Lock size={14} className="text-zinc-500 ml-2" />
-</button>
-      </div>
+      <Lock size={14} className="text-zinc-500" />
+    </div>
+  </button>
+
+</div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 h-fit">
@@ -104,19 +161,36 @@ export default function VideoAIPage() {
       <button
         key={item}
         onClick={() => setStyle(item)}
-        className={`h-28 rounded-2xl border relative overflow-hidden transition ${
+        className={`h-32 rounded-2xl border relative overflow-hidden transition ${
           style === item
             ? "border-purple-500 bg-purple-500/20"
             : "border-zinc-800 bg-zinc-900 hover:border-purple-500"
         }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-zinc-900 to-black" />
+        <Image
+  src={
+    item === "Cinemático"
+      ? "/styles/cinematic.jpg"
+      : item === "Realista"
+      ? "/styles/realistic.jpg"
+      : item === "Anime"
+      ? "/styles/anime.jpg"
+      : item === "3D"
+      ? "/styles/3d.jpg"
+      : "/styles/fantasy.jpg"
+  }
+  alt={item}
+  fill
+  className="object-cover"
+/>
 
-        <div className="relative h-full flex items-end p-3">
-          <span className="font-semibold">
-            {item}
-          </span>
-        </div>
+<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+
+<div className="absolute bottom-3 left-3">
+  <span className="font-semibold text-white">
+    {item}
+  </span>
+</div>
       </button>
     ))}
   </div>
@@ -168,7 +242,10 @@ export default function VideoAIPage() {
         </div>
 
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 h-fit">
-          <h2 className="text-2xl font-bold mb-6">🚀 BUSINESS</h2>
+          <div className="flex items-center gap-3 mb-6">
+  <Gem size={24} className="text-purple-400" />
+  <h2 className="text-2xl font-bold">BUSINESS</h2>
+</div>
 
           <div className="space-y-4 text-zinc-300">
             <p>✅ Imagem → Vídeo</p>
@@ -189,9 +266,10 @@ export default function VideoAIPage() {
           </div>
 
           <Link href="/premium">
-            <button className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 py-4 rounded-2xl font-bold">
-              🚀 Liberar Recursos Business
-            </button>
+             <button className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+  <Crown size={18} />
+  Liberar Recursos Business
+</button>
           </Link>
         </div>
       </div>

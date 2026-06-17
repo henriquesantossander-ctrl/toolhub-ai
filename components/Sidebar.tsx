@@ -1,9 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import {
+  ImageIcon,
+  Camera,
+  Clapperboard,
+  FileText,
+} from "lucide-react";
 
 export default function Sidebar() {
-return (<aside className="relative w-60 min-h-screen bg- border-r border-blue-950/50 flex flex-col p-5">
+return (<aside className="relative w-72 min-h-screen bg- border-r border-blue-950/50 flex flex-col p-5">
    
    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.12),transparent_40%)] pointer-events-none" />
   <div className="p-6 flex flex-col h-screen">
@@ -24,33 +30,37 @@ return (<aside className="relative w-60 min-h-screen bg- border-r border-blue-95
 
       <div className="space-y-2">
 
-        <Link
-          href="/studio?tool=image"
-          className="block px-4 py-2.5 rounded-xl bg-purple-600/20 border border-purple-500/20"
-        >
-          🖼️ Gerador de Imagem
-        </Link>
+       <Link
+  href="/studio?tool=image"
+  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-600/20 border border-purple-500/20"
+>
+  <ImageIcon size={18} />
+  <span>Gerador de Imagem</span>
+</Link>
 
-        <Link
-          href="/studio?tool=photo-editor"
-          className="block px-4 py-2.5 rounded-xl hover:bg-white/10 transition"
-        >
-          📸 Editor de Fotos
-        </Link>
+<Link
+  href="/studio?tool=photo-editor"
+  className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition"
+>
+  <Camera size={18} />
+  <span>Editor de Fotos</span>
+</Link>
 
-        <Link
-          href="/studio?tool=video"
-          className="block px-4 py-2.5 rounded-xl hover:bg-white/10 transition"
-        >
-          🎬 Vídeo IA
-        </Link>
+<Link
+  href="/studio?tool=video"
+  className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition"
+>
+  <Clapperboard size={18} />
+  <span>Vídeo IA</span>
+</Link>
 
-        <Link
-          href="/studio?tool=video-script"
-          className="block px-4 py-2.5 rounded-xl hover:bg-white/10 transition"
-        >
-          ✍️ Roteiro para Vídeo
-        </Link>
+<Link
+  href="/studio?tool=video-script"
+  className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 transition"
+>
+  <FileText size={18} />
+  <span>Roteiro para Vídeo</span>
+</Link>
 
       </div>
     </div>
@@ -68,27 +78,42 @@ return (<aside className="relative w-60 min-h-screen bg- border-r border-blue-95
     </div>
   </div>
 
-  <div className="mt-auto">
-   <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/20 rounded-2xl p-4">
+  <div className="mt-auto px-4 pb-4">
+  <div className="rounded-2xl border border-purple-500/20 bg-gradient-to-b from-[#2a0d4d] to-[#1a0a2e] p-5">
 
-      <p className="text-xs uppercase text-zinc-400">
-        Plano Atual
+    <div className="flex items-center gap-2 mb-4">
+      <span className="text-yellow-400 text-lg">👑</span>
+
+      <p className="text-sm font-medium text-white">
+        Upgrade para <span className="text-purple-400">PRO</span>
       </p>
-
-      <h3 className="text-xl font-bold mt-2">
-        FREE
-      </h3>
-
-      <p className="text-zinc-400 text-sm mt-2">
-        Faça upgrade para desbloquear todos os recursos.
-      </p>
-
-      <button className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 py-2.5 rounded-2xl font-semibold">
-        🚀 Upgrade
-      </button>
-
     </div>
+
+    <p className="text-sm text-zinc-300 leading-7 mb-5">
+      Desbloqueie recursos ilimitados
+      <br />
+      e gere conteúdos incríveis.
+    </p>
+
+    <button
+      className="
+        w-full
+        h-12
+        rounded-xl
+        font-semibold
+        text-white
+        bg-gradient-to-r
+        from-purple-600
+        to-purple-500
+        hover:opacity-90
+        transition
+      "
+    >
+      Fazer Upgrade
+    </button>
+
   </div>
+</div>
 
 </aside>
 
