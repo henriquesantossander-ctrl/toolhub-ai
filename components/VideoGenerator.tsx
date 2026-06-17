@@ -3,6 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 
+
+import {
+  Lock,
+  ImageIcon,
+  Clapperboard,
+} from "lucide-react";
+
 export default function VideoAIPage() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,161 +46,128 @@ export default function VideoAIPage() {
         Crie vídeos incríveis com inteligência artificial.
       </p>
 
-      <h2 className="text-lg font-semibold mb-4">Exemplos Populares</h2>
-
-      <div className="flex flex-wrap gap-3 mb-8">
-        <button
-          onClick={() => {
-            setPrompt(
-              "Carro esportivo vermelho acelerando pelas ruas de Mônaco, cinematográfico"
-            );
-            setStyle("Cinemático");
-          }}
-          className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500"
-        >
-          🏎️ Mônaco
-        </button>
-
-        <button
-          onClick={() => {
-            setPrompt("Dragão voando sobre um castelo medieval ao pôr do sol");
-            setStyle("Fantasia");
-          }}
-          className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500"
-        >
-          🐉 Dragão
-        </button>
-
-        <button
-          onClick={() => {
-            setPrompt(
-              "Personagem estilo videogame caminhando por uma cidade moderna"
-            );
-            setStyle("3D");
-          }}
-          className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500"
-        >
-          🎮 Game
-        </button>
-
-        <button
-          onClick={() => {
-            setPrompt("Praia tropical paradisíaca com drone sobrevoando");
-            setStyle("Realista");
-          }}
-          className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500"
-        >
-          🌴 Praia
-        </button>
-
-        <button
-          onClick={() => {
-            setPrompt("Robô futurista andando pelas ruas de Tóquio em 2099");
-            setStyle("Anime");
-          }}
-          className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500"
-        >
-          🤖 Futuro
-        </button>
-      </div>
+      
 
       <div className="flex gap-3 mb-8 flex-wrap">
         <button className="px-4 py-3 rounded-xl bg-purple-600">
           Texto → Vídeo
         </button>
 
-        <button className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800">
-          Imagem → Vídeo 🔒
-        </button>
+          <button className="flex items-center gap-3 px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500">
+          <ImageIcon size={18} className="text-blue-400" />
 
-        <button className="px-4 py-3 rounded-xl bg-zinc-900 border border-zinc-800">
-          Vídeo → Vídeo 🔒
-        </button>
+  <span>Imagem → Vídeo</span>
+
+  <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
+    BUSINESS
+  </span>
+
+   <Lock size={14} className="text-zinc-500 ml-2" />
+  
+</button>
+
+        <button className="flex items-center gap-3 px-5 py-3 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-purple-500">
+        <Clapperboard size={18} className="text-purple-400" />
+
+  <span>Vídeo → Vídeo</span>
+
+  <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
+    BUSINESS
+  </span>
+
+  <Lock size={14} className="text-zinc-500 ml-2" />
+</button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6">
-          <h2 className="text-xl font-semibold mb-4">Descreva seu vídeo</h2>
+        <div className="lg:col-span-2 bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 h-fit">
+        <h2 className="text-xl font-semibold mb-4">
+         Descreva seu vídeo
+        </h2>
 
-          <textarea
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Descreva o vídeo..."
-            className="w-full h-40 bg-zinc-950 border border-zinc-800 rounded-2xl p-5"
-          />
-
+        <textarea
+         value={prompt}
+         onChange={(e) => setPrompt(e.target.value)}
+         placeholder="Descreva o vídeo..."
+         className="w-full h-28 bg-zinc-950 border border-zinc-800 rounded-2xl p-5"
+         /> 
+        
+          
           <div className="flex gap-3 mt-6 flex-wrap">
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-3">⏱ Duração</h3>
+            <div className="mt-6">
+  <h3 className="text-lg font-semibold mb-3">
+    Estilo do vídeo
+  </h3>
 
-              <div className="flex gap-3">
-                <button className="px-4 py-2 rounded-xl bg-purple-600">
-                  5s
-                </button>
+  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+    {styles.map((item) => (
+      <button
+        key={item}
+        onClick={() => setStyle(item)}
+        className={`h-28 rounded-2xl border relative overflow-hidden transition ${
+          style === item
+            ? "border-purple-500 bg-purple-500/20"
+            : "border-zinc-800 bg-zinc-900 hover:border-purple-500"
+        }`}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-zinc-900 to-black" />
 
-                <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">
-                  10s
-                </button>
+        <div className="relative h-full flex items-end p-3">
+          <span className="font-semibold">
+            {item}
+          </span>
+        </div>
+      </button>
+    ))}
+  </div>
 
-                <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">
-                  15s
-                </button>
-              </div>
-            </div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div>
+      <h3 className="text-lg font-semibold mb-3">
+        ⏱ Duração
+      </h3>
 
-            <div className="mt-8">
-              <h3 className="text-lg font-semibold mb-3">🎥 Resolução</h3>
+      <div className="flex gap-2">
+        <button className="px-4 py-2 rounded-xl bg-purple-600">5s</button>
+        <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">10s</button>
+        <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">15s</button>
+      </div>
+    </div>
 
-              <div className="flex gap-3">
-                <button className="px-4 py-2 rounded-xl bg-purple-600">
-                  720p
-                </button>
+    <div>
+      <h3 className="text-lg font-semibold mb-3">
+        🎥 Resolução
+      </h3>
 
-                <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">
-                  1080p
-                </button>
-              </div>
-            </div>
+      <div className="flex gap-2">
+        <button className="px-4 py-2 rounded-xl bg-purple-600">720p</button>
+        <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">1080p</button>
+      </div>
+    </div>
 
-            <div
-              onClick={() => alert("Disponível apenas no plano Business")}
-              className="border border-zinc-800 rounded-2xl p-6 cursor-pointer hover:border-purple-500"
-            >
-              <p className="font-semibold">📸 Upload de Imagem</p>
+    <div
+      onClick={() => alert("Disponível apenas no plano Business")}
+      className="border border-zinc-800 rounded-2xl p-4 cursor-pointer hover:border-purple-500"
+    >
+      <p className="font-semibold">📸 Upload de Imagem</p>
+      <p className="text-zinc-500 text-sm mt-2">Disponível no Business</p>
+    </div>
 
-              <p className="text-zinc-500 text-sm mt-2">
-                Disponível no Business
-              </p>
-            </div>
+    <div
+      onClick={() => alert("Disponível apenas no plano Business")}
+      className="border border-zinc-800 rounded-2xl p-4 cursor-pointer hover:border-purple-500"
+    >
+      <p className="font-semibold">🎬 Upload de Vídeo</p>
+      <p className="text-zinc-500 text-sm mt-2">Disponível no Business</p>
+    </div>
+  </div>
+</div>
 
-            <div
-              onClick={() => alert("Disponível apenas no plano Business")}
-              className="border border-zinc-800 rounded-2xl p-6 cursor-pointer hover:border-purple-500"
-            >
-              <p className="font-semibold">🎬 Upload de Vídeo</p>
-
-              <p className="text-zinc-500 text-sm mt-2">
-                Disponível no Business
-              </p>
-            </div>
-
-            {styles.map((item) => (
-              <button
-                key={item}
-                onClick={() => setStyle(item)}
-                className={`px-4 py-3 rounded-xl border ${
-                  style === item
-                    ? "border-purple-500 bg-purple-500/20"
-                    : "border-zinc-800 bg-zinc-900"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
+            
           </div>
         </div>
 
-        <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6">
+        <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 h-fit">
           <h2 className="text-2xl font-bold mb-6">🚀 BUSINESS</h2>
 
           <div className="space-y-4 text-zinc-300">
@@ -224,35 +198,12 @@ export default function VideoAIPage() {
 
       <button
         onClick={generateVideo}
-        className="mt-6 bg-gradient-to-r from-purple-600 to-pink-600 px-10 py-4 rounded-2xl font-bold"
+        className="mt-2 bg-gradient-to-r from-purple-600 to-pink-600 px-10 py-4 rounded-2xl font-bold"
       >
         {loading ? "Gerando..." : "Gerar Vídeo IA"}
       </button>
 
-      <div className="mt-10 bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6">
-        <h2 className="text-2xl font-bold mb-4">🔥 Vídeos em Alta</h2>
-
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-            🏎️ Monaco
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-            🐉 Dragon
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-            🤖 Tokyo 2099
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-            🌴 Tropical
-          </div>
-
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-            🎮 GTA Style
-          </div>
-        </div>
+      
 
         <h2 className="text-2xl font-bold mb-4">Seus vídeos gerados</h2>
 
@@ -267,7 +218,7 @@ export default function VideoAIPage() {
           <div className="h-32 rounded-2xl bg-zinc-800"></div>
         </div>
       </div>
-    </div>
+    
   );
 
     

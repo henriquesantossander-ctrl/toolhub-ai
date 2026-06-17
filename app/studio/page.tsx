@@ -13,7 +13,7 @@ export default async function StudioPage({
   const tool = params.tool || "image";
 
   return (
-    <div className="flex min-h-screen bg-[#070B17] text-white">
+    <div className="flex min-h-screen bg-black text-white">
       <Sidebar />
 
       <main className="flex-1 p-8">
