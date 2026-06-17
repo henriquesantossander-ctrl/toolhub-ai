@@ -14,11 +14,9 @@ export default async function StudioPage({
 
   return (
     <div className="flex min-h-screen bg-[#0B1120] text-white">
-      <div className="flex min-h-screen bg-[#0B1120] text-white relative"></div>
       <Sidebar />
 
       <main className="flex-1 p-8">
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.15),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.12),transparent_30%)]" />
         {tool === "image" && <ImageGenerator />}
 
         {tool === "photo-editor" && <PhotoEditorPage />}
