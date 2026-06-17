@@ -14,7 +14,7 @@ export default async function StudioPage({
 
   return (
     <div className="flex min-h-screen bg-[#0B1120] text-white">
-      <div className="flex min-h-screen bg-[#08111F] text-white relative"></div>
+      <div className="flex min-h-screen bg-[#0B1120] text-white relative"></div>
       <Sidebar />
 
       <main className="flex-1 p-8">
