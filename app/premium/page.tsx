@@ -40,7 +40,7 @@ export default function PremiumPage() {
 
 <p className="text-zinc-500 text-lg mt-4 max-w-2xl mx-auto">
   Imagem, vídeo, análise multimodal,
-  PDFs inteligentes e ferramentas profissionais.
+   ferramentas profissionais.
 </p>
 <div className="flex flex-wrap justify-center gap-3 mt-8">
   
@@ -52,9 +52,6 @@ export default function PremiumPage() {
     Vídeos IA
   </div>
 
-  <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
-    PDFs inteligentes
-  </div>
 
   <div className="bg-white/[0.04] border border-white/10 px-4 py-2 rounded-full text-sm text-zinc-300">
     Multimodal
@@ -88,7 +85,6 @@ export default function PremiumPage() {
               <p>• Cartoon</p>
               <p>• Fantasy</p>
               <p>• Hero</p>
-              <p>• Anime</p>
               <p>• Qualidade padrão</p>
 
             </div>
@@ -121,7 +117,6 @@ export default function PremiumPage() {
             <div className="space-y-4 mt-10 text-zinc-300">
 
               <p>• 10 gerações por dia</p>
-              <p>• Todos estilos IA</p>
               <p>• Qualidade HD</p>
               <p>• Renderização rápida</p>
               <p>• Sem anúncios</p>
@@ -144,8 +139,8 @@ export default function PremiumPage() {
           <div className="bg-gradient-to-br from-purple-600 to-pink-600 to-transparent border border-cyan-400/30 rounded-3xl p-8 relative backdrop-blur-sm">
 
           <div className="mb-5 inline-flex rounded-full bg-cyan-400/20 px-3 py-1 text-xs text-cyan-200">
-  Melhor plano
-</div>
+           Melhor plano
+         </div>
 
             <p className="text-zinc-500 text-sm mb-4">
               BUSINESS
@@ -167,7 +162,6 @@ export default function PremiumPage() {
 
              <p>• Gerações ilimitadas</p>
               <p>• Vídeo IA ilimitado</p>
-              <p>• Análise de PDFs</p>
               <p>• Upload múltiplo de imagens</p>
               <p>• Sem anúncios</p>
               <p>• Prioridade máxima</p>
