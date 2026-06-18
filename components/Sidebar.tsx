@@ -78,7 +78,7 @@ return (<aside className="relative w-72 min-h-screen bg- border-r border-blue-95
     </div>
   </div>
 
-  <div className="mt-auto px-4 pb-24">
+  <div className="absolute bottom-40 left-4 right-4">
   <div className="rounded-2xl border border-purple-500/20 bg-gradient-to-b from-[#2a0d4d] to-[#1a0a2e] p-5">
 
     <div className="flex items-center gap-2 mb-4">
