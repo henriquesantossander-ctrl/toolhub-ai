@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+;
 
 
 import {
@@ -18,8 +18,7 @@ export default function VideoAIPage() {
   const [loading, setLoading] = useState(false);
   const [style, setStyle] = useState("Cinemático");
 
-  const styles = ["Cinemático", "Realista", "Anime", "3D", "Fantasia"];
-
+ 
   async function generateVideo() {
     setLoading(true);
 
@@ -30,9 +29,8 @@ export default function VideoAIPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          prompt,
-          style,
-        }),
+         prompt,
+}),
       });
     } catch (error) {
       console.log(error);
@@ -152,48 +150,8 @@ export default function VideoAIPage() {
           
           <div className="flex gap-3 mt-6 flex-wrap">
             <div className="mt-6">
-  <h3 className="text-lg font-semibold mb-3">
-    Estilo do vídeo
-  </h3>
-
-  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
-    {styles.map((item) => (
-      <button
-        key={item}
-        onClick={() => setStyle(item)}
-        className={`h-32 rounded-2xl border relative overflow-hidden transition ${
-          style === item
-            ? "border-purple-500 bg-purple-500/20"
-            : "border-zinc-800 bg-zinc-900 hover:border-purple-500"
-        }`}
-      >
-        <Image
-  src={
-    item === "Cinemático"
-      ? "/styles/cinematic.jpg"
-      : item === "Realista"
-      ? "/styles/realistic.jpg"
-      : item === "Anime"
-      ? "/styles/anime.jpg"
-      : item === "3D"
-      ? "/styles/3d.jpg"
-      : "/styles/fantasy.jpg"
-  }
-  alt={item}
-  fill
-  className="object-cover"
-/>
-
-<div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-
-<div className="absolute bottom-3 left-3">
-  <span className="font-semibold text-white">
-    {item}
-  </span>
-</div>
-      </button>
-    ))}
-  </div>
+  
+  
 
   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
     <div>
@@ -282,19 +240,25 @@ export default function VideoAIPage() {
       </button>
 
       
+      <div className="mt-10">
+  <h2 className="text-2xl font-bold mb-2">
+    Seus vídeos gerados
+  </h2>
 
-        <h2 className="text-2xl font-bold mb-4">Seus vídeos gerados</h2>
+  <p className="text-zinc-500 mb-6">
+    Seus vídeos aparecerão aqui após a geração.
+  </p>
+</div>
 
-        <p className="text-zinc-500 mb-6">
-          Seus vídeos aparecerão aqui após a geração.
-        </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="h-32 rounded-2xl bg-zinc-800"></div>
-          <div className="h-32 rounded-2xl bg-zinc-800"></div>
-          <div className="h-32 rounded-2xl bg-zinc-800"></div>
-          <div className="h-32 rounded-2xl bg-zinc-800"></div>
-        </div>
+        
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
+        <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
+        <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
+        <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
+      </div>
       </div>
     
   );
