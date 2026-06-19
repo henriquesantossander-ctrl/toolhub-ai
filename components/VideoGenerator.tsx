@@ -52,28 +52,14 @@ export default function VideoAIPage() {
 
       <div className="flex gap-3 mb-8 flex-wrap">
 
-        {/* TEXTO -> VIDEO */}
-        <button
-          className="
-    relative
-    flex items-center justify-between
-    w-[290px]
-    h-14
-    px-5
-    rounded-2xl
-    border
-    border-purple-500/40
-    bg-purple-500/10
-    text-purple-300
-    "
-        >
-          <div className="flex items-center gap-3">
-            <Clapperboard size={16} />
-            <span>Texto para Vídeo</span>
-          </div>
+        
+       
+    
+        
+         
 
-          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-purple-500 rounded-full" />
-        </button>
+          
+        
 
         {/* IMAGEM -> VIDEO */}
         <button
@@ -138,7 +124,7 @@ export default function VideoAIPage() {
       <div>
         <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6">
           <h2 className="text-xl font-semibold mb-4">
-            Descreva seu vídeo
+            Transforme uma imagem em vídeo
           </h2>
 
           <textarea
