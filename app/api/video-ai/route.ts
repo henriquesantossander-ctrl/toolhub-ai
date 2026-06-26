@@ -1,29 +1,120 @@
-import Replicate from "replicate";
-import { NextResponse } from "next/server";
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN!,
-});
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
+    console.log("API VIDEO CHAMADA");
+
     const body = await req.json();
 
     const prompt = body.prompt;
+    const imageUrl = body.imageUrl;
 
-    const output = await replicate.run(
-      "wavespeedai/wan-2.1-i2v-480p",
+    if (!prompt || !imageUrl) {
+      return NextResponse.json(
+        { error: "Prompt e imagem são obrigatórios." },
+        { status: 400 }
+      );
+    }
+
+    const promptFinal = `${prompt}, 8k, realistic, uncensored, highly detailed skin, cinematic lighting, masterpiece`;
+
+    const response = await fetch(
+      "https://queue.fal.run/fal-ai/kling-video/o3/standard/image-to-video",
       {
-        input: {
-          prompt,
+        method: "POST",
+        headers: {
+          Authorization: `Key ${process.env.FAL_KEY}`,
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+        prompt: promptFinal,
+        image_url: imageUrl,
+        duration: "5",
+        generate_audio: false,
+}),
       }
     );
 
-    return NextResponse.json({
-      success: true,
-      video: output,
-    });
+    const data = await response.json();
+
+    console.log("RESPOSTA FAL:", data);
+
+    if (!response.ok) {
+      console.error(data);
+      return NextResponse.json(
+        { error: "Erro na Fal.ai", details: data },
+        { status: 500 }
+      );
+    }
+
+   let statusData = null;
+
+for (let i = 0; i < 30; i++) {
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  const statusResponse = await fetch(data.status_url, {
+    headers: {
+      Authorization: `Key ${process.env.FAL_KEY}`,
+    },
+  });
+
+  statusData = await statusResponse.json();
+
+  console.log("STATUS:", statusData);
+
+  if (statusData?.status === "COMPLETED") {
+  break;
+}
+}
+
+if (!statusData || statusData.status !== "COMPLETED") {
+  return NextResponse.json(
+    { error: "Tempo limite excedido." },
+    { status: 500 }
+  );
+}
+    console.log("STATUS FINAL:", statusData);
+
+  const resultResponse = await fetch(data.response_url, {
+  headers: {
+    Authorization: `Key ${process.env.FAL_KEY}`,
+  },
+});
+
+console.log("HTTP:", resultResponse.status);
+
+const rawText = await resultResponse.text();
+
+console.log("VIDEO FINAL RAW:");
+console.log(rawText);
+
+let resultData = {};
+
+try {
+  resultData = JSON.parse(rawText);
+} catch (e) {
+  console.log("Não foi possível converter para JSON.");
+}
+
+console.log("VIDEO FINAL JSON:");
+console.log(resultData);
+
+if (!(resultData as any)?.video?.url) {
+  return NextResponse.json(
+    {
+      error: "Fal não retornou video.url",
+      details: resultData,
+    },
+    { status: 500 }
+  );
+}
+
+return NextResponse.json({
+  success: true,
+  videoUrl: (resultData as any).video.url,
+});
+
   } catch (error) {
     console.log(error);
 
