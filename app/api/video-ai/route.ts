@@ -1,5 +1,6 @@
 
 import { NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export async function POST(req: Request) {
   try {
@@ -110,9 +111,32 @@ if (!(resultData as any)?.video?.url) {
   );
 }
 
+const videoUrl = (resultData as any).video.url;
+
+// Salva no Supabase
+await supabaseAdmin.from("videos").insert({
+  video_url: videoUrl,
+  prompt: prompt,
+});
+
+// Mantém apenas os 4 vídeos mais recentes
+const { data: videos } = await supabaseAdmin
+  .from("videos")
+  .select("id")
+  .order("created_at", { ascending: false });
+
+if (videos && videos.length > 4) {
+  const idsParaExcluir = videos.slice(4).map((v) => v.id);
+
+  await supabaseAdmin
+    .from("videos")
+    .delete()
+    .in("id", idsParaExcluir);
+}
+
 return NextResponse.json({
   success: true,
-  videoUrl: (resultData as any).video.url,
+  videoUrl,
 });
 
   } catch (error) {

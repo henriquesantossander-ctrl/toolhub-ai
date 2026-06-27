@@ -1,7 +1,7 @@
 "use client";
 
 import { supabase } from "@/lib/supabase";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 ;
 
@@ -17,7 +17,29 @@ import {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState("");
+  const [videos, setVideos] = useState<any[]>([]);
 
+  useEffect(() => {
+  loadVideos();
+}, []);
+
+  
+  
+  
+   async function loadVideos() {
+  const { data, error } = await supabase
+    .from("videos")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(4);
+
+  console.log("VIDEOS:", data);
+  console.log("ERRO:", error);
+
+  if (data) {
+    setVideos(data);
+  }
+}
    
   async function generateVideo() {
     setLoading(true);
@@ -27,6 +49,8 @@ import {
   setLoading(false);
   return;
 }
+
+
 
   const fileName = `${Date.now()}-${file.name}`;
 
@@ -65,6 +89,9 @@ if (uploadError) {
 console.log(result);
 
 setVideoUrl(result.videoUrl);
+await loadVideos();
+
+
 
 } catch (error) {
   console.log(error);
@@ -257,12 +284,15 @@ setVideoUrl(result.videoUrl);
 
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
-          <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
-          <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
-          <div className="aspect-video rounded-2xl bg-zinc-800 border border-zinc-700"></div>
-        </div>
-
+  {videos.map((video) => (
+    <video
+      key={video.id}
+      controls
+      className="aspect-video rounded-2xl border border-zinc-700 object-cover"
+      src={video.video_url}
+    />
+  ))}
+</div>
       </div>
     
 
