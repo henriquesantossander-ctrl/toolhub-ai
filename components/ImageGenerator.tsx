@@ -135,7 +135,7 @@ export default function ImageGenerator() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Descreva a imagem que você quer criar ou envie imagens como referência..."
-              className="h-[150px] w-full resize-none bg-transparent outline-none text-lg text-zinc-100 placeholder:text-zinc-600"
+              className="h-[40px] w-full resize-none bg-transparent outline-none text-lg text-zinc-100 placeholder:text-zinc-600"
             />
 
             {uploadedImages.length > 0 && (
@@ -163,22 +163,8 @@ export default function ImageGenerator() {
             )}
 
             <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div className="flex flex-wrap items-center gap-3">
-                
+              <div className="flex flex-wrap items-center gap-3">      
 
-                <select className="h-11 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 outline-none">
-                  <option>Realista</option>
-                  <option>Cinematográfico</option>
-                  <option>Anime</option>
-                 <option>Cartoon 3D</option>                 <option>Produto comercial</option>
-                </select>
-
-                <select className="h-11 rounded-2xl border border-white/10 bg-white/[0.04] px-4 text-sm text-zinc-300 outline-none">
-                  <option>16:9</option>
-                  <option>1:1</option>
-                  <option>9:16</option>
-                  <option>4:5</option>
-                </select>
               </div>
 
               <button
@@ -245,85 +231,8 @@ export default function ImageGenerator() {
         </section>
       )}
 
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-20">
-        <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-zinc-600">
-              Inspiração
-            </p>
-
-            <h2 className="mt-3 text-3xl md:text-4xl font-semibold">
-              Ideias prontas para criar
-            </h2>
-          </div>
-
-          <p className="max-w-md text-zinc-500">
-            Clique em qualquer card para carregar um prompt profissional.
-          </p>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2">
-          {showcase.map((item) => (
-            <button
-              key={item.title}
-              onClick={() => setPrompt(item.prompt)}
-              className="group overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] text-left transition hover:border-white/20 hover:bg-white/[0.06]"
-            >
-              <div className="relative h-[330px] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-
-                <div className="absolute bottom-5 left-5 right-5">
-                  <h3 className="text-2xl font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm text-zinc-400">{item.desc}</p>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pb-24">
-        <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-6 md:p-8">
-          <div className="grid gap-5 md:grid-cols-3">
-            <div className="rounded-[24px] border border-white/10 bg-black/20 p-6">
-              <h3 className="text-xl font-semibold">FREE</h3>
-              <p className="mt-2 text-zinc-500">Para testar a plataforma.</p>
-              <p className="mt-6 text-3xl font-semibold">R$0</p>
-              <p className="mt-3 text-sm text-zinc-500">5 gerações por dia</p>
-            </div>
-
-            <div className="rounded-[24px] border border-white/10 bg-black/20 p-6">
-              <h3 className="text-xl font-semibold">PRO</h3>
-              <p className="mt-2 text-zinc-500">Para criar com mais limite.</p>
-              <p className="mt-6 text-3xl font-semibold">R$19,90</p>
-              <p className="mt-3 text-sm text-zinc-500">
-                Mais gerações e sem anúncios
-              </p>
-            </div>
-
-            <div className="rounded-[24px] border border-blue-500/30 bg-blue-500/10 p-6">
-              <div className="mb-4 inline-flex rounded-full bg-blue-500/20 px-3 py-1 text-xs text-blue-200">
-                Melhor plano
-              </div>
-
-              <h3 className="text-xl font-semibold">BUSINESS</h3>
-              <p className="mt-2 text-zinc-400">
-                Imagem, vídeo, análise e IA multimodal.
-              </p>
-              <p className="mt-6 text-3xl font-semibold">R$49,90</p>
-              <p className="mt-3 text-sm text-zinc-400">
-                Ferramentas avançadas para criadores
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
+      
 
       <style jsx global>{`
         @keyframes fadeIn {
