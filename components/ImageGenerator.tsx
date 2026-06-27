@@ -210,10 +210,21 @@ export default function ImageGenerator() {
                 </div>
 
                 <div className="mt-4 flex flex-col gap-3 md:flex-row md:justify-center">
-                  <button className="h-12 rounded-2xl bg-white px-6 font-semibold text-black transition hover:scale-[1.02]">
-                    Download
-                  </button>
+                                    <button
+  onClick={() => {
+    if (!generatedImage) return;
 
+    const link = document.createElement("a");
+    link.href = generatedImage;
+    link.download = `toolhubia-${Date.now()}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }}
+  className="h-12 rounded-2xl bg-white px-6 font-semibold text-black transition hover:scale-[1.02]"
+>
+  Download
+</button>
                   <button
                     onClick={generateImage}
                     className="h-12 rounded-2xl border border-white/10 bg-white/[0.04] px-6 font-semibold text-white transition hover:bg-white/[0.08]"
@@ -221,9 +232,6 @@ export default function ImageGenerator() {
                     Gerar novamente
                   </button>
 
-                  <button className="h-12 rounded-2xl border border-blue-500/30 bg-blue-500/10 px-6 font-semibold text-blue-200 transition hover:bg-blue-500/20">
-                    Upscale HD
-                  </button>
                 </div>
               </div>
             )}
@@ -231,8 +239,6 @@ export default function ImageGenerator() {
         </section>
       )}
 
-      
-      
 
       <style jsx global>{`
         @keyframes fadeIn {
