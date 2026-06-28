@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Wand2, X } from "lucide-react";
 
+
 export default function ImageGenerator() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
@@ -10,32 +11,8 @@ export default function ImageGenerator() {
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
-  const showcase = [
-    {
-      title: "Produto premium",
-      desc: "Fotografia comercial com fundo escuro",
-      image: "/examples/cyber-after.png",
-      prompt: "Produto tecnológico premium em fundo escuro, iluminação cinematográfica, fotografia comercial",
-    },
-    {
-      title: "Retrato cinematográfico",
-      desc: "Luz suave e aparência profissional",
-      image: "/examples/hero-after.png",
-      prompt: "Retrato cinematográfico profissional, luz suave, fundo minimalista, ultra realista",
-    },
-    {
-      title: "Fantasia realista",
-      desc: "Arte conceitual de alto impacto",
-      image: "/examples/fantasy-after.png",
-      prompt: "Arte conceitual fantasy realista, iluminação dramática, detalhes premium, composição épica",
-    },
-    {
-      title: "Cartoon 3D",
-      desc: "Personagem estilizado profissional",
-      image: "/examples/cartoon-after.png",
-      prompt: "Personagem cartoon 3D profissional, render premium, luz de estúdio, fundo limpo",
-    },
-  ];
+  
+  
 
   async function generateImage() {
     // Verifica se há um prompt ou imagens enviadas antes de prosseguir
@@ -113,29 +90,20 @@ export default function ImageGenerator() {
     <main className="min-h-screen bg-[#08090b] text-white overflow-hidden">
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_34%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.08),transparent_28%)]" />
 
-      <section className="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-10 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-zinc-400">
-          <span className="h-2 w-2 rounded-full bg-blue-500" />
-          ToolHub IA Studio
-        </div>
 
-        <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05] text-red-500">
+
+      <section className="relative z-10 max-w-3xl mx-auto px-6">
+        <div className="rounded-[36px] border border-white/10 bg-white/[0.03] backdrop-blur-3xl p-6 shadow-[0_30px_120px_rgba(0,0,0,.45)]">
+
+        <div className="rounded-[28px] bg-black/20 p-6">
           
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-400">
-          Gere, transforme e refine imagens com IA em uma interface limpa,
-          rápida e visual.
-        </p>
-      </section>
-
-      <section className="relative z-10 max-w-4xl mx-auto px-6">
-        <div className="rounded-[32px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl shadow-[0_0_80px_rgba(255,255,255,0.04)] p-4">
-          <div className="rounded-[24px] border border-white/10 bg-black/30 p-4">
+         
+          
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Descreva a imagem que você quer criar ou envie imagens como referência..."
-              className="h-[40px] w-full resize-none bg-transparent outline-none text-lg text-zinc-100 placeholder:text-zinc-600"
+              placeholder="Descreva qualquer imagem que você imaginar..."
+              className="min-h-[70px] w-full resize-none bg-transparent outline-none text-xl text-zinc-100 placeholder:text-zinc-600"
             />
 
             {uploadedImages.length > 0 && (
@@ -163,22 +131,29 @@ export default function ImageGenerator() {
             )}
 
             <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div className="flex flex-wrap items-center gap-3">      
 
-              </div>
+      
 
-              <button
-                onClick={generateImage}
-                disabled={loading}
-                className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-white px-6 font-semibold text-black transition hover:scale-[1.02] disabled:opacity-60"
-              >
-                {loading ? "Criando..." : "Gerar imagem"}
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="mt-6 flex justify-center">
+
+  <button
+    onClick={generateImage}
+    disabled={loading}
+    className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-8 font-semibold text-white transition hover:scale-[1.02]"
+  >
+    {loading ? "Criando..." : "Gerar imagem"}
+    <ArrowRight className="h-4 w-4" />
+  </button>
+
+   </div> {/* justify-center */}
+
+</div> {/* flex-col */}
+
+</div> {/* rounded-[28px] */}
+
+</div> {/* rounded-[36px] */}
+
+</section>
 
       {(loading || generatedImage) && (
         <section className="relative z-10 max-w-5xl mx-auto px-6 pt-10">

@@ -1,8 +1,8 @@
 import ImageGenerator from "@/components/ImageGenerator";
-import Sidebar from "@/components/Sidebar";
 import PhotoEditorPage from "@/components/PhotoEditor";
 import VideoGenerator from "@/components/VideoGenerator";
 import VideoScriptGenerator from "@/components/VideoScriptGenerator";
+import StudioShell from "@/components/StudioShell";
 
 export default async function StudioPage({
   searchParams,
@@ -13,30 +13,30 @@ export default async function StudioPage({
   const tool = params.tool || "image";
 
   return (
-    <div className="flex min-h-screen bg-black text-white">
-      <Sidebar />
+    <main className="min-h-screen bg-black text-white">
+      {tool === "image" && (
+        <StudioShell current="image">
+          <ImageGenerator />
+        </StudioShell>
+      )}
 
-      <main className="flex-1 p-8">
-        {tool === "image" && <ImageGenerator />}
+      {tool === "photo-editor" && (
+        <StudioShell current="photo-editor">
+          <PhotoEditorPage />
+        </StudioShell>
+      )}
 
-        {tool === "photo-editor" && <PhotoEditorPage />}
+      {tool === "video" && (
+        <StudioShell current="video">
+          <VideoGenerator />
+        </StudioShell>
+      )}
 
-        {tool === "video" && <VideoGenerator />}
-
-        {tool === "video-script" && <VideoScriptGenerator />}
-
-        {tool === "home" && (
-          <>
-            <h1 className="text-4xl font-bold mb-4">
-              ToolHub IA Studio
-            </h1>
-
-            <p className="text-zinc-400">
-              Selecione uma ferramenta na barra lateral.
-            </p>
-          </>
-        )}
-      </main>
-    </div>
+      {tool === "video-script" && (
+        <StudioShell current="video-script">
+          <VideoScriptGenerator />
+        </StudioShell>
+      )}
+    </main>
   );
 }
