@@ -194,7 +194,7 @@ await loadVideos();
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             placeholder="Descreva o vídeo..."
-            className="w-full h-28 bg-zinc-950 border border-zinc-800 rounded-2xl p-5"
+            className="relative w-full text-white"
           />
 
 

@@ -40,22 +40,23 @@ export default function StudioShell({
 
     <BackgroundGallery />
     
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col px-6 py-10">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-7xl flex-col items-center justify-start pt-pt-28 px-6">
 
         {/* Hero */}
-        <div className="mb-10 text-center">
-         <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-           ToolHub <span className="text-violet-400">IA</span> Studio
+        <div className="mb-12 mt-5 max-w-4xl text-center">
+         <h1 className="text-7xl md:text-8xl font-black leading-[0.95] tracking-tight text-white">
+          Crie o incrível
+         <br />
+           com <span className="text-violet-500">IA.</span>
          </h1>
 
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-zinc-400">
-            Crie imagens, edite fotos e produza vídeos com inteligência artificial
-            em um único lugar.
-          </p>
+         <p className="mt-6 max-w-2xl text-center text-lg text-zinc-300">
+          Transforme qualquer ideia em imagens incríveis usando inteligência artificial.
+        </p>
         </div>
 
         {/* Navegação */}
-        <div className="mb-10 flex flex-wrap justify-center gap-3">
+        <div className="mb-10 flex flex-wrap justify-center gap-5">
           {buttons.map((button) => (
             <Link
               key={button.id}
@@ -72,8 +73,10 @@ export default function StudioShell({
         </div>
 
         {/* Conteúdo */}
-        <div>{children}</div>
-      </div>
+        <div className="-mt-2 w-full max-w-5xl">
+  {children}
+</div>
+    </div>
     </div>
   );
 }

@@ -42,7 +42,7 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
   };
 
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center px-6 py-20">
+    <div className="relative w-full text-white">
       <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center">
         Gerador de Roteiro Viral
       </h1>
@@ -88,6 +88,6 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
           </button>
         </div>
       )}
-    </main>
+    </div>
   );
 }

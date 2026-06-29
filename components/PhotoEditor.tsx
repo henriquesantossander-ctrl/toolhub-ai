@@ -61,7 +61,7 @@ setImagePreview(URL.createObjectURL(file));
 
 }
 
-return ( <main className="min-h-screen bg-black text-white px-6 py-16"> <div className="max-w-3xl mx-auto">
+return ( <div className="relative w-full text-white">
 
 
     <h1 className="text-5xl font-bold mb-4 text-center">
@@ -113,8 +113,8 @@ return ( <main className="min-h-screen bg-black text-white px-6 py-16"> <div cla
         />
       </div>
     )}
-  </div>
-</main>
+  
+</div>
 
 
 );

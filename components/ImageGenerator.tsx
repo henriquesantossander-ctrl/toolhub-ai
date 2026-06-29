@@ -87,24 +87,22 @@ export default function ImageGenerator() {
   }
 
   return (
-    <main className="min-h-screen bg-[#08090b] text-white overflow-hidden">
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.10),transparent_34%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.08),transparent_28%)]" />
+    <div className="relative w-full text-white">
+      
 
+      <section className="relative z-10 mx-auto mt-2 w-full max-w-5xl px-6">
+        <div className="rounded-[36px] bg-transparent p-0 shadow-none">
 
-
-      <section className="relative z-10 max-w-3xl mx-auto px-6">
-        <div className="rounded-[36px] border border-white/10 bg-white/[0.03] backdrop-blur-3xl p-6 shadow-[0_30px_120px_rgba(0,0,0,.45)]">
-
-        <div className="rounded-[28px] bg-black/20 p-6">
+        <div className="rounded-[36px] border border-white/30 bg-white/95 backdrop-blur-xl p-8 shadow-[0_25px_80px_rgba(0,0,0,.30)]">
           
          
           
             <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Descreva qualquer imagem que você imaginar..."
-              className="min-h-[70px] w-full resize-none bg-transparent outline-none text-xl text-zinc-100 placeholder:text-zinc-600"
-            />
+  value={prompt}
+  onChange={(e) => setPrompt(e.target.value)}
+  placeholder="Descreva a imagem que você deseja criar..."
+  className="h-36 w-full resize-none rounded-2xl border border-zinc-200 bg-white p-5 text-lg text-zinc-900 outline-none placeholder:text-zinc-400"
+/>
 
             {uploadedImages.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-3">
@@ -129,25 +127,17 @@ export default function ImageGenerator() {
                 ))}
               </div>
             )}
-
-            <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-
-      
-
-      <div className="mt-6 flex justify-center">
+                  <div className="mt-6 flex justify-center">
 
   <button
-    onClick={generateImage}
-    disabled={loading}
-    className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-8 font-semibold text-white transition hover:scale-[1.02]"
-  >
-    {loading ? "Criando..." : "Gerar imagem"}
-    <ArrowRight className="h-4 w-4" />
-  </button>
+  onClick={generateImage}
+  disabled={loading}
+  className="flex h-[60px] items-center justify-center rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-8 font-semibold text-white transition hover:opacity-90"
+>
+  {loading ? "Criando..." : "Gerar imagem"}
+</button>
 
-   </div> {/* justify-center */}
-
-</div> {/* flex-col */}
+</div>
 
 </div> {/* rounded-[28px] */}
 
@@ -156,7 +146,7 @@ export default function ImageGenerator() {
 </section>
 
       {(loading || generatedImage) && (
-        <section className="relative z-10 max-w-5xl mx-auto px-6 pt-10">
+        <section className="relative z-10 max-w-4xl mx-auto px-6 pt-10">
           <div className="rounded-[32px] border border-white/10 bg-white/[0.03] p-4">
             {loading && (
               <div className="flex h-[420px] flex-col items-center justify-center rounded-[24px] bg-black/30 text-center">
@@ -228,6 +218,6 @@ export default function ImageGenerator() {
           }
         }
       `}</style>
-    </main>
+    </div>
   );
 }
