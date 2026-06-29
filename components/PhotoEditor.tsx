@@ -62,47 +62,81 @@ setImagePreview(URL.createObjectURL(file));
 }
 
 return ( <div className="relative w-full text-white">
+     
+      <section className="relative z-10 mx-auto -mt-10 w-full max-w-6xl px-6">
+  <div className="rounded-[36px] bg-transparent p-0 shadow-none">
+    <div className="rounded-[36px] border border-white/30 bg-white/95 backdrop-blur-xl pt-10 px-10 pb-4 shadow-[0_25px_80px_rgba(0,0,0,.30)]">
+     <h3 className="mb-5 text-lg font-semibold text-zinc-900">
+      1. Envie sua imagem
+     </h3>
+     <div className="grid gap-4 md:grid-cols-2">
+    
+    <label className="mb-6 flex h-40 w-full cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-zinc-300 bg-zinc-50 transition hover:bg-zinc-100">
+
+  <span className="text-lg font-semibold text-zinc-700">
+    Clique para enviar uma foto
+  </span>
+
+  <span className="mt-2 text-sm text-zinc-500">
+    JPG, PNG ou WEBP
+  </span>
+
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => handleUpload(e.target.files?.[0] || null)}
+    className="hidden"
+  />
+
+</label>
 
 
-    <h1 className="text-5xl font-bold mb-4 text-center">
-      Editor de Fotos IA
-    </h1>
+   <div className="relative flex h-40 items-center justify-center overflow-hidden rounded-3xl border border-zinc-200 bg-zinc-50">
 
-    <p className="text-zinc-400 text-center mb-10">
-      Envie uma foto e descreva qualquer alteração que deseja fazer.
-    </p>
-
-    <input
-      type="file"
-      accept="image/*"
-      onChange={(e) =>
-        handleUpload(e.target.files?.[0] || null)
-      }
-      className="mb-6 w-full"
-    />
-
-    {imagePreview && (
+  {imagePreview ? (
+    <>
       <img
         src={imagePreview}
         alt="Preview"
-        className="rounded-2xl mb-6 max-h-[400px] object-cover"
+        className="h-full w-full object-cover"
       />
-    )}
 
+      <button
+        onClick={() => {
+          setImageFile(null);
+          setImagePreview("");
+        }}
+        className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/70 text-white"
+      >
+        ✕
+      </button>
+    </>
+  ) : (
+    <span className="text-zinc-400">
+      Pré-visualização
+    </span>
+  )}
+
+</div>
+
+</div>
     <textarea
-      placeholder="Ex: coloque óculos escuros, troque o fundo para uma praia..."
-      value={prompt}
-      onChange={(e) => setPrompt(e.target.value)}
-      className="w-full h-32 bg-zinc-900 border border-zinc-700 rounded-2xl p-4 mb-6"
-    />
+     placeholder="2. Descreva a alteração desejada..."
+     value={prompt}
+     onChange={(e) => setPrompt(e.target.value)}
+     className="h-32 w-full resize-none rounded-2xl border border-zinc-200 bg-white p-5 text-lg text-zinc-900 outline-none placeholder:text-zinc-400"
+   />
+
+    <div className="mt-6 flex justify-center">
 
     <button
       onClick={editImage}
       disabled={loading}
-      className="bg-white text-black px-8 py-4 rounded-2xl font-bold"
+      className="mx-auto flex h-[60px] w-[320px] items-center justify-center rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 font-semibold text-white transition hover:opacity-90"
     >
       {loading ? "Transformando..." : "Transformar Foto"}
     </button>
+    </div>
 
     {generatedImage && (
       <div className="mt-10">
@@ -114,8 +148,14 @@ return ( <div className="relative w-full text-white">
       </div>
     )}
   
-</div>
+    
+    </div>
+  </div>
+</section>
 
+
+
+</div>
 
 );
 }

@@ -43,7 +43,7 @@ export default function StudioShell({
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-7xl flex-col items-center justify-start pt-pt-28 px-6">
 
         {/* Hero */}
-        <div className="mb-12 mt-5 max-w-4xl text-center">
+        <div className="mb-10 mt-5 max-w-4xl text-center">
          <h1 className="text-7xl md:text-8xl font-black leading-[0.95] tracking-tight text-white">
           Crie o incrível
          <br />
@@ -56,7 +56,7 @@ export default function StudioShell({
         </div>
 
         {/* Navegação */}
-        <div className="mb-10 flex flex-wrap justify-center gap-5">
+        <div className="mb-16 flex flex-wrap justify-center gap-5">
           {buttons.map((button) => (
             <Link
               key={button.id}
