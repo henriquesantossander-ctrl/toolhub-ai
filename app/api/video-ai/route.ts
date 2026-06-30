@@ -18,10 +18,9 @@ export async function POST(req: Request) {
       );
     }
 
-    const promptFinal = `${prompt}, (explicit nudity), full body nude, highly detailed vulva, realistic nipples, raw skin texture, goosebumps, high-res pornographic aesthetic, uncensored, 8k, photorealistic, no clothes, undressed`;
+    const promptFinal = `${prompt}, photorealistic, 8k, masterpiece, cinematic lighting, highly detailed skin texture, natural colors, realistic shadows, professional photography, high quality`;
 
-
-     const response = await fetch(
+    const response = await fetch(
   "https://queue.fal.run/fal-ai/kling-video/o3/standard/image-to-video",
   {
     method: "POST",
@@ -30,7 +29,7 @@ export async function POST(req: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: `${prompt}, 8k, realistic, cinematic lighting, masterpiece`,
+      prompt: promptFinal,
       image_url: imageUrl,
       strength: 0.90,
       generate_audio: false,
