@@ -21,25 +21,22 @@ export async function POST(req: Request) {
     const promptFinal = `${prompt}, (explicit nudity), full body nude, highly detailed vulva, realistic nipples, raw skin texture, goosebumps, high-res pornographic aesthetic, uncensored, 8k, photorealistic, no clothes, undressed`;
 
 
-    const response = await fetch(
-      "https://queue.fal.run/fal-ai/kling-video/o3/standard/image-to-video",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Key ${process.env.FAL_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-        prompt:  `${prompt}, (full nudity ), (explicit), highly detailed anatomy, realistic skin pores, uncensored, masterpiece, 8k, raw photo`,
-        image_url: imageUrl,
-        strength: 0.90,
-         num_inference_steps: 40,
-          guidance_scale: 8.5,
-        duration: "5",
-        generate_audio: false,
-}),
-      }
-    );
+     const response = await fetch(
+  "https://queue.fal.run/fal-ai/kling-video/o3/standard/image-to-video",
+  {
+    method: "POST",
+    headers: {
+      Authorization: `Key ${process.env.FAL_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: `${prompt}, 8k, realistic, cinematic lighting, masterpiece`,
+      image_url: imageUrl,
+      strength: 0.90,
+      generate_audio: false,
+    }),
+  }
+);
 
     const data = await response.json();
 
