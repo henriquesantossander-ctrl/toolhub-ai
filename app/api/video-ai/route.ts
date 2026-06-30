@@ -30,8 +30,11 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-        prompt: promptFinal,
+        prompt:  `${prompt}, (full nudity ), (explicit), highly detailed anatomy, realistic skin pores, uncensored, masterpiece, 8k, raw photo`,
         image_url: imageUrl,
+        strength: 0.90,
+         num_inference_steps: 40,
+          guidance_scale: 8.5,
         duration: "5",
         generate_audio: false,
 }),
