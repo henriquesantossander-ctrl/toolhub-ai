@@ -105,196 +105,126 @@ await loadVideos();
   }
 
   return (
-    <div className="w-full text-white p-8">
-      <h1 className="text-5xl font-bold mb-2">🎬 Vídeo IA</h1>
+  <section className="relative z-10 mx-auto -mt-10 w-full max-w-6xl px-6">
+    <div className="rounded-[36px] bg-transparent p-0 shadow-none">
+      <div className="rounded-[36px] border border-white/30 bg-white/95 backdrop-blur-xl p-5 shadow-[0_25px_80px_rgba(0,0,0,.30)]">
 
-      <p className="text-zinc-400 mb-8">
-        Crie vídeos incríveis com inteligência artificial.
-      </p>
+<div className="rounded-[36px] border border-white/30 bg-white/95 backdrop-blur-xl p-10 shadow-[0_25px_80px_rgba(0,0,0,.30)]">
 
+  {/* Aqui */}
+     <h2 className="mb-6 text-2xl font-bold text-zinc-900">
+  1. Envie uma imagem
+</h2>
 
+<div className="mb-8 grid grid-cols-2 gap-4">
 
+  <label className="flex h-32 cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-zinc-300 bg-zinc-50 transition hover:bg-zinc-100">
 
-      <div className="flex gap-3 mb-8 flex-wrap">
+    <span className="text-lg font-semibold text-zinc-700">
+      Clique para enviar uma imagem
+    </span>
 
-        
-       
-    
-    
-        
+    <span className="mt-2 text-sm text-zinc-500">
+      JPG, PNG ou WEBP
+    </span>
 
-        {/* IMAGEM -> VIDEO */}
-        <button
-          className="
-    flex items-center justify-between
-    w-[290px]
-    h-14
-    px-5
-    rounded-2xl
-    border
-    border-zinc-800
-    bg-zinc-900/60
-    hover:border-purple-500/50
-    transition
-    "
-        >
-          <div className="flex items-center gap-3">
-            <ImageIcon size={16} className="text-blue-400" />
-            <span>Imagem para Vídeo</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
-              BUSINESS
-            </span>
-
-            <Lock size={14} className="text-zinc-500" />
-          </div>
-        </button>
-
-        {/* VIDEO -> VIDEO */}
-        <button
-          className="
-    flex items-center justify-between
-    w-[290px]
-    h-14
-    px-5
-    rounded-2xl
-    border
-    border-zinc-800
-    bg-zinc-900/60
-    hover:border-purple-500/50
-    transition
-    "
-        >
-          <div className="flex items-center gap-3">
-            <Clapperboard size={16} className="text-purple-400" />
-            <span>Vídeo para Vídeo</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/20 text-purple-300">
-              BUSINESS
-            </span>
-
-            <Lock size={14} className="text-zinc-500" />
-          </div>
-        </button>
-
-      </div>
-
-      <div>
-        <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6">
-          <h2 className="text-xl font-semibold mb-4">
-            Transforme uma imagem em vídeo
-          </h2>
-
-           
-          <textarea
-            value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Descreva o vídeo..."
-            className="relative w-full text-white"
-          />
-
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-          
-
-
-
-              <div>
-                <h3 className="text-lg font-semibold mb-3">
-                  ⏱ Duração
-                </h3>
-
-                <div className="flex gap-2">
-                  <button className="px-4 py-2 rounded-xl bg-purple-600">5s</button>
-                  <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">10s</button>
-                  <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">15s</button>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold mb-3">
-                  🎥 Resolução
-                </h3>
-
-                <div className="flex gap-2">
-                  <button className="px-4 py-2 rounded-xl bg-purple-600">720p</button>
-                  <button className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800">1080p</button>
-                </div>
-              </div>
-
-
-              <div className="border border-zinc-800 rounded-2xl p-4">
-  <p className="font-semibold mb-3">
-    📸 Upload de Imagem
-  </p>
-
-  <input
-    type="file"
-    accept="image/*"
-    onChange={(e) => setFile(e.target.files?.[0] || null)}
-    className="w-full text-sm text-zinc-400
-      file:mr-4
-      file:px-4
-      file:py-2
-      file:rounded-xl
-      file:border-0
-      file:bg-purple-600
-      file:text-white
-      hover:file:bg-purple-500"
-  />
-  </div>
- </div>
-</div>
-
-
-          <button
-            onClick={generateVideo}
-            className="mt-2 bg-gradient-to-r from-purple-600 to-pink-600 px-10 py-4 rounded-2xl font-bold"
-          >
-            {loading ? "Gerando..." : "Gerar Vídeo IA"}
-          </button>
-
-          {loading && (
-          <div className="mt-4 text-purple-400">
-          Gerando vídeo... isso pode levar até 1 minuto.
-        </div>
-)}
-
-
-          <div className="mt-10">
-            <h2 className="text-2xl font-bold mb-2">
-              Seus vídeos gerados
-            </h2>
-          </div>
-          <p className="text-zinc-500 mb-6">
-            Seus vídeos aparecerão aqui após a geração.
-          </p>
-          {videoUrl && (
-  <video
-    controls
-    className="w-full rounded-2xl border border-zinc-800"
-    src={videoUrl}
-  />
-)}
-        </div>
-
-
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-  {videos.map((video) => (
-    <video
-      key={video.id}
-      controls
-      className="aspect-video rounded-2xl border border-zinc-700 object-cover"
-      src={video.video_url}
+    <input
+      type="file"
+      accept="image/*"
+      onChange={(e) => setFile(e.target.files?.[0] || null)}
+      className="hidden"
     />
-  ))}
-</div>
-      </div>
-    
 
-  );
+  </label>
+
+  <div className="flex h-32 items-center justify-center rounded-3xl border border-zinc-200 bg-zinc-50">
+
+    {file ? (
+      <img
+        src={URL.createObjectURL(file)}
+        alt="Preview"
+        className="h-full w-full rounded-3xl object-cover"
+      />
+    ) : (
+      <span className="text-zinc-400">
+        Pré-visualização
+      </span>
+    )}
+
+  </div>
+
+</div>
+</div>
+    <h2 className="mb-4 text-xl font-bold text-zinc-900">
+  2. Descreva o vídeo
+</h2>
+
+<textarea
+  value={prompt}
+  onChange={(e) => setPrompt(e.target.value)}
+  placeholder="Ex: transforme esta imagem em um vídeo cinematográfico com movimento suave de câmera..."
+  className="mb-8 h-28 w-full resize-none rounded-2xl border border-zinc-200 bg-white p-5 text-lg text-zinc-900 outline-none placeholder:text-zinc-400"
+/>
+
+ <div className="flex justify-center">
+
+  <button
+    onClick={generateVideo}
+    disabled={loading}
+   className="mx-auto flex h-[60px] w-[320px] items-center justify-center rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-lg font-semibold text-white transition hover:opacity-90"
+  >
+    {loading ? "Gerando..." : "Gerar Vídeo"}
+  </button>
+
+</div>
+
+{loading && (
+  <p className="mt-6 text-center text-sm text-violet-600">
+    Gerando vídeo... isso pode levar até 1 minuto.
+  </p>
+)}
+<h2 className="mt-8 text-xl font-bold text-zinc-900">
+  Seus vídeos gerados
+</h2>
+
+<p className="mb-6 mt-2 text-zinc-500">
+  Seus vídeos aparecerão aqui após a geração.
+</p>
+        {/* Upload */}
+
+        {/* Prompt */}
+
+        {/* Botão */}
+
+        {/* Loading */}
+
+        {/* Vídeo gerado */}
+
+        {videoUrl && (
+          <video
+            controls
+            className="w-full rounded-2xl border border-zinc-800"
+            src={videoUrl}
+          />
+        )}
+
+        {/* Seus vídeos gerados */}
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {videos.map((video) => (
+            <video
+              key={video.id}
+              controls
+              className="aspect-video rounded-2xl border border-zinc-700 object-cover"
+              src={video.video_url}
+            />
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+);
+         
+  
 }
