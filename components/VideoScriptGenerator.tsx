@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
-  export default function VideoScriptGenerator() {
+export default function VideoScriptGenerator() {
   const [theme, setTheme] = useState("");
+  const [prompt, setPrompt] = useState("");
   const [script, setScript] = useState("");
   const [loading, setLoading] = useState(false);
 
-    const generateScript = async () => {
+  const generateScript = async () => {
     const result = await checkUsageLimit();
 
     if (!result.allowed) return;
@@ -18,11 +19,11 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
 
     const response = await fetch("/api/video-script", {
       method: "POST",
-     headers: {
-  "Content-Type": "application/json",
-},
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        prompt: theme || "vídeo viral",
+        prompt: `${theme}\n\n${prompt}`,
       }),
     });
 
@@ -31,8 +32,9 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
     setScript(data.result);
 
     if (!result.isPro && result.email) {
-  await increaseUsage(result.email, result.currentCount);
-}
+      await increaseUsage(result.email, result.currentCount);
+    }
+
     setLoading(false);
   };
 
@@ -42,52 +44,74 @@ import { checkUsageLimit, increaseUsage } from "@/lib/checkUsageLimit";
   };
 
   return (
-    <div className="relative w-full text-white">
-      <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center">
-        Gerador de Roteiro Viral
-      </h1>
+    <section className="relative z-10 mx-auto -mt-10 w-full max-w-6xl px-6">
+      <div className="rounded-[36px] bg-transparent p-0 shadow-none">
+        <div className="rounded-[36px] border border-white/30 bg-white/95 backdrop-blur-xl p-10 shadow-[0_25px_80px_rgba(0,0,0,.30)]">
 
-      <p className="text-zinc-400 mb-10 text-center max-w-2xl">
-        Gere roteiros para TikTok, Shorts, Reels e vídeos virais usando IA.
-      </p>
+          <h2 className="mb-3 text-4xl font-bold text-zinc-900">
+            Gerador de Roteiro
+          </h2>
 
-      <input
-        type="text"
-        placeholder="Tema: terror, futebol, motivação, dinheiro..."
-        value={theme}
-        onChange={(e) => setTheme(e.target.value)}
-        className="bg-zinc-900 border border-zinc-700 rounded-2xl px-5 py-4 w-full max-w-2xl mb-6 outline-none"
-      />
-
-      <button
-        onClick={generateScript}
-        disabled={loading}
-        className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:scale-105 transition disabled:opacity-50"
-      >
-        {loading ? (
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-            Gerando roteiro...
-          </div>
-        ) : (
-          "Gerar Roteiro"
-        )}
-      </button>
-
-      {script && (
-        <div className="bg-zinc-900 border border-zinc-800 mt-12 p-8 rounded-3xl max-w-2xl w-full">
-          <p className="text-zinc-300 text-lg whitespace-pre-line">
-            {script}
+          <p className="mb-8 text-zinc-500">
+            Gere roteiros completos para vídeos usando IA.
           </p>
 
-          <button
-            onClick={copyScript}
-            className="mt-6 w-full bg-white text-black py-3 rounded-2xl font-bold hover:scale-105 transition"
-          >
-            Copiar Roteiro
-          </button>
+          <label className="mb-2 block text-xl font-semibold text-zinc-900">
+            1. Tema do vídeo
+          </label>
+
+          <input
+            type="text"
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            placeholder="Ex: Terror, Futebol, Motivação..."
+            className="mb-8 h-14 w-full rounded-2xl border border-zinc-200 bg-white px-5 text-zinc-900 outline-none placeholder:text-zinc-400"
+          />
+
+          <label className="mb-2 block text-xl font-semibold text-zinc-900">
+            2. Descreva o roteiro
+          </label>
+
+          <textarea
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="Ex: Quero um vídeo de 30 segundos com um início impactante..."
+            className="h-40 w-full resize-none rounded-2xl border border-zinc-200 bg-white p-5 text-zinc-900 outline-none placeholder:text-zinc-400"
+          />
+
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={generateScript}
+              disabled={loading}
+              className="mx-auto flex h-[60px] w-[320px] items-center justify-center rounded-2xl bg-gradient-to-r from-violet-600 to-fuchsia-600 font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
+            >
+              {loading ? "Gerando..." : "Gerar Roteiro"}
+            </button>
+          </div>
+
+          {script && (
+            <div className="mt-10">
+              <h2 className="mb-4 text-2xl font-bold text-zinc-900">
+                Roteiro Gerado
+              </h2>
+
+              <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 whitespace-pre-wrap text-zinc-800">
+                {script}
+              </div>
+
+              <div className="mt-6 flex justify-center">
+                <button
+                  onClick={copyScript}
+                  className="rounded-2xl border border-zinc-300 px-6 py-3 font-semibold text-zinc-800 transition hover:bg-zinc-100"
+                >
+                  Copiar roteiro
+                </button>
+              </div>
+            </div>
+          )}
+
         </div>
-      )}
-    </div>
+      </div>
+    </section>
   );
 }
