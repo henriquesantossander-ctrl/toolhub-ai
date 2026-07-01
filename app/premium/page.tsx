@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import { CheckCircle2 } from "lucide-react";
 
 export default function PremiumPage() {
   return (
@@ -28,19 +29,20 @@ export default function PremiumPage() {
           <p className="text-zinc-600 text-sm mt-4">
   Mais recursos. Mais velocidade. Mais possibilidades.
 </p>
-      <h1 className="mt-8 text-5xl md:text-7xl font-semibold tracking-tight leading-[1.05]">
+      <h1 className="mt-8 text-6xl md:text-7xl font-black tracking-tight leading-[0.95]">
   Desbloqueie todo o
   <br />
-  potencial da IA
+  <span className="bg-gradient-to-r from-white via-white to-violet-400 bg-clip-text text-transparent">
+    potencial da IA
+  </span>
 </h1>
 
-<p className="text-xl text-zinc-400 mt-6">
-  Crie imagens, vídeos e conteúdos profissionais em segundos.
+<p className="mt-8 text-xl text-zinc-300 max-w-3xl mx-auto leading-relaxed">
+  Crie imagens, edite fotos, gere roteiros e produza vídeos com inteligência artificial em poucos segundos.
 </p>
 
-<p className="text-zinc-500 text-lg mt-4 max-w-2xl mx-auto">
-  Imagem, vídeo, análise multimodal,
-   ferramentas profissionais.
+<p className="mt-4 text-zinc-500 text-lg max-w-3xl mx-auto">
+  Tudo em uma única plataforma profissional para criadores de conteúdo.
 </p>
 <div className="flex flex-wrap justify-center gap-3 mt-8">
   
@@ -61,42 +63,62 @@ export default function PremiumPage() {
         </div>
 
         {/* CARDS */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid items-stretch gap-8 lg:grid-cols-3">
 
           {/* FREE */}
-          <div className="bg-white/[0.02] border border-white/5 rounded-3xl p-8 opacity-120">
+          <div className="rounded-[34px] border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-10 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,.25)] transition-all duration-300 hover:-translate-y-2 hover:border-purple-500/20 flex flex-col">
 
             <p className="text-zinc-500 text-sm mb-4">
               FREE
             </p>
 
-            <h2 className="text-5xl font-bold">
-              R$0
-            </h2>
+            <div className="mt-4 flex items-end gap-1">
+
+  <span className="text-2xl text-zinc-400">
+    R$
+  </span>
+
+  <span className="text-6xl font-black tracking-tight">
+    0
+  </span>
+
+</div>
 
             <p className="text-zinc-500 mt-3">
               Ideal para testar a plataforma
             </p>
 
-            <div className="space-y-4 mt-10 text-zinc-300">
+             <div className="mt-10 space-y-5">
 
-              <p>• 1 geração por estilo por dia</p>
-              <p>• Cyberpunk</p>
-              <p>• Cartoon</p>
-              <p>• Fantasy</p>
-              <p>• Hero</p>
-              <p>• Qualidade padrão</p>
+  {[
+    "1 geração de imagem por dia",
+    "Gerador de Imagem",
+    "Editor de Imagem",
+    "Gerador de Roteiro",
+  ].map((item) => (
+    <div
+      key={item}
+      className="flex items-center gap-3 text-zinc-300"
+    >
+      <CheckCircle2
+        size={18}
+        className="text-emerald-400"
+      />
 
-            </div>
+      <span>{item}</span>
+    </div>
+  ))}
 
-           <button className="w-full mt-10 bg-white/5 border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition">
+</div>
+
+           <button className="w-full mt-auto bg-white/5 border border-white/10 py-4 rounded-2xl hover:bg-white/10 transition">
               Começar grátis
             </button>
 
           </div>
 
           {/* PRO */}
-          <div className="bg-white/[0.05] border border-purple-500/20 rounded-3xl p-8 relative">
+          <div className="relative rounded-[34px] border border-purple-500/30 bg-gradient-to-b from-[#171B2D] to-[#10131F] p-10 shadow-[0_25px_70px_rgba(124,58,237,.15)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_90px_rgba(124,58,237,.25)] flex flex-col">
 
             <div className="absolute top-5 right-5 bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs px-4 py-2 rounded-full">
               MAIS POPULAR
@@ -106,29 +128,59 @@ export default function PremiumPage() {
               PRO
             </p>
 
-            <h2 className="text-5xl font-bold">
-              R$19,90
-            </h2>
+            <div className="mt-4 flex items-end gap-1">
+
+  <span className="text-2xl text-zinc-400">
+    R$
+  </span>
+
+  <span className="text-6xl font-black tracking-tight">
+    19
+  </span>
+
+  <span className="mb-2 text-xl text-zinc-400">
+    ,90
+  </span>
+
+</div>
+
+<p className="mt-2 text-zinc-500">
+  por mês
+</p>
 
             <p className="text-zinc-500 mt-3">
               Para criadores e uso diário
             </p>
 
-            <div className="space-y-4 mt-10 text-zinc-300">
+            <div className="mt-10 space-y-5">
 
-              <p>• 10 gerações por dia</p>
-              <p>• Qualidade HD</p>
-              <p>• Renderização rápida</p>
-              <p>• Sem anúncios</p>
-              <p>• Vídeo IA: 10 por dia</p>
+  {[
+    "10 gerações premium por mês",
+    "Editor de Imagem",
+    "Gerador de Roteiro",
+    "Qualidade HD",
+    "Sem anúncios",
+  ].map((item) => (
+    <div
+      key={item}
+      className="flex items-center gap-3 text-zinc-300"
+    >
+      <CheckCircle2
+        size={18}
+        className="text-violet-400"
+      />
 
-            </div>
+      <span>{item}</span>
+    </div>
+  ))}
+
+</div>
 
             <a
               href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/be15a2f2-8466-42bf-b718-02b9598aeed0/payment-option-form/?preference-id=1879629028-906b956f-aa32-4a16-8d25-709a80ea4808&router-request-id=dff32d14-bd27-488d-b8fe-8753bc28c363&p=87921cc13cf0af960fb39866d1a241b4"
               target="_blank"
             >
-              <button className="w-full mt-10 bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-medium">
+              <button className="w-full mt-auto bg-purple-600 hover:bg-purple-500 transition py-4 rounded-2xl font-medium">
                 Assinar PRO
               </button>
             </a>
@@ -136,43 +188,77 @@ export default function PremiumPage() {
           </div>
 
           {/* BUSINESS */}
-          <div className="bg-gradient-to-br from-purple-600 to-pink-600 to-transparent border border-cyan-400/30 rounded-3xl p-8 relative backdrop-blur-sm">
+          <div className="relative overflow-hidden rounded-[34px] border border-fuchsia-400/30 bg-gradient-to-br from-violet-700 via-purple-700 to-fuchsia-600 p-10 shadow-[0_35px_100px_rgba(168,85,247,.35)] transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] flex flex-col">
+          <div className="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
 
-          <div className="mb-5 inline-flex rounded-full bg-cyan-400/20 px-3 py-1 text-xs text-cyan-200">
-           Melhor plano
-         </div>
+          <div className="absolute -right-16 bottom-0 h-56 w-56 rounded-full bg-pink-400/20 blur-3xl" />
+          <div className="relative z-10 mb-6 inline-flex items-center gap-2 rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-yellow-300">
+  ⭐ Mais vendido
+</div>
 
-            <p className="text-zinc-500 text-sm mb-4">
+            <p className="relative z-10 text-white/70 text-sm mb-4">
               BUSINESS
             </p>
 
-            <h2 className="text-6xl font-bold">
-             R$49,90
-            </h2>
+            <div className="mt-4 flex items-end gap-1">
 
-            <p className="text-zinc-500 mt-2">
-             por mês
-            </p>
+  <span className="text-2xl text-white/80">
+    R$
+  </span>
 
-            <p className="text-zinc-500 mt-3">
-              Uso profissional ilimitado
-            </p>
+  <span className="text-7xl font-black tracking-tight">
+    49
+  </span>
 
-            <div className="space-y-4 mt-10 text-zinc-300">
+  <span className="mb-2 text-2xl text-white/70">
+    ,90
+  </span>
 
-             <p>• Gerações ilimitadas</p>
-              <p>• Vídeo IA ilimitado</p>
-              <p>• Upload múltiplo de imagens</p>
-              <p>• Sem anúncios</p>
-              <p>• Prioridade máxima</p>
+</div>
 
-            </div>
+<p className="mt-2 text-white/70">
+  por mês
+</p>
+
+             <p className="mt-3 text-white/90 text-lg">
+  Para criadores e empresas que utilizam IA diariamente.
+</p>
+
+           <div className="mt-10 space-y-5">
+
+  {[
+    "Tudo do PRO",
+    "Vídeo IA Premium",
+    "Imagem → Vídeo",
+    "Upload de imagens",
+    "Histórico dos vídeos",
+    "10 créditos de vídeo inclusos",
+    "Compra de créditos extras",
+    "Prioridade máxima",
+    "Sem anúncios",
+  ].map((item) => (
+    <div
+      key={item}
+      className="flex items-center gap-3 text-white"
+    >
+      <CheckCircle2
+        size={19}
+        className="text-yellow-300"
+      />
+
+      <span className="font-medium">
+        {item}
+      </span>
+    </div>
+  ))}
+
+</div>
 
             <a
               href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
               target="_blank"
             >
-              <button className="w-full mt-10 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-2xl font-semibold hover:scale-[1.02] transition">
+              <button className="w-full mt-auto bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 rounded-2xl font-semibold hover:scale-[1.02] transition">
                 Assinar BUSINESS
               </button>
             </a>
@@ -182,6 +268,143 @@ export default function PremiumPage() {
         </div>
 
       </section>
+      {/* COMPARAÇÃO DOS PLANOS */}
+
+<div className="mt-24">
+
+  <h2 className="text-center text-4xl font-bold">
+    Compare os planos
+  </h2>
+
+  <p className="mt-4 text-center text-zinc-500">
+    Escolha o plano ideal para o seu nível de criação.
+  </p>
+  <div className="mt-12 overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+
+  {/* CABEÇALHO */}
+
+  {/* Gerador de Imagem */}
+
+<div className="grid grid-cols-4 border-b border-white/5">
+  <div className="p-5 font-medium text-zinc-300">
+    Gerador de Imagem
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-emerald-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-violet-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-yellow-300" />
+  </div>
+</div>
+
+{/* Editor */}
+
+<div className="grid grid-cols-4 border-b border-white/5">
+  <div className="p-5 font-medium text-zinc-300">
+    Editor de Imagem
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-emerald-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-violet-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-yellow-300" />
+  </div>
+</div>
+
+{/* Roteiro */}
+
+<div className="grid grid-cols-4 border-b border-white/5">
+  <div className="p-5 font-medium text-zinc-300">
+    Gerador de Roteiro
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-emerald-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-violet-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-yellow-300" />
+  </div>
+</div>
+
+{/* Vídeo IA */}
+
+<div className="grid grid-cols-4 border-b border-white/5">
+  <div className="p-5 font-medium text-zinc-300">
+    Vídeo IA
+  </div>
+
+  <div className="flex justify-center items-center text-zinc-600">
+    —
+  </div>
+
+  <div className="flex justify-center items-center text-zinc-600">
+    —
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-yellow-300" />
+  </div>
+</div>
+
+{/* Créditos */}
+
+<div className="grid grid-cols-4 border-b border-white/5">
+  <div className="p-5 font-medium text-zinc-300">
+    Créditos de Vídeo
+  </div>
+
+  <div className="flex justify-center items-center text-zinc-600">
+    —
+  </div>
+
+  <div className="flex justify-center items-center text-zinc-600">
+    —
+  </div>
+
+  <div className="flex justify-center items-center text-yellow-300 font-semibold">
+    10
+  </div>
+</div>
+
+{/* Sem anúncios */}
+
+<div className="grid grid-cols-4">
+  <div className="p-5 font-medium text-zinc-300">
+    Sem anúncios
+  </div>
+
+  <div className="flex justify-center items-center text-zinc-600">
+    —
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-violet-400" />
+  </div>
+
+  <div className="flex justify-center items-center">
+    <CheckCircle2 size={20} className="text-yellow-300" />
+  </div>
+</div>
+</div>
+
+</div>
     </main>
   );
 }
