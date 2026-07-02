@@ -125,6 +125,7 @@ await supabaseAdmin.from("videos").insert({
 const { data: videos } = await supabaseAdmin
   .from("videos")
   .select("id")
+  .eq("user_id", userId)
   .order("created_at", { ascending: false });
 
 if (videos && videos.length > 4) {
