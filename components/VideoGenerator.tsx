@@ -29,14 +29,24 @@ import {
   
   
   
-   async function loadVideos() {
+  async function loadVideos() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    setVideos([]);
+    return;
+  }
+
   const { data, error } = await supabase
     .from("videos")
     .select("*")
+    .eq("user_id", user.id)
     .order("created_at", { ascending: false })
     .limit(4);
 
-  console.log("VIDEOS:", data);
+  console.log("VIDEOS DO USUÁRIO:", data);
   console.log("ERRO:", error);
 
   if (data) {
@@ -73,8 +83,11 @@ if (uploadError) {
 
     const imageUrl = data.publicUrl;
   
+    const {
+  data: { user },
+} = await supabase.auth.getUser();
     try {
-
+       
       try {
          const response = await fetch("/api/video-ai", {
   method: "POST",
@@ -82,9 +95,10 @@ if (uploadError) {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    prompt,
-    imageUrl,
-  }),
+  prompt,
+  imageUrl,
+  userId: user?.id,
+}),
 });
 
  const result = await response.json();

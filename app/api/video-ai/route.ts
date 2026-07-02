@@ -10,6 +10,7 @@ export async function POST(req: Request) {
 
     const prompt = body.prompt;
     const imageUrl = body.imageUrl;
+    const userId = body.userId;
 
     if (!prompt || !imageUrl) {
       return NextResponse.json(
@@ -115,6 +116,7 @@ const videoUrl = (resultData as any).video.url;
 
 // Salva no Supabase
 await supabaseAdmin.from("videos").insert({
+  user_id: userId,
   video_url: videoUrl,
   prompt: prompt,
 });
