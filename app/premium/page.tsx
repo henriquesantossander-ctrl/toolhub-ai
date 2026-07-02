@@ -78,7 +78,7 @@ export default function PremiumPage() {
              <div className="mt-10 space-y-5">
 
   {[
-    "1 geração de imagem por dia",
+    "1 geração de imagem por semana",
     "Gerador de Imagem",
     "Editor de Imagem",
     "Gerador de Roteiro",
