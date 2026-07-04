@@ -2,7 +2,7 @@
 import Script from "next/script";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import Header from "@/components/Header";
+import Header from "@/app/components/Header";
 
 export const metadata = {
   title: "ToolHub IA - Ferramentas Modernas para Internet",

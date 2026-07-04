@@ -1,8 +1,12 @@
-import ImageGenerator from "@/components/ImageGenerator";
-import PhotoEditorPage from "@/components/PhotoEditor";
-import VideoGenerator from "@/components/VideoGenerator";
-import VideoScriptGenerator from "@/components/VideoScriptGenerator";
-import StudioShell from "@/components/StudioShell";
+
+import FeatureLocked from "@/app/components/FeatureLocked";
+import { canUseVideoAI } from "@/lib/permissions";
+import ImageGenerator from "@/app/components/ImageGenerator";
+import PhotoEditorPage from "@/app/components/PhotoEditor";
+import VideoGenerator from "@/app/components/VideoGenerator";
+import VideoScriptGenerator from "@/app/components/VideoScriptGenerator";
+import StudioShell from "@/app/components/StudioShell";
+import ProtectedFeature from "@/app/components/ProtectedFeature";
 
 export default async function StudioPage({
   searchParams,
@@ -21,22 +25,28 @@ export default async function StudioPage({
       )}
 
       {tool === "photo-editor" && (
-        <StudioShell current="photo-editor">
-          <PhotoEditorPage />
-        </StudioShell>
-      )}
+  <StudioShell current="photo-editor">
+    <ProtectedFeature feature="photo-editor">
+      <PhotoEditorPage />
+    </ProtectedFeature>
+  </StudioShell>
+)}
 
       {tool === "video" && (
-        <StudioShell current="video">
-          <VideoGenerator />
-        </StudioShell>
-      )}
+  <StudioShell current="video">
+    <ProtectedFeature feature="video">
+      <VideoGenerator />
+    </ProtectedFeature>
+  </StudioShell>
+)}
 
       {tool === "video-script" && (
-        <StudioShell current="video-script">
-          <VideoScriptGenerator />
-        </StudioShell>
-      )}
+  <StudioShell current="video-script">
+    <ProtectedFeature feature="video-script">
+      <VideoScriptGenerator />
+    </ProtectedFeature>
+  </StudioShell>
+)}
     </main>
   );
 }

@@ -1,8 +1,8 @@
-import ImageGenerator from "@/components/ImageGenerator";
-import PhotoEditorPage from "@/components/PhotoEditor";
-import VideoGenerator from "@/components/VideoGenerator";
-import VideoScriptGenerator from "@/components/VideoScriptGenerator";
-import StudioShell from "@/components/StudioShell";
+import ImageGenerator from "@/app/components/ImageGenerator";
+import PhotoEditorPage from "@/app/components/PhotoEditor";
+import VideoGenerator from "@/app/components/VideoGenerator";
+import VideoScriptGenerator from "@/app/components/VideoScriptGenerator";
+import StudioShell from "@/app/components/StudioShell";
 
 export default async function StudioPage({
   searchParams,
