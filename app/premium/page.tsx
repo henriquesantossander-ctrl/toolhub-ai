@@ -223,7 +223,7 @@ export default function PremiumPage() {
     "Imagem → Vídeo",
     "Upload de imagens",
     "Histórico dos vídeos",
-    "10 créditos de vídeo inclusos",
+    "5 créditos de vídeo inclusos",
     "Compra de créditos extras",
     "Prioridade máxima",
     "Sem anúncios",
@@ -386,7 +386,7 @@ export default function PremiumPage() {
   </div>
 
   <div className="flex justify-center items-center text-yellow-300 font-semibold">
-    10
+    5
   </div>
 </div>
 

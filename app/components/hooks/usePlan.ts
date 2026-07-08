@@ -10,6 +10,7 @@ export default function usePlan() {
   useEffect(() => {
     async function loadPlan() {
       const { data } = await supabase.auth.getUser();
+      console.log("USER ID:", data.user?.id);
 
       if (!data.user) {
         setLoading(false);
