@@ -11,6 +11,27 @@ export async function POST(req: Request) {
     const prompt = body.prompt;
     const imageUrl = body.imageUrl;
     const userId = body.userId;
+    const duration = body.duration || 5;
+
+
+    console.log("DURAÇÃO:", duration);
+
+    const { data: creditData } = await supabaseAdmin
+  .from("video_credits")
+  .select("credits")
+  .eq("user_id", userId)
+  .single();
+
+const credits = Number(creditData?.credits || 0);
+
+if (credits <= 0) {
+  return NextResponse.json(
+    {
+      error: "Você não possui créditos de vídeo.",
+    },
+    { status: 403 }
+  );
+}
 
     if (!prompt || !imageUrl) {
       return NextResponse.json(
@@ -30,11 +51,12 @@ export async function POST(req: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: promptFinal,
-      image_url: imageUrl,
-      strength: 0.90,
-      generate_audio: false,
-    }),
+  prompt: promptFinal,
+  image_url: imageUrl,
+  duration,
+  strength: 0.90,
+  generate_audio: false,
+}),
   }
 );
 

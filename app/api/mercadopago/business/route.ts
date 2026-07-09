@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             title: "ToolHub IA BUSINESS",
             quantity: 1,
             currency_id: "BRL",
-            unit_price: 49,
+            unit_price: 150,
           },
         ],
 

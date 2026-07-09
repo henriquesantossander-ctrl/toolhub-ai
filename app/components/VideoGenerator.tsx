@@ -21,6 +21,7 @@ import {
   const [file, setFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState("");
   const [videos, setVideos] = useState<any[]>([]);
+  const [duration, setDuration] = useState(5);
 
   useEffect(() => {
   loadVideos();
@@ -98,6 +99,7 @@ if (uploadError) {
   prompt,
   imageUrl,
   userId: user?.id,
+  duration,
 }),
 });
 
@@ -155,6 +157,29 @@ await loadVideos();
 />
 
  <div className="flex justify-center">
+  <div className="mb-6 flex gap-3 justify-center">
+  <button
+    onClick={() => setDuration(5)}
+    className={`rounded-xl px-5 py-2 ${
+      duration === 5
+        ? "bg-violet-600 text-white"
+        : "bg-zinc-200 text-zinc-700"
+    }`}
+  >
+    5 segundos
+  </button>
+
+  <button
+    onClick={() => setDuration(15)}
+    className={`rounded-xl px-5 py-2 ${
+      duration === 15
+        ? "bg-violet-600 text-white"
+        : "bg-zinc-200 text-zinc-700"
+    }`}
+  >
+    15 segundos
+  </button>
+</div>
 
   <button
     onClick={generateVideo}
