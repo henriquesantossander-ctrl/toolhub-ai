@@ -22,6 +22,7 @@ import {
   const [videoUrl, setVideoUrl] = useState("");
   const [videos, setVideos] = useState<any[]>([]);
   const [duration, setDuration] = useState(5);
+  const [error, setError] = useState("");
 
   useEffect(() => {
   loadVideos();
@@ -105,6 +106,12 @@ if (uploadError) {
 
  const result = await response.json();
 
+ if (!response.ok) {
+  setError(result.error || "Erro ao gerar vídeo.");
+  setLoading(false);
+  return;
+}
+
 console.log(result);
 
 setVideoUrl(result.videoUrl);
@@ -155,7 +162,11 @@ await loadVideos();
   placeholder="Ex: transforme esta imagem em um vídeo cinematográfico com movimento suave de câmera..."
   className="mb-8 h-28 w-full resize-none rounded-2xl border border-zinc-200 bg-white p-5 text-lg text-zinc-900 outline-none placeholder:text-zinc-400"
 />
-
+{error && (
+  <p className="mb-6 text-center text-sm font-medium text-red-500">
+    {error}
+  </p>
+)}
  <div className="flex justify-center">
   <div className="mb-6 flex gap-3 justify-center">
   <button
@@ -180,7 +191,7 @@ await loadVideos();
     15 segundos
   </button>
 </div>
-
+      
   <button
     onClick={generateVideo}
     disabled={loading}

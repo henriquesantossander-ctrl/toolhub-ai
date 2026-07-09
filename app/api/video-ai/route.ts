@@ -10,8 +10,15 @@ export async function POST(req: Request) {
 
     const prompt = body.prompt;
     const imageUrl = body.imageUrl;
-    const userId = body.userId;
     const duration = body.duration || 5;
+    const userId = body.userId;
+
+    if (!userId) {
+  return NextResponse.json(
+    { error: "Usuário não autenticado." },
+    { status: 401 }
+  );
+}
 
 
     console.log("DURAÇÃO:", duration);
@@ -24,10 +31,12 @@ export async function POST(req: Request) {
 
 const credits = Number(creditData?.credits || 0);
 
-if (credits <= 0) {
+const cost = duration === 15 ? 2 : 1;
+
+if (credits < cost) {
   return NextResponse.json(
     {
-      error: "Você não possui créditos de vídeo.",
+      error: "Créditos insuficientes.",
     },
     { status: 403 }
   );
@@ -135,6 +144,20 @@ if (!(resultData as any)?.video?.url) {
 }
 
 const videoUrl = (resultData as any).video.url;
+
+
+const newCredits = credits - cost;
+
+await supabaseAdmin
+  .from("video_credits")
+  .update({ credits: newCredits })
+  .eq("user_id", userId);
+
+console.log("CRÉDITOS DESCONTADOS:", {
+  antes: credits,
+  custo: cost,
+  depois: newCredits,
+});
 
 // Salva no Supabase
 await supabaseAdmin.from("videos").insert({
