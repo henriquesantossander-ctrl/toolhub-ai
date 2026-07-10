@@ -33,7 +33,11 @@ if (type !== "payment" || !paymentId) {
       id: Number(paymentId),
     });
 
+    console.log("PAYMENT DATA:", paymentData);
+
     if (paymentData.status !== "approved") {
+
+      console.log("STATUS:", paymentData.status);
       return NextResponse.json({ ok: true });
     }
 
