@@ -17,16 +17,21 @@ export default function usePlan() {
         return;
       }
 
-      const { data: sub } = await supabase
+     const { data: sub, error } = await supabase
   .from("subscriptions")
-  .select("plan")
-  .eq("user_email", data.user.email)
-  .single();
+  .select("*")
+  .eq("user_email", data.user.email);
 
+console.log("EMAIL:", data.user.email);
+console.log("SUB:", sub);
+console.log("ERROR:", error);
 
-      if (sub?.plan) {
-        setPlan(sub.plan.toUpperCase());
-      }
+      const subscription = sub?.[0];
+
+if (subscription?.plan) {
+  setPlan(subscription.plan.toUpperCase());
+}
+      
 
       setLoading(false);
     }

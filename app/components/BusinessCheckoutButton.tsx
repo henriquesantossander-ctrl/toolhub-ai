@@ -8,6 +8,8 @@ export default function BusinessCheckoutButton() {
       data: { session },
     } = await supabase.auth.getSession();
 
+    console.log("EMAIL DA SESSÃO:", session?.user.email);
+
     if (!session?.access_token) {
       window.location.href = "/login";
       return;
