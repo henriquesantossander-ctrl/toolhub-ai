@@ -55,6 +55,15 @@ export async function POST(req: Request) {
       }
     );
 
+    await supabase
+  .from("video_credits")
+  .upsert(
+    {
+      user_id: null,
+      credits: 10,
+    }
+  );
+
     return NextResponse.json({
       success: true,
       plan,

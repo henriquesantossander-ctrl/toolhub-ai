@@ -62,6 +62,9 @@ export async function POST(req: NextRequest) {
         },
 
         auto_return: "approved",
+
+        notification_url:
+          "https://www.toolhubia.com.br/api/mercadopago/webhook",
       },
     });
 
