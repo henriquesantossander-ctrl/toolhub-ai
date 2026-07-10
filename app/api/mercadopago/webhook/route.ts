@@ -81,12 +81,15 @@ console.log("UPSERT DATA:", data);
 console.log("UPSERT ERROR:", error);
     
 
-    await supabase
+   await supabase
   .from("video_credits")
   .upsert(
     {
-      user_id: null,
-      credits: 10,
+      user_id: user?.id,
+      credits: 5,
+    },
+    {
+      onConflict: "user_id",
     }
   );
 
