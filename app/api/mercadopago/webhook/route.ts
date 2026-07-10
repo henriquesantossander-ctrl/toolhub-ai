@@ -15,7 +15,12 @@ const supabase = createClient(
 
 export async function POST(req: Request) {
   try {
+    console.log("WEBHOOK CHAMADO");
+
     const body = await req.json();
+
+    console.log("BODY:", body);
+
 
     if (body.type !== "payment") {
       return NextResponse.json({ received: true });
