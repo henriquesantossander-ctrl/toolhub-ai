@@ -1,5 +1,8 @@
 
 import Link from "next/link";
+import ProCheckoutButton from "@/app/components/ProCheckoutButton";
+import BusinessCheckoutButton from "@/app/components/BusinessCheckoutButton";
+
 import {
   CheckCircle2,
   Image,
@@ -163,14 +166,7 @@ export default function PremiumPage() {
 
 </div>
 
-            <a
-              href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/be15a2f2-8466-42bf-b718-02b9598aeed0/payment-option-form/?preference-id=1879629028-906b956f-aa32-4a16-8d25-709a80ea4808&router-request-id=dff32d14-bd27-488d-b8fe-8753bc28c363&p=87921cc13cf0af960fb39866d1a241b4"
-              target="_blank"
-            >
-              <button className="w-full rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 py-4 font-semibold text-white transition hover:opacity-90">
-                Assinar PRO
-              </button>
-            </a>
+           <ProCheckoutButton />
 
           </div>
 
@@ -245,14 +241,7 @@ export default function PremiumPage() {
 
 </div>
 
-            <a
-              href="https://www.mercadopago.com.br/checkout/v1/payment/redirect/b982205c-0d1e-4513-8c6c-536ff07a298b/payment-option-form/?preference-id=1879629028-52dc84a0-55eb-4730-b23d-4fd4762d9892&router-request-id=cbf9b145-2964-4481-8bdb-6120b72ae5b7&p=87921cc13cf0af960fb39866d1a241b4"
-              target="_blank"
-            >
-              <button className="w-full mt-auto rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-500 py-4 font-semibold text-white transition hover:opacity-90">
-                Assinar BUSINESS
-              </button>
-            </a>
+        <BusinessCheckoutButton />
 
           </div>
 
