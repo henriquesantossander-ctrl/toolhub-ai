@@ -53,17 +53,24 @@ if (type !== "payment" || !paymentId) {
       });
     }
 
-    await supabase.from("subscriptions").upsert(
-      {
-        user_email: userEmail,
-        plan: plan,
-        status: "approved",
-        payment_id: String(paymentId),
-      },
-      {
-        onConflict: "user_email",
-      }
-    );
+    const { data, error } = await supabase
+  .from("subscriptions")
+  .upsert(
+    {
+      user_email: userEmail,
+      plan: plan,
+      status: "approved",
+      payment_id: String(paymentId),
+    },
+    {
+      onConflict: "user_email",
+    }
+  )
+  .select();
+
+console.log("UPSERT DATA:", data);
+console.log("UPSERT ERROR:", error);
+    
 
     await supabase
   .from("video_credits")
