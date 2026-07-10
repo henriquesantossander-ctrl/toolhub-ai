@@ -23,12 +23,15 @@ import {
   const [videos, setVideos] = useState<any[]>([]);
   const [duration, setDuration] = useState(5);
   const [error, setError] = useState("");
+  const [credits, setCredits] = useState(0);
 
   useEffect(() => {
   loadVideos();
 }, []);
 
-  
+   useEffect(() => {
+  loadCredits();
+}, []);
   
   
   async function loadVideos() {
@@ -54,6 +57,22 @@ import {
   if (data) {
     setVideos(data);
   }
+}
+ 
+  async function loadCredits() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  const { data } = await supabase
+    .from("video_credits")
+    .select("credits")
+    .eq("user_id", user.id)
+    .single();
+
+  setCredits(data?.credits || 0);
 }
    
   async function generateVideo() {
@@ -152,6 +171,19 @@ await loadVideos();
 />
 </div>
 </div>
+
+    <div className="mb-6 flex items-center justify-between rounded-2xl bg-violet-50 p-4">
+  <div>
+    <p className="text-sm text-zinc-500">
+      Créditos de vídeo
+    </p>
+
+    <p className="text-2xl font-bold text-violet-600">
+      🎬 {credits}
+    </p>
+  </div>
+</div>
+
     <h2 className="mb-4 text-xl font-bold text-zinc-900">
   2. Descreva o vídeo
 </h2>
