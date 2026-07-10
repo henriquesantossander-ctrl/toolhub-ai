@@ -47,6 +47,14 @@ if (type !== "payment" || !paymentId) {
     const plan =
       paymentData.metadata?.plan || "pro";
 
+      const { data: profile } = await supabase.auth.admin.listUsers();
+
+      const user = profile.users.find(
+        (u) => u.email === userEmail
+      );
+
+     console.log("USER FOUND:", user?.id);
+
     if (!userEmail) {
       return NextResponse.json({
         error: "email not found",
@@ -55,13 +63,14 @@ if (type !== "payment" || !paymentId) {
 
     const { data, error } = await supabase
   .from("subscriptions")
-  .upsert(
-    {
-      user_email: userEmail,
-      plan: plan,
-      status: "approved",
-      payment_id: String(paymentId),
-    },
+ .upsert(
+  {
+    user_email: userEmail,
+    user_id: user?.id || null,
+    plan: plan,
+    status: "approved",
+    payment_id: String(paymentId),
+  },
     {
       onConflict: "user_email",
     }
