@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
         },
 
         back_urls: {
-          success: "https://www.toolhubia.com.br/profile",
+          success: "https://www.toolhubia.com.br/studio",
           failure: "https://www.toolhubia.com.br/business",
           pending: "https://www.toolhubia.com.br/business",
         },

@@ -10,7 +10,7 @@ export default function usePlan() {
   useEffect(() => {
     async function loadPlan() {
       const { data } = await supabase.auth.getUser();
-      console.log("USER ID:", data.user?.id);
+      
 
       if (!data.user) {
         setLoading(false);
@@ -22,6 +22,7 @@ export default function usePlan() {
   .select("plan")
   .eq("user_email", data.user.email)
   .single();
+
 
       if (sub?.plan) {
         setPlan(sub.plan.toUpperCase());
