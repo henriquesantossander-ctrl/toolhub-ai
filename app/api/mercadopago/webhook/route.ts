@@ -17,19 +17,20 @@ export async function POST(req: Request) {
   try {
     console.log("WEBHOOK CHAMADO");
 
-    const body = await req.json();
+    const { searchParams } = new URL(req.url);
 
-    console.log("BODY:", body);
+const type = searchParams.get("type");
+const paymentId = searchParams.get("data.id");
 
+console.log("TYPE:", type);
+console.log("PAYMENT ID:", paymentId);
 
-    if (body.type !== "payment") {
-      return NextResponse.json({ received: true });
-    }
-
-    const paymentId = body.data.id;
+if (type !== "payment" || !paymentId) {
+  return NextResponse.json({ received: true });
+}
 
     const paymentData = await payment.get({
-      id: paymentId,
+      id: Number(paymentId),
     });
 
     if (paymentData.status !== "approved") {
