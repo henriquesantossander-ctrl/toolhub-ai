@@ -44,9 +44,18 @@ if (type !== "payment" || !paymentId) {
     const userEmail =
       paymentData.metadata?.user_email || "";
 
-    const plan =
-      paymentData.metadata?.plan || "pro";
+       const credits =
+  Number(paymentData.metadata?.credits || 0);
 
+const paymentType =
+  paymentData.metadata?.type || "";
+
+  if (paymentType === "credits") {
+  console.log("COMPRA DE CRÉDITOS");
+}
+
+  const plan =
+  paymentData.metadata?.plan || "pro";
       const { data: profile } = await supabase.auth.admin.listUsers();
 
       const user = profile.users.find(
@@ -60,6 +69,13 @@ if (type !== "payment" || !paymentId) {
         error: "email not found",
       });
     }
+
+
+    if (paymentType === "credits") {
+  return NextResponse.json({
+    success: true,
+  });
+}
 
     const { data, error } = await supabase
   .from("subscriptions")
@@ -80,6 +96,8 @@ if (type !== "payment" || !paymentId) {
 console.log("UPSERT DATA:", data);
 console.log("UPSERT ERROR:", error);
     
+  console.log("PAYMENT TYPE:", paymentType);
+  console.log("CREDITS COMPRADOS:", credits);
 
    await supabase
   .from("video_credits")
