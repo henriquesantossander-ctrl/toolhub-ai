@@ -44,13 +44,21 @@ if (type !== "payment" || !paymentId) {
     const userEmail =
       paymentData.metadata?.user_email || "";
 
-       const credits =
-  Number(paymentData.metadata?.credits || 0);
+       const external =
+  paymentData.external_reference || "";
 
-const paymentType =
-  paymentData.metadata?.type || "";
+const isCredits =
+  external.startsWith("credits:");
 
-  if (paymentType === "credits") {
+let credits = 0;
+
+if (isCredits) {
+  credits = Number(
+    external.split(":")[1]
+  );
+}
+
+  if (isCredits) {
   console.log("COMPRA DE CRÉDITOS");
 }
 
@@ -70,13 +78,7 @@ const paymentType =
       });
     }
 
-
-    if (paymentType === "credits") {
-  return NextResponse.json({
-    success: true,
-  });
-}
-     if (paymentType === "credits") {
+    if (isCredits) {
   console.log("COMPRA DE CRÉDITOS");
 
   const { data: current } = await supabase
@@ -104,6 +106,8 @@ const paymentType =
     success: true,
   });
 }
+  
+     
     const { data, error } = await supabase
   .from("subscriptions")
  .upsert(
@@ -123,20 +127,10 @@ const paymentType =
 console.log("UPSERT DATA:", data);
 console.log("UPSERT ERROR:", error);
     
-  console.log("PAYMENT TYPE:", paymentType);
+
   console.log("CREDITS COMPRADOS:", credits);
 
-   await supabase
-  .from("video_credits")
-  .upsert(
-    {
-      user_id: user?.id,
-      credits: 5,
-    },
-    {
-      onConflict: "user_id",
-    }
-  );
+   
 
     return NextResponse.json({
       success: true,

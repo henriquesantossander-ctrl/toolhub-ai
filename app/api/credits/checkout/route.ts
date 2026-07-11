@@ -56,6 +56,8 @@ console.log("USER:", user);
 );
     const response = await preference.create({
       body: {
+        external_reference: `credits:${credits}:${user.email}`,
+        
         items: [
           {
             id: `credits-${credits}`,
