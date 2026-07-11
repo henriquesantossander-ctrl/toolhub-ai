@@ -58,9 +58,7 @@ if (isCredits) {
   );
 }
 
-  if (isCredits) {
-  console.log("COMPRA DE CRÉDITOS");
-}
+     
 
   const plan =
   paymentData.metadata?.plan || "pro";
@@ -81,15 +79,20 @@ if (isCredits) {
     if (isCredits) {
   console.log("COMPRA DE CRÉDITOS");
 
-  const { data: current } = await supabase
-    .from("video_credits")
-    .select("credits")
-    .eq("user_id", user?.id)
-    .single();
+    const { data: current, error: currentError } = await supabase
+  .from("video_credits")
+  .select("credits")
+  .eq("user_id", user?.id)
+  .maybeSingle();
+
+console.log("CURRENT:", current);
+console.log("CURRENT ERROR:", currentError);
+console.log("CREDITS COMPRADOS:", credits);
 
   const currentCredits =
     Number(current?.credits || 0);
 
+    const { data: creditData, error: creditError } =
   await supabase
     .from("video_credits")
     .upsert(
@@ -100,7 +103,11 @@ if (isCredits) {
       {
         onConflict: "user_id",
       }
-    );
+    )
+    .select();
+
+console.log("CREDIT DATA:", creditData);
+console.log("CREDIT ERROR:", creditError);
 
   return NextResponse.json({
     success: true,
