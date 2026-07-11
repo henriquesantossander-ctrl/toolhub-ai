@@ -77,8 +77,10 @@ import {
   console.log("CREDIT ERROR:", error);
 
   if (data && data.length > 0) {
-    setCredits(data[0].credits);
-  }
+  setCredits(data[0].credits);
+} else {
+  setCredits(0);
+}
 }
    
   async function generateVideo() {
@@ -188,6 +190,13 @@ await loadCredits();
     <p className="text-2xl font-bold text-violet-600">
       🎬 {credits}
     </p>
+    <button
+  onClick={() => window.location.href = "/credits"}
+  className="mt-3 rounded-xl bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:bg-violet-700"
+>
+  Comprar Créditos
+</button>
+
   </div>
 </div>
 
