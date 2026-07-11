@@ -64,15 +64,24 @@ import {
     data: { user },
   } = await supabase.auth.getUser();
 
+   console.log("USER LOGADO:", user);
+
   if (!user) return;
 
-  const { data } = await supabase
-    .from("video_credits")
-    .select("credits")
-    .eq("user_id", user.id)
-    .single();
 
-  setCredits(data?.credits || 0);
+  const { data, error } = await supabase
+    .from("video_credits")
+    .select("*")
+    .eq("user_id", user.id)
+    
+
+     console.log("CREDIT DATA:", data);
+     console.log("CREDIT ERROR:", error);
+
+ if (data?.length) {
+  setCredits(data[0].credits);
+}
+
 }
    
   async function generateVideo() {
@@ -135,6 +144,7 @@ console.log(result);
 
 setVideoUrl(result.videoUrl);
 await loadVideos();
+await loadCredits();
 
 
 
