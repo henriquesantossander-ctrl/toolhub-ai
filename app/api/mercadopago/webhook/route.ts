@@ -33,7 +33,7 @@ if (type !== "payment" || !paymentId) {
       id: Number(paymentId),
     });
 
-    console.log("PAYMENT DATA:", paymentData);
+    
 
     if (paymentData.status !== "approved") {
 
@@ -85,25 +85,23 @@ if (isCredits) {
 }
   console.log("COMPRA DE CRÉDITOS");
 
-    const { data: current, error: currentError } = await supabase
+    const { data: current } = await supabase
   .from("video_credits")
   .select("credits")
-  .eq("user_id", user?.id)
+    .eq("user_id", user.id)
   .maybeSingle();
 
-console.log("CURRENT:", current);
-console.log("CURRENT ERROR:", currentError);
-console.log("CREDITS COMPRADOS:", credits);
+
 
   const currentCredits =
     Number(current?.credits || 0);
 
-    const { data: creditData, error: creditError } =
-  await supabase
+    
+    await supabase
     .from("video_credits")
     .upsert(
       {
-        user_id: user?.id,
+        user_id: user.id,
         credits: currentCredits + credits,
       },
       {
@@ -112,8 +110,7 @@ console.log("CREDITS COMPRADOS:", credits);
     )
     .select();
 
-console.log("CREDIT DATA:", creditData);
-console.log("CREDIT ERROR:", creditError);
+
 
   return NextResponse.json({
     success: true,
@@ -159,11 +156,6 @@ console.log("CREDIT ERROR:", creditError);
   }
 }
 
-console.log("UPSERT DATA:", data);
-console.log("UPSERT ERROR:", error);
-    
-
-  console.log("CREDITS COMPRADOS:", credits);
 
    
 

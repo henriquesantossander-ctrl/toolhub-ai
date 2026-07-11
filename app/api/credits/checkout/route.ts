@@ -12,7 +12,7 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-console.log("ROTA DE CREDITOS CARREGOU");
+
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,15 +29,15 @@ export async function POST(req: NextRequest) {
 
     const token = authHeader.replace("Bearer ", "");
 
-console.log("TOKEN:", token);
+
 
 const result = await supabase.auth.getUser(token);
 
-console.log("RESULT:", result);
+
 
 const user = result.data.user;
 
-console.log("USER:", user);
+
    
 
 
@@ -50,14 +50,11 @@ console.log("USER:", user);
 
     const preference = new Preference(client);
 
-    console.log(
-  "TOKEN MP:",
-  process.env.MERCADO_PAGO_ACCESS_TOKEN?.slice(0, 20)
-);
+    
     const response = await preference.create({
       body: {
         external_reference: `credits:${credits}:${user.email}`,
-        
+
         items: [
           {
             id: `credits-${credits}`,
