@@ -76,7 +76,34 @@ const paymentType =
     success: true,
   });
 }
+     if (paymentType === "credits") {
+  console.log("COMPRA DE CRÉDITOS");
 
+  const { data: current } = await supabase
+    .from("video_credits")
+    .select("credits")
+    .eq("user_id", user?.id)
+    .single();
+
+  const currentCredits =
+    Number(current?.credits || 0);
+
+  await supabase
+    .from("video_credits")
+    .upsert(
+      {
+        user_id: user?.id,
+        credits: currentCredits + credits,
+      },
+      {
+        onConflict: "user_id",
+      }
+    );
+
+  return NextResponse.json({
+    success: true,
+  });
+}
     const { data, error } = await supabase
   .from("subscriptions")
  .upsert(
