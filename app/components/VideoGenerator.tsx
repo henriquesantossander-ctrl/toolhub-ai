@@ -64,24 +64,21 @@ import {
     data: { user },
   } = await supabase.auth.getUser();
 
-   console.log("USER LOGADO:", user);
+  console.log("USER LOGADO:", user?.id);
 
   if (!user) return;
-
 
   const { data, error } = await supabase
     .from("video_credits")
     .select("*")
-    .eq("user_id", user.id)
-    
+    .eq("user_id", user.id);
 
-     console.log("CREDIT DATA:", data);
-     console.log("CREDIT ERROR:", error);
+  console.log("CREDIT DATA:", data);
+  console.log("CREDIT ERROR:", error);
 
- if (data?.length) {
-  setCredits(data[0].credits);
-}
-
+  if (data && data.length > 0) {
+    setCredits(data[0].credits);
+  }
 }
    
   async function generateVideo() {
