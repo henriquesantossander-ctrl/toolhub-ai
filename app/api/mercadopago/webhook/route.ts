@@ -77,6 +77,12 @@ if (isCredits) {
     }
 
     if (isCredits) {
+      if (!user?.id) {
+  return NextResponse.json(
+    { error: "user not found" },
+    { status: 400 }
+  );
+}
   console.log("COMPRA DE CRÉDITOS");
 
     const { data: current, error: currentError } = await supabase
@@ -130,6 +136,28 @@ console.log("CREDIT ERROR:", creditError);
     }
   )
   .select();
+
+  if (plan === "business" && user?.id) {
+  const { data: existingCredits } = await supabase
+    .from("video_credits")
+    .select("id")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
+  if (!existingCredits) {
+    await supabase
+      .from("video_credits")
+      .insert({
+        user_id: user.id,
+        credits: 5,
+      });
+
+    console.log(
+      "CRÉDITOS BUSINESS CRIADOS:",
+      user.id
+    );
+  }
+}
 
 console.log("UPSERT DATA:", data);
 console.log("UPSERT ERROR:", error);
